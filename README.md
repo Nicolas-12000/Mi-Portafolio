@@ -1,46 +1,149 @@
 ## Portafolio — Nicolás Alejandro García
 
-Este repositorio contiene la base del portafolio personal de Nicolás García. Es una aplicación Next.js (app router) que expone una página principal con secciones: Central Lab (hero), Casos de estudio, Dashboard técnico, Perfil y Contacto.
+Este repositorio contiene el portafolio personal de Nicolás García con arquitectura escalable, soporte para múltiples temas (dark/light) e internacionalización en 3 idiomas (español, inglés, italiano).
 
-Lo que encontrarás aquí
-- `src/app/page.tsx`: implementación principal del portafolio (diseño, navegación y secciones).
-- Estilos y configuración mínima para ejecutar la aplicación con Next.js.
+### 🎨 Características principales
 
-Tecnologías principales
-- Next.js (App Router)
-- React + TypeScript
-- Tailwind CSS (clases utilitarias en los componentes)
-- Lucide icons (íconos usados en la UI)
+- **Temas dinámicos**: modo oscuro y claro con persistencia de preferencias
+- **Multiidioma (i18n)**: español, inglés e italiano con cambio en tiempo real
+- **Arquitectura modular**: componentes reutilizables y código mantenible
+- **Performance optimizada**: Next.js 15 con App Router y React 19
+- **Responsive design**: adaptado para móviles, tablets y escritorio
+- **Accesibilidad**: ARIA labels y navegación por teclado
 
-Cómo ejecutar localmente (Windows — PowerShell)
-1. Instala dependencias:
+### 📁 Estructura del proyecto
+
+```
+src/
+├── app/              # Next.js App Router
+├── components/       # Componentes reutilizables (UI, sections, layout)
+├── contexts/         # React Contexts (ThemeContext, LanguageContext)
+├── hooks/            # Custom hooks (useTheme, useTranslation, etc.)
+├── lib/              # Utilidades y configuración
+├── locales/          # Archivos de traducción (es.json, en.json, it.json)
+└── types/            # TypeScript interfaces
+```
+
+### 🚀 Tecnologías
+
+- **Framework**: Next.js 15.5.3 (App Router)
+- **UI**: React 19 + TypeScript
+- **Estilos**: Tailwind CSS v4 con tokens personalizados
+- **Iconos**: Lucide React
+- **i18n**: next-intl
+- **Utilidades**: clsx + tailwind-merge
+
+### 💻 Instalación y ejecución (Windows — PowerShell)
+
+1. **Clonar el repositorio**:
+
+```powershell
+git clone https://github.com/Nicolas-12000/Mi-Portafolio.git
+cd Mi-Portafolio
+```
+
+2. **Instalar dependencias**:
 
 ```powershell
 npm install
 ```
 
-2. Levanta el servidor de desarrollo:
+3. **Ejecutar en modo desarrollo**:
 
 ```powershell
 npm run dev
 ```
 
-3. Abre http://localhost:3000 en tu navegador.
+4. **Abrir en el navegador**: [http://localhost:3000](http://localhost:3000)
 
-Notas de despliegue
-- Puedes desplegar fácilmente en Vercel o en cualquier proveedor que soporte aplicaciones Next.js. Para Vercel, conecta el repositorio y selecciona la rama `main`.
+### 🏗️ Construir para producción
 
-Estructura relevante
-- `src/app/page.tsx`: página principal (contenido del portafolio). Edita aquí para cambiar textos, secciones o estilos.
+```powershell
+npm run build
+npm start
+```
 
-Contacto y licencias
-- Autor: Nicolás Alejandro García Pasmiño — información de contacto y enlaces dentro de la página (`/contact`).
-- Licencia: contenido personal. Añade una licencia explícita si deseas permitir reutilización.
+### 📖 Documentación técnica
 
-Resumen de este cambio
-- Se añadió la base del portafolio (página principal) y se actualizó este README para documentar cómo ejecutar y qué contiene el proyecto.
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)**: arquitectura completa, decisiones técnicas y guías de desarrollo
+- **[MIGRATION_PROGRESS.md](./MIGRATION_PROGRESS.md)**: estado de la migración y próximos pasos
+
+### 🎨 Sistema de temas
+
+El portafolio soporta modo oscuro (default) y modo claro. El tema se guarda automáticamente en localStorage.
+
+**Cambiar tema**:
+- Usar el toggle en la navegación (próximamente)
+- Modificar manualmente: `localStorage.setItem('portfolio-theme', 'light')`
+
+Los tokens de color están definidos en `src/app/globals.css` usando CSS custom properties.
+
+### 🌍 Idiomas soportados
+
+- 🇪🇸 Español (es) — idioma por defecto
+- 🇬🇧 Inglés (en)
+- 🇮🇹 Italiano (it)
+
+**Cambiar idioma**:
+- Rutas dinámicas: `/es`, `/en`, `/it`
+- Selector de idioma en navegación (próximamente)
+
+### 📝 Cómo agregar traducciones
+
+1. Edita `src/locales/es.json`, `en.json`, `it.json`
+2. Agrega la nueva clave siguiendo la estructura existente
+3. Usa en componentes con `t('clave.anidada')`
+
+### 🧩 Componentes principales
+
+| Componente | Descripción |
+|------------|-------------|
+| `HeroSection` | Sección principal con título y llamado a la acción |
+| `CaseStudiesSection` | Casos de estudio y proyectos destacados |
+| `TechStackSection` | Stack tecnológico y competencias |
+| `ProfileSection` | Información personal y profesional |
+| `ContactSection` | Formulario de contacto e información |
+
+### 🛠️ Scripts disponibles
+
+```powershell
+npm run dev      # Servidor de desarrollo con Turbopack
+npm run build    # Construir para producción
+npm start        # Ejecutar build de producción
+npm run lint     # Ejecutar linter
+```
+
+### 📊 Estado del proyecto
+
+- ✅ **Fase 1**: Estructura base + Temas + Traducciones **COMPLETADA**
+- 🔄 **Fase 2**: Configuración i18n + Componentes UI **EN PROGRESO**
+- ⏳ **Fase 3**: Refactorización completa (pendiente)
+- ⏳ **Fase 4**: Testing y optimización (pendiente)
+
+Ver [MIGRATION_PROGRESS.md](./MIGRATION_PROGRESS.md) para detalles.
+
+### 📄 Licencia y contacto
+
+- **Autor**: Nicolás Alejandro García Pasmiño
+- **Email**: nikolasg1200@gmail.com
+- **GitHub**: [@Nicolas-12000](https://github.com/Nicolas-12000)
+- **LinkedIn**: [Nicolás García](https://www.linkedin.com/in/nicol%C3%A1s-alejandro-garc%C3%ADa-pasmi%C3%B1o-82765333b/)
+
+Portafolio personal — código disponible para referencia. Si deseas reutilizar partes del código, por favor da crédito al autor original.
+
+### 🚀 Próximos pasos
+
+1. Configurar rutas dinámicas `[locale]` con next-intl
+2. Crear componentes UI base (Button, Card, Badge)
+3. Implementar ThemeToggle y LanguageSelector
+4. Refactorizar page.tsx en componentes modulares
+5. Agregar animaciones con framer-motion
+6. Implementar formulario de contacto funcional
 
 ---
+
+**Stack**: Next.js 15 • React 19 • TypeScript • Tailwind CSS v4 • next-intl  
+**Última actualización**: Enero 2025
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

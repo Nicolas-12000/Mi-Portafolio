@@ -1,0 +1,223 @@
+{
+  "nav": {
+    "hero": "Central Lab",
+    "cases": "Casi di studio",
+    "tech": "Stack tecnologico",
+    "profile": "Profilo",
+    "contact": "Contatto"
+  },
+  "hero": {
+    "statusBadge": "SISTEMA ATTIVO",
+    "title": "NICOLÁS GARCÍA",
+    "tagline": "Automatizzo processi per ottimizzare il tempo e godermi la vita",
+    "subtitle": "Ingegnere software • Specialista backend • Architetto di soluzioni",
+    "stats": {
+      "experience": "Anni Esperienza",
+      "projects": "Progetti",
+      "quality": "Focus qualità"
+    },
+    "cta": {
+      "cases": "Vedi Casi di studio",
+      "tech": "Stack tecnologico"
+    },
+    "quickLinks": {
+      "about": "Chi sono",
+      "contact": "Contatto"
+    }
+  },
+  "cases": {
+    "title": "CASI DI RICERCA",
+    "subtitle": "Analisi di processi digitali ottimizzati. Ogni caso rappresenta ore recuperate ed efficienza massimizzata.",
+    "status": {
+      "completed": "COMPLETATO",
+      "inProgress": "IN CORSO"
+    },
+    "case1": {
+      "title": "API REST enterprise",
+      "description": "Sviluppo di API sicura con Spring Boot, implementando JWT, documentazione Swagger e ottimizzazione query MySQL.",
+      "problem": "Sistema legacy senza API unificata",
+      "solution": "Architettura esagonale + Spring Security",
+      "impact": "70% riduzione tempo di query",
+      "cta": "Vedi dettagli"
+    },
+    "case2": {
+      "title": "Sistema avicolo integrale",
+      "description": "Automazione completa di inventari e moduli con backend Django, mobile Flutter e ottimizzazioni MySQL.",
+      "problem": "Gestione manuale degli inventari",
+      "solution": "App mobile + dashboard web automatizzato",
+      "impact": "85% riduzione tempo di registrazione",
+      "cta": "Vedi progressi"
+    },
+    "case3": {
+      "title": "Pipeline DevOps Azure",
+      "description": "Automazione completa dei deployment con Jenkins, Docker e Azure DevOps per applicazioni Spring Boot.",
+      "problem": "Deploy manuali soggetti a errori",
+      "solution": "CI/CD completamente automatizzato",
+      "impact": "95% riduzione tempo di deploy",
+      "cta": "Vedi architettura"
+    },
+    "footer": {
+      "question": "Interessato a un caso specifico?",
+      "cta": "Richiedi dettagli tecnici"
+    }
+  },
+  "tech": {
+    "title": "DASHBOARD TECNICO",
+    "subtitle": "Arsenale tecnologico ottimizzato per massima efficienza. Ogni strumento selezionato strategicamente.",
+    "categories": {
+      "strengths": "PUNTI DI FORZA (2+ anni)",
+      "consolidated": "COMPETENZE CONSOLIDATE",
+      "active": "IN SVILUPPO ATTIVO"
+    },
+    "subcategories": {
+      "backend": "Backend e architettura",
+      "databases": "Database e metodologie",
+      "devops": "DevOps e cloud",
+      "fullstack": "Full-Stack",
+      "tools": "Strumenti",
+      "frontend": "Frontend moderno",
+      "ai": "AI e ML",
+      "cloud": "Cloud native",
+      "automation": "Automazione"
+    },
+    "roadmap": {
+      "title": "OBIETTIVI 2025",
+      "q1": {
+        "title": "Q1: Backend mastery",
+        "description": "Consolidamento Spring Boot + Azure + pattern avanzati"
+      },
+      "q2": {
+        "title": "Q2: Frontend + Cloud",
+        "description": "React/Next.js avanzato + architetture cloud-native"
+      },
+      "q3": {
+        "title": "Q3-Q4: Integrazione AI",
+        "description": "PyTorch applicato + LLM in soluzioni enterprise"
+      }
+    }
+  },
+  "profile": {
+    "title": "L'UMANO DIETRO IL CODICE",
+    "subtitle": "Come molti, valuto l'equilibrio tra lavoro e vita personale, usando la tecnologia per ottimizzare il tempo e creare connessioni autentiche.",
+    "engineer": {
+      "title": "L'ingegnere",
+      "formation": {
+        "title": "Formazione ed esperienza",
+        "content": "Studente di Ingegneria del Software presso l'Università Cooperativa della Colombia con 2 anni di esperienza pratica. Sono stato assistente universitario, guidando studenti in concetti tecnici e collaborando a progetti istituzionali."
+      },
+      "methodologies": {
+        "title": "Metodologie e leadership",
+        "content": "Specializzato in Scrum e metodologie agili, principi SOLID e KISS, con esperienza nella guida di piccoli team nell'implementazione delle migliori pratiche. Focus su documentazione tecnica completa e mentoring di base."
+      },
+      "projects": {
+        "title": "Progetti reali",
+        "content": "Contributi nello sviluppo web per istituzioni educative con WordPress, e attualmente ottimizzando processi per un'azienda avicola con stack Django/MySQL/Flutter."
+      }
+    },
+    "human": {
+      "title": "L'essere umano",
+      "intro": "Ciao! Sono Nicolás Alejandro García Pasmiño. Nel corso della mia vita mi hanno chiamato in molti modi, quindi sentiti libero di scegliere quello che preferisci. La mia fame di conoscenza non è iniziata all'università, ma molto prima, con un corso di robotica a 8 anni, alimentata da una curiosità insaziabile per tecnologia, fisica e videogiochi.",
+      "personal": "Quando non sono immerso nel mondo del codice, probabilmente mi troverai a condividere un buon caffè (sono un fanatico!), ad allenarmi con gli amici o semplicemente a cercare una buona conversazione. Credo che le migliori idee e connessioni nascano da quei momenti autentici.",
+      "hobbies": {
+        "music": {
+          "title": "Melomane",
+          "description": "Mi piace di tutto, dalla salsa e rock spagnolo al pop, rap e varietà di generi musicali in diverse lingue. A volte mi cimento anche con la batteria."
+        },
+        "gym": {
+          "title": "Palestra e sport",
+          "description": "2 anni di disciplina in palestra. Il Muay Thai è la mia fuga preferita nel tempo libero."
+        },
+        "explorer": {
+          "title": "Esploratore",
+          "description": "Mi piace viaggiare, conoscere culture, meditare e connettermi con la natura"
+        }
+      },
+      "philosophy": {
+        "title": "La mia filosofia",
+        "quote": "Non lavoro più ore, lavoro più intelligentemente. Ogni riga di codice è un'ora in più da vivere.",
+        "flow": "Automazione → Efficienza → Libertà → Vita piena"
+      }
+    },
+    "softSkills": {
+      "title": "SOFT SKILLS CHIAVE",
+      "empathy": {
+        "title": "Empatia e collaborazione",
+        "description": "Connessioni autentiche con colleghi, mentoring tecnico e lavoro di squadra efficace"
+      },
+      "adaptability": {
+        "title": "Adattabilità",
+        "description": "Apprendimento continuo, mente aperta e capacità di adattarsi alle esigenze del progetto"
+      },
+      "balance": {
+        "title": "Equilibrio e resilienza",
+        "description": "Separazione lavoro-vita personale, resilienza attraverso sport e meditazione"
+      }
+    }
+  },
+  "contact": {
+    "title": "CONTATTAMI",
+    "subtitle": "Fascicolo completo disponibile. Pronto a lavorare insieme e portare valore reale al tuo team o azienda.",
+    "info": {
+      "title": "Informazioni",
+      "location": {
+        "label": "Ubicazione",
+        "value": "Pasto, Nariño, Colombia"
+      },
+      "email": {
+        "label": "Email",
+        "value": "nikolasg1200@gmail.com"
+      },
+      "availability": {
+        "label": "Disponibilità",
+        "value": "Remoto/Ibrido"
+      }
+    },
+    "cv": {
+      "title": "Curriculum Vitae",
+      "description": "CV dettagliato con casi tecnici, architetture implementate e metriche di impatto.",
+      "download": "Scarica CV"
+    },
+    "social": {
+      "title": "Connettiti con me",
+      "github": "Codice e progetti",
+      "linkedin": "Profilo Professionale",
+      "instagram": "Vedi lato personale"
+    },
+    "form": {
+      "title": "Mettiamoci in contatto",
+      "name": "Nome",
+      "namePlaceholder": "Il tuo nome",
+      "email": "Email",
+      "emailPlaceholder": "tua@email.com",
+      "projectType": "Tipo di progetto",
+      "projectTypes": {
+        "backend": "Sviluppo Backend",
+        "fullstack": "Applicazione Full-Stack",
+        "devops": "DevOps e Cloud",
+        "automation": "Automazione Processi",
+        "consulting": "Consulenza Tecnica",
+        "other": "Altro"
+      },
+      "message": "Messaggio",
+      "messagePlaceholder": "Raccontami del tuo progetto e come possiamo automatizzare processi per generare impatto...",
+      "submit": "Invia Proposta",
+      "guarantee": "Risposta garantita entro 24 ore."
+    }
+  },
+  "footer": {
+    "brand": "NICOLÁS GARCÍA",
+    "copyright": "© 2025 Nicolás Alejandro García Pasmiño",
+    "quote": "Ogni riga di codice è un'ora in più da vivere",
+    "status": "Disponibile"
+  },
+  "common": {
+    "problem": "Problema:",
+    "solution": "Soluzione:",
+    "impact": "Impatto:",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "close": "Chiudi",
+    "open": "Apri",
+    "menu": "Menu"
+  }
+}

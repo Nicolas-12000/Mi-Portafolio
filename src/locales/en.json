@@ -1,0 +1,223 @@
+{
+  "nav": {
+    "hero": "Central Lab",
+    "cases": "Case Studies",
+    "tech": "Tech Stack",
+    "profile": "Profile",
+    "contact": "Contact"
+  },
+  "hero": {
+    "statusBadge": "SYSTEM ACTIVE",
+    "title": "NICOLÁS GARCÍA",
+    "tagline": "I automate processes to optimize time and enjoy life",
+    "subtitle": "Software Engineer • Backend Specialist • Solutions Architect",
+    "stats": {
+      "experience": "Years Experience",
+      "projects": "Projects",
+      "quality": "Quality Focus"
+    },
+    "cta": {
+      "cases": "View Case Studies",
+      "tech": "Tech Stack"
+    },
+    "quickLinks": {
+      "about": "About Me",
+      "contact": "Contact"
+    }
+  },
+  "cases": {
+    "title": "RESEARCH CASES",
+    "subtitle": "Analysis of optimized digital processes. Each case represents recovered hours and maximized efficiency.",
+    "status": {
+      "completed": "COMPLETED",
+      "inProgress": "IN PROGRESS"
+    },
+    "case1": {
+      "title": "Enterprise REST API",
+      "description": "Development of secure API with Spring Boot, implementing JWT, Swagger documentation and MySQL query optimization.",
+      "problem": "Legacy system without unified API",
+      "solution": "Hexagonal architecture + Spring Security",
+      "impact": "70% reduction in query time",
+      "cta": "View details"
+    },
+    "case2": {
+      "title": "Comprehensive poultry system",
+      "description": "Complete automation of inventories and forms with Django backend, Flutter mobile and MySQL optimizations.",
+      "problem": "Manual inventory management",
+      "solution": "Mobile app + automated web dashboard",
+      "impact": "85% reduction in registration time",
+      "cta": "View progress"
+    },
+    "case3": {
+      "title": "Azure DevOps Pipeline",
+      "description": "Complete deployment automation with Jenkins, Docker, and Azure DevOps for Spring Boot applications.",
+      "problem": "Manual deployments prone to errors",
+      "solution": "Fully automated CI/CD",
+      "impact": "95% reduction in deployment time",
+      "cta": "View architecture"
+    },
+    "footer": {
+      "question": "Interested in a specific case?",
+      "cta": "Request technical details"
+    }
+  },
+  "tech": {
+    "title": "TECHNICAL DASHBOARD",
+    "subtitle": "Optimized tech arsenal for maximum efficiency. Each tool strategically selected.",
+    "categories": {
+      "strengths": "CORE STRENGTHS (2+ years)",
+      "consolidated": "CONSOLIDATED COMPETENCIES",
+      "active": "ACTIVE DEVELOPMENT"
+    },
+    "subcategories": {
+      "backend": "Backend and architecture",
+      "databases": "Databases and methodologies",
+      "devops": "DevOps and cloud",
+      "fullstack": "Full-Stack",
+      "tools": "Tools",
+      "frontend": "Modern frontend",
+      "ai": "AI and ML",
+      "cloud": "Cloud native",
+      "automation": "Automation"
+    },
+    "roadmap": {
+      "title": "2025 GOALS",
+      "q1": {
+        "title": "Q1: Backend mastery",
+        "description": "Spring Boot + Azure + advanced patterns consolidation"
+      },
+      "q2": {
+        "title": "Q2: Frontend + Cloud",
+        "description": "Advanced React/Next.js + cloud-native architectures"
+      },
+      "q3": {
+        "title": "Q3-Q4: AI integration",
+        "description": "Applied PyTorch + LLMs in enterprise solutions"
+      }
+    }
+  },
+  "profile": {
+    "title": "THE HUMAN BEHIND THE CODE",
+    "subtitle": "Like many, I value work-life balance, using technology to optimize time and create authentic connections.",
+    "engineer": {
+      "title": "The engineer",
+      "formation": {
+        "title": "Training and experience",
+        "content": "Software Engineering student at Universidad Cooperativa de Colombia with 2 years of practical experience. I've been a university teaching assistant, guiding students in technical concepts and collaborating on institutional projects."
+      },
+      "methodologies": {
+        "title": "Methodologies and leadership",
+        "content": "Specialized in Scrum and agile methodologies, SOLID and KISS principles, with experience leading small teams in implementing best practices. Focus on comprehensive technical documentation and basic mentoring."
+      },
+      "projects": {
+        "title": "Real projects",
+        "content": "Contributions in web development for educational institutions with WordPress, and currently optimizing processes for a poultry company with Django/MySQL/Flutter stack."
+      }
+    },
+    "human": {
+      "title": "The human being",
+      "intro": "Hi! I'm Nicolás Alejandro García Pasmiño. Throughout my life I've been called many names, so feel free to choose whichever you prefer. My hunger for knowledge didn't start at university, but much earlier, with a robotics course at age 8, fueled by an insatiable curiosity for technology, physics, and video games.",
+      "personal": "When I'm not immersed in the world of code, you'll probably find me sharing a good coffee (I'm a fanatic!), training with friends, or simply seeking a good conversation. I believe the best ideas and connections are born from those authentic moments.",
+      "hobbies": {
+        "music": {
+          "title": "Music lover",
+          "description": "I enjoy everything from salsa and Spanish rock to pop, rap, and a variety of musical genres in several languages. Sometimes I dare to play the drums."
+        },
+        "gym": {
+          "title": "Gym and sports",
+          "description": "2 years of gym discipline. Muay Thai is my favorite escape in my free time."
+        },
+        "explorer": {
+          "title": "Explorer",
+          "description": "I like traveling, discovering cultures, meditating, and connecting with nature"
+        }
+      },
+      "philosophy": {
+        "title": "My Philosophy",
+        "quote": "I don't work more hours, I work smarter. Every line of code is one more hour to live.",
+        "flow": "Automation → Efficiency → Freedom → Full life"
+      }
+    },
+    "softSkills": {
+      "title": "KEY SOFT SKILLS",
+      "empathy": {
+        "title": "Empathy and collaboration",
+        "description": "Authentic connections with colleagues, technical mentoring, and effective teamwork"
+      },
+      "adaptability": {
+        "title": "Adaptability",
+        "description": "Continuous learning, open mind, and ability to pivot according to project needs"
+      },
+      "balance": {
+        "title": "Balance and resilience",
+        "description": "Work-life separation, resilience through sports and meditation"
+      }
+    }
+  },
+  "contact": {
+    "title": "CONTACT ME",
+    "subtitle": "Complete file available. Ready to work together and bring real value to your team or company.",
+    "info": {
+      "title": "Information",
+      "location": {
+        "label": "Location",
+        "value": "Pasto, Nariño, Colombia"
+      },
+      "email": {
+        "label": "Email",
+        "value": "nikolasg1200@gmail.com"
+      },
+      "availability": {
+        "label": "Availability",
+        "value": "Remote/Hybrid"
+      }
+    },
+    "cv": {
+      "title": "Curriculum Vitae",
+      "description": "Detailed CV with technical cases, implemented architectures, and impact metrics.",
+      "download": "Download CV"
+    },
+    "social": {
+      "title": "Connect with me",
+      "github": "Code and projects",
+      "linkedin": "Professional Profile",
+      "instagram": "See personal side"
+    },
+    "form": {
+      "title": "Let's get in touch",
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "projectType": "Project type",
+      "projectTypes": {
+        "backend": "Backend Development",
+        "fullstack": "Full-Stack Application",
+        "devops": "DevOps and Cloud",
+        "automation": "Process Automation",
+        "consulting": "Technical Consulting",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project and how we can automate processes to generate impact...",
+      "submit": "Send Proposal",
+      "guarantee": "Response guaranteed within 24 hours."
+    }
+  },
+  "footer": {
+    "brand": "NICOLÁS GARCÍA",
+    "copyright": "© 2025 Nicolás Alejandro García Pasmiño",
+    "quote": "Every line of code is one more hour to live",
+    "status": "Available"
+  },
+  "common": {
+    "problem": "Problem:",
+    "solution": "Solution:",
+    "impact": "Impact:",
+    "loading": "Loading...",
+    "error": "Error",
+    "close": "Close",
+    "open": "Open",
+    "menu": "Menu"
+  }
+}
