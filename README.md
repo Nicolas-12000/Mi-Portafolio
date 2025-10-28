@@ -1,3 +1,46 @@
+## Portafolio — Nicolás Alejandro García
+
+Este repositorio contiene la base del portafolio personal de Nicolás García. Es una aplicación Next.js (app router) que expone una página principal con secciones: Central Lab (hero), Casos de estudio, Dashboard técnico, Perfil y Contacto.
+
+Lo que encontrarás aquí
+- `src/app/page.tsx`: implementación principal del portafolio (diseño, navegación y secciones).
+- Estilos y configuración mínima para ejecutar la aplicación con Next.js.
+
+Tecnologías principales
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS (clases utilitarias en los componentes)
+- Lucide icons (íconos usados en la UI)
+
+Cómo ejecutar localmente (Windows — PowerShell)
+1. Instala dependencias:
+
+```powershell
+npm install
+```
+
+2. Levanta el servidor de desarrollo:
+
+```powershell
+npm run dev
+```
+
+3. Abre http://localhost:3000 en tu navegador.
+
+Notas de despliegue
+- Puedes desplegar fácilmente en Vercel o en cualquier proveedor que soporte aplicaciones Next.js. Para Vercel, conecta el repositorio y selecciona la rama `main`.
+
+Estructura relevante
+- `src/app/page.tsx`: página principal (contenido del portafolio). Edita aquí para cambiar textos, secciones o estilos.
+
+Contacto y licencias
+- Autor: Nicolás Alejandro García Pasmiño — información de contacto y enlaces dentro de la página (`/contact`).
+- Licencia: contenido personal. Añade una licencia explícita si deseas permitir reutilización.
+
+Resumen de este cambio
+- Se añadió la base del portafolio (página principal) y se actualizó este README para documentar cómo ejecutar y qué contiene el proyecto.
+
+---
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
