@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { 
-  Code2, 
+  Code2,
   Database, 
   Cloud, 
   Zap, 
@@ -29,7 +29,6 @@ import {
 } from 'lucide-react';
 
 const Portfolio = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLElement>(null);
 
@@ -66,98 +65,42 @@ const Portfolio = () => {
   }, [handleMouseMove]);
 
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
-    setIsMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 64;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
-  const menuItems = [
-    { id: 'hero', label: 'Central Lab', icon: Terminal },
-    { id: 'cases', label: 'Case Files', icon: FileText },
-    { id: 'tech', label: 'Tech Dashboard', icon: Cpu },
-    { id: 'profile', label: 'Engineer Profile', icon: User },
-    { id: 'contact', label: 'Contact', icon: Mail }
-  ];
-
   return (
-    <div className="min-h-screen text-[#F2F2F7] relative" style={{background: "linear-gradient(135deg, #050507 0%, #151520 50%, #050507 100%)"}}>
+    <div className="min-h-screen text-text-primary relative bg-gradient-to-b from-background via-surface to-background">
       {/* Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30">
         {/* Animated circuits */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 opacity-5">
-          <div className="w-full h-full border border-[#E6B93D] rounded-full animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-[#4A0E1F] rounded-full animate-spin"></div>
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 opacity-20">
+          <div className="w-full h-full border border-accent-primary rounded-full animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-accent-secondary rounded-full animate-spin"></div>
         </div>
-        <div className="absolute bottom-1/3 right-1/4 w-24 h-24 opacity-5">
-          <div className="w-full h-full border border-[#E6B93D] rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-24 h-24 opacity-20">
+          <div className="w-full h-full border border-accent-primary rounded-full animate-pulse delay-1000"></div>
         </div>
         {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(21,21,32,0.3)_1px,transparent_1px)] bg-[length:50px_50px] opacity-20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(var(--color-surface-rgb),0.3)_1px,transparent_1px)] bg-[length:50px_50px]"></div>
       </div>
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#050507]/90 backdrop-blur-lg border-b border-[#151520]/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#4A0E1F] to-[#E63946] rounded-lg flex items-center justify-center">
-                <Code2 className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-lg">GARCÍA LABS</span>
-            </div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 hover:bg-[#151520]/30 hover:text-[#E6B93D]"
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span className="text-sm font-medium">{item.label}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-[#151520]/30 transition-colors"
-            >
-              <Settings className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-[#050507]/95 backdrop-blur-lg border-t border-[#151520]/30">
-            <div className="px-4 py-4 space-y-2">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all hover:bg-[#151520]/30"
-                >
-                  <item.icon className="w-5 h-5" />
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
 
       {/* Hero Section - Central Lab */}
       <section 
         id="hero" 
         ref={heroRef}
-        className="min-h-screen flex items-center justify-center relative pt-16"
+        className="min-h-screen flex items-center justify-center relative pt-20 sm:pt-24"
         style={{
-          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(74, 14, 31, 0.05) 0%, transparent 50%)`
+          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(var(--color-accent-primary-rgb), 0.05) 0%, transparent 50%)`
         }}
       >
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">

@@ -202,7 +202,9 @@
       "messagePlaceholder": "Tell me about your project and how we can automate processes to generate impact...",
       "submit": "Send Proposal",
       "guarantee": "Response guaranteed within 24 hours."
-    }
+    },
+    "footer_made_with": "Made with",
+    "footer_by": "by"
   },
   "footer": {
     "brand": "NICOLÁS GARCÍA",
