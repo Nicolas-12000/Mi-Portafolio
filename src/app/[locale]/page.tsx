@@ -27,43 +27,9 @@ import {
   ArrowRight,
   Play
 } from 'lucide-react';
+import { HeroSection } from '@/components/sections';
 
 const Portfolio = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLElement>(null);
-
-  // Mouse tracking for hero animations - optimized with throttling
-  const rafRef = useRef<number | null>(null);
-  
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (rafRef.current) return; // Skip if animation frame is already pending
-    
-    rafRef.current = requestAnimationFrame(() => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: ((e.clientX - rect.left) / rect.width) * 100,
-          y: ((e.clientY - rect.top) / rect.height) * 100
-        });
-      }
-      rafRef.current = null;
-    });
-  }, []);
-
-  useEffect(() => {
-    const heroElement = heroRef.current;
-    if (heroElement) {
-      heroElement.addEventListener('mousemove', handleMouseMove);
-      return () => {
-        heroElement.removeEventListener('mousemove', handleMouseMove);
-        if (rafRef.current) {
-          cancelAnimationFrame(rafRef.current);
-          rafRef.current = null;
-        }
-      };
-    }
-  }, [handleMouseMove]);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -94,93 +60,8 @@ const Portfolio = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(var(--color-surface-rgb),0.3)_1px,transparent_1px)] bg-[length:50px_50px]"></div>
       </div>
 
-      {/* Hero Section - Central Lab */}
-      <section 
-        id="hero" 
-        ref={heroRef}
-        className="min-h-screen flex items-center justify-center relative pt-20 sm:pt-24"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(var(--color-accent-primary-rgb), 0.05) 0%, transparent 50%)`
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          {/* Main Hero Content */}
-          <div className="mb-8">
-            <div className="inline-flex items-center space-x-4 bg-[#151520]/30 border border-[#151520]/50 px-5 py-3 rounded-full mb-6">
-              <div className="w-2 h-2 bg-[#E63946] rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-[#E6B93D] tracking-wider">SISTEMA ACTIVO</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#F2F2F7] via-[#E6B93D] to-[#E63946] bg-clip-text text-transparent">
-              NICOLÁS GARCÍA
-            </h1>
-            
-            <div className="text-xl md:text-2xl text-[#9CA3AF] mb-8 max-w-4xl mx-auto">
-              <span className="text-[#E6B93D] font-semibold">&ldquo;Automatizo procesos para optimizar el tiempo y disfrutar la vida&rdquo;</span>
-              <br />
-              <span className="text-lg">Ingeniero de software • Especialista en backend • Arquitecto de soluciones</span>
-            </div>
-
-            {/* Key Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto justify-items-center">
-              <div className="bg-[#050507]/40 backdrop-blur-lg rounded-lg p-4 border border-[#4A0E1F]/20 w-full sm:max-w-xs">
-                <div className="text-2xl font-bold text-[#E6B93D]">2+</div>
-                <div className="text-sm text-[#9CA3AF]">Años Experiencia</div>
-              </div>
-
-              <div className="bg-[#050507]/40 backdrop-blur-lg rounded-lg p-4 border border-[#4A0E1F]/20 w-full sm:max-w-xs">
-                <div className="text-2xl font-bold text-[#E6B93D]">5+</div>
-                <div className="text-sm text-[#9CA3AF]">Proyectos</div>
-              </div>
-              <div className="bg-[#050507]/40 backdrop-blur-lg rounded-lg p-4 border border-[#4A0E1F]/20 w-full sm:max-w-xs">
-                <div className="text-2xl font-bold text-[#E6B93D]">100%</div>
-                <div className="text-sm text-[#9CA3AF]">Enfoque calidad</div>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
-              onClick={() => scrollToSection('cases')}
-              className="group bg-gradient-to-r from-[#4A0E1F] to-[#E63946] hover:from-[#E63946] hover:to-[#4A0E1F] px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-[#D4AF37]/20"
-            >
-              <FileText className="w-5 h-5" />
-              <span>Ver Casos de estudio</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button 
-              onClick={() => scrollToSection('tech')}
-              className="group border border-[#E6B93D]/50 hover:bg-[#E6B93D]/10 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2"
-            >
-              <Cpu className="w-5 h-5" />
-              <span>Stack técnico</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-
-          {/* Quick Access Navigation */}
-          <div className="mt-16 flex justify-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('profile')}
-              className="text-[#9CA3AF] hover:text-[#E6B93D] transition-colors text-sm"
-            >
-              Sobre Mí
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="text-[#9CA3AF] hover:text-[#E6B93D] transition-colors text-sm"
-            >
-              Contacto
-            </button>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronRight className="w-6 h-6 text-[#E6B93D] rotate-90" />
-        </div>
-      </section>
+      {/* Hero Section */}
+      <HeroSection onNavigate={scrollToSection} />
 
       {/* Case Files Section */}
       <section id="cases" className="py-20" style={{background: "linear-gradient(180deg, #050507 0%, #151520 100%)"}}>
