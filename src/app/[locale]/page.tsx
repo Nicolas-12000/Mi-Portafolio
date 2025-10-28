@@ -29,7 +29,6 @@ import {
 } from 'lucide-react';
 
 const Portfolio = () => {
-  const [activeSection, setActiveSection] = useState('hero');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLElement>(null);
@@ -65,28 +64,6 @@ const Portfolio = () => {
       };
     }
   }, [handleMouseMove]);
-
-  // Scroll spy for active section
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'cases', 'tech', 'profile', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ 
@@ -137,11 +114,7 @@ const Portfolio = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
-                    activeSection === item.id
-                      ? 'bg-[#151520]/60 text-[#E6B93D] border border-[#151520]'
-                      : 'hover:bg-[#151520]/30 hover:text-[#E6B93D]'
-                  }`}
+                  className="flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 hover:bg-[#151520]/30 hover:text-[#E6B93D]"
                 >
                   <item.icon className="w-4 h-4" />
                   <span className="text-sm font-medium">{item.label}</span>
@@ -167,11 +140,7 @@ const Portfolio = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all ${
-                    activeSection === item.id
-                      ? 'bg-[#151520]/60 text-[#E6B93D]'
-                      : 'hover:bg-[#151520]/30'
-                  }`}
+                  className="flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all hover:bg-[#151520]/30"
                 >
                   <item.icon className="w-5 h-5" />
                   <span>{item.label}</span>
