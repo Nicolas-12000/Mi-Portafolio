@@ -1,8 +1,14 @@
 'use client';
 
-import { useRef, useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { FileText, Cpu, ChevronRight, ArrowRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+// Lazy load Galaxy (WebGL) - No SSR para evitar errores de hidratación
+const Galaxy = dynamic(() => import('@/components/effects/Galaxy'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-gradient-to-b from-background to-surface" />
+});
 
 interface HeroSectionProps {
   onNavigate: (sectionId: string) => void;
@@ -10,48 +16,32 @@ interface HeroSectionProps {
 
 export function HeroSection({ onNavigate }: HeroSectionProps) {
   const t = useTranslations('hero');
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLElement>(null);
-  const rafRef = useRef<number | null>(null);
-
-  // Mouse tracking optimizado con throttling para animaciones
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (rafRef.current) return;
-    
-    rafRef.current = requestAnimationFrame(() => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: ((e.clientX - rect.left) / rect.width) * 100,
-          y: ((e.clientY - rect.top) / rect.height) * 100
-        });
-      }
-      rafRef.current = null;
-    });
-  }, []);
-
-  useEffect(() => {
-    const heroElement = heroRef.current;
-    if (heroElement) {
-      heroElement.addEventListener('mousemove', handleMouseMove);
-      return () => {
-        heroElement.removeEventListener('mousemove', handleMouseMove);
-        if (rafRef.current) {
-          cancelAnimationFrame(rafRef.current);
-        }
-      };
-    }
-  }, [handleMouseMove]);
 
   return (
     <section 
       id="hero" 
-      ref={heroRef}
-      className="min-h-screen flex items-center justify-center relative pt-20 sm:pt-24"
-      style={{
-        background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(var(--color-accent-primary-rgb, 230, 185, 61), 0.05) 0%, transparent 50%)`
-      }}
+      className="min-h-screen flex items-center justify-center relative pt-20 sm:pt-24 overflow-hidden"
     >
+      {/* Galaxy Background - Optimizado para dark & light mode */}
+      <div className="absolute inset-0 z-0">
+        <Galaxy
+          density={1.2}
+          glowIntensity={0.35}
+          saturation={0.15}
+          hueShift={200}
+          speed={0.3}
+          mouseRepulsion={true}
+          repulsionStrength={2.5}
+          twinkleIntensity={0.25}
+          rotationSpeed={0.03}
+          transparent={true}
+          mouseInteraction={true}
+        />
+      </div>
+
+      {/* Subtle overlay for contrast - works in both modes */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-background/10 to-background/30 pointer-events-none" />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
         {/* Status Badge - Mobile optimized */}
         <div className="inline-flex items-center gap-3 sm:gap-4 bg-surface-elevated/30 border border-border px-4 sm:px-5 py-2.5 sm:py-3 rounded-full mb-6 sm:mb-8">
