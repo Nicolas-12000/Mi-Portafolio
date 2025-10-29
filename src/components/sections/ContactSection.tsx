@@ -269,33 +269,33 @@ export function ContactSection() {
                           className="space-y-6"
                         >
                           <div className="mb-8">
-                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">Información básica</h3>
-                            <p className="text-[#9CA3AF]">Comencemos con tu nombre y email</p>
+                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">{t('form.title')}</h3>
+                            <p className="text-[#9CA3AF]">{t('subtitle')}</p>
                           </div>
 
                           <div>
                             <label className="block text-sm font-medium text-[#D1D5DB] mb-2">
-                              Nombre completo *
+                              {t('form.name.label')} *
                             </label>
                             <input 
                               type="text" 
                               value={formData.name}
                               onChange={(e) => setFormData({...formData, name: e.target.value})}
                               className="w-full bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3.5 text-[#F2F2F7] placeholder-[#6B7280] focus:border-[#E6B93D] focus:outline-none transition-colors"
-                              placeholder="Tu nombre completo"
+                              placeholder={t('form.name.placeholder')}
                             />
                           </div>
 
                           <div>
                             <label className="block text-sm font-medium text-[#D1D5DB] mb-2">
-                              Correo electrónico *
+                              {t('form.email.label')} *
                             </label>
                             <input 
                               type="email" 
                               value={formData.email}
                               onChange={(e) => setFormData({...formData, email: e.target.value})}
                               className="w-full bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3.5 text-[#F2F2F7] placeholder-[#6B7280] focus:border-[#E6B93D] focus:outline-none transition-colors"
-                              placeholder="tu@email.com"
+                              placeholder={t('form.email.placeholder')}
                             />
                           </div>
                         </motion.div>
@@ -312,8 +312,8 @@ export function ContactSection() {
                           className="space-y-6"
                         >
                           <div className="mb-8">
-                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">Tipo de proyecto</h3>
-                            <p className="text-[#9CA3AF]">¿En qué puedo ayudarte?</p>
+                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">{t('form.projectType.label')}</h3>
+                            <p className="text-[#9CA3AF]">{t('subtitle')}</p>
                           </div>
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -366,20 +366,20 @@ export function ContactSection() {
                           className="space-y-6"
                         >
                           <div className="mb-8">
-                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">Cuéntame tu idea</h3>
-                            <p className="text-[#9CA3AF]">Describe tu proyecto con el mayor detalle posible</p>
+                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">{t('form.message.label')}</h3>
+                            <p className="text-[#9CA3AF]">{t('subtitle')}</p>
                           </div>
 
                           <div>
                             <label className="block text-sm font-medium text-[#D1D5DB] mb-2">
-                              Descripción del proyecto *
+                              {t('form.message.label')} *
                             </label>
                             <textarea 
                               rows={7}
                               value={formData.message}
                               onChange={(e) => setFormData({...formData, message: e.target.value})}
                               className="w-full bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3.5 text-[#F2F2F7] placeholder-[#6B7280] focus:border-[#E6B93D] focus:outline-none transition-colors resize-none"
-                              placeholder="• ¿Qué problema quieres resolver?&#10;• ¿Cuáles son los objetivos principales?&#10;• ¿Tienes un timeline o presupuesto en mente?&#10;• Cualquier detalle adicional que consideres importante..."
+                              placeholder={t('form.message.placeholder')}
                             />
                           </div>
 
@@ -387,8 +387,8 @@ export function ContactSection() {
                             <div className="flex items-start space-x-3">
                               <Sparkles className="w-5 h-5 text-[#E6B93D] flex-shrink-0 mt-0.5" />
                               <div>
-                                <p className="text-sm font-semibold text-[#E6B93D] mb-1">Respuesta rápida garantizada</p>
-                                <p className="text-sm text-[#9CA3AF]">Te responderé en menos de 24 horas para discutir tu proyecto</p>
+                                <p className="text-sm font-semibold text-[#E6B93D] mb-1">{t('form.submit')}</p>
+                                <p className="text-sm text-[#9CA3AF]">{t('form.guarantee')}</p>
                               </div>
                             </div>
                           </div>

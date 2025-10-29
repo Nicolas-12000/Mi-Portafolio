@@ -40,7 +40,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       </div>
 
       {/* Overlay suave y largo: transición armoniosa hacia el fondo oscuro */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent via-[#0a0a14]/20 via-[#050507]/60 to-[#050507] dark:from-transparent dark:via-transparent dark:via-background/40 dark:to-background pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-[#0a0a14]/20 to-[#050507] dark:from-transparent dark:via-background/40 dark:to-background pointer-events-none" />
 
       {/* IMPORTANTE: pointer-events-none permite que el mouse pase al Galaxy de abajo */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10 pointer-events-none">
