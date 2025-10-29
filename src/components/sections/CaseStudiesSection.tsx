@@ -49,8 +49,13 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
   ];
 
   return (
-    <section id="cases" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-background to-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="cases" className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#050507] via-[#0A0A0F] to-[#050507] overflow-hidden">
+      {/* Decorative elements - armonía con ContactSection */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02]" />
+      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#E6B93D] rounded-full blur-[120px] opacity-10" />
+      <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-[#D4AF37] rounded-full blur-[120px] opacity-10" />
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header - Mobile optimized */}
         <div className="text-center mb-10 sm:mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-accent-primary via-accent-primary to-accent-secondary bg-clip-text text-transparent">
