@@ -65,6 +65,42 @@
   "tech": {
     "title": "TECHNICAL DASHBOARD",
     "subtitle": "Optimized tech arsenal for maximum efficiency. Each tool strategically selected.",
+    "backend": {
+      "title": "Backend & Architecture"
+    },
+    "databases": {
+      "title": "Databases & Methodologies"
+    },
+    "devops": {
+      "title": "DevOps & Cloud"
+    },
+    "fullstack": {
+      "title": "Full-Stack"
+    },
+    "tools": {
+      "title": "Tools"
+    },
+    "frontend": {
+      "title": "Modern Frontend"
+    },
+    "ai": {
+      "title": "AI & ML"
+    },
+    "cloud": {
+      "title": "Cloud Native"
+    },
+    "automation": {
+      "title": "Automation"
+    },
+    "strong": {
+      "title": "CORE STRENGTHS (2+ years)"
+    },
+    "consolidated": {
+      "title": "CONSOLIDATED COMPETENCIES"
+    },
+    "learning": {
+      "title": "ACTIVE DEVELOPMENT"
+    },
     "categories": {
       "strengths": "CORE STRENGTHS (2+ years)",
       "consolidated": "CONSOLIDATED COMPETENCIES",
@@ -101,7 +137,23 @@
     "title": "THE HUMAN BEHIND THE CODE",
     "subtitle": "Like many, I value work-life balance, using technology to optimize time and create authentic connections.",
     "engineer": {
-      "title": "The engineer",
+      "title": "The Engineer",
+      "location": {
+        "title": "Location",
+        "description": "Based in Pasto, Nariño, Colombia. Open to remote work and hybrid opportunities."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "2+ years of practical experience in backend development with Spring Boot, Django, and database optimization."
+      },
+      "methods": {
+        "title": "Methodologies",
+        "description": "Specialized in Scrum, agile methodologies, SOLID and KISS principles. Experience leading small teams and implementing best practices."
+      },
+      "projects": {
+        "title": "Real Projects",
+        "description": "Web development for educational institutions, process optimization for poultry company with Django/MySQL/Flutter stack."
+      },
       "formation": {
         "title": "Training and experience",
         "content": "Software Engineering student at Universidad Cooperativa de Colombia with 2 years of practical experience. I've been a university teaching assistant, guiding students in technical concepts and collaborating on institutional projects."
@@ -109,10 +161,45 @@
       "methodologies": {
         "title": "Methodologies and leadership",
         "content": "Specialized in Scrum and agile methodologies, SOLID and KISS principles, with experience leading small teams in implementing best practices. Focus on comprehensive technical documentation and basic mentoring."
+      }
+    },
+    "personal": {
+      "title": "The Human Being",
+      "intro": "Hi! I'm Nicolás Alejandro García Pasmiño. Throughout my life I've been called many names, so feel free to choose whichever you prefer.",
+      "hobbies": "When I'm not immersed in code, you'll find me sharing coffee (I'm a fanatic!), training with friends, or seeking good conversations."
+    },
+    "interests": {
+      "music": {
+        "title": "Music Lover",
+        "description": "From salsa and Spanish rock to pop, rap, and various genres in several languages. Sometimes I dare to play the drums."
       },
-      "projects": {
-        "title": "Real projects",
-        "content": "Contributions in web development for educational institutions with WordPress, and currently optimizing processes for a poultry company with Django/MySQL/Flutter stack."
+      "sports": {
+        "title": "Gym & Sports",
+        "description": "2 years of gym discipline. Muay Thai is my favorite escape in my free time."
+      },
+      "explorer": {
+        "title": "Explorer",
+        "description": "I like traveling, discovering cultures, meditating, and connecting with nature."
+      }
+    },
+    "philosophy": {
+      "title": "My Philosophy",
+      "quote": "I don't work more hours, I work smarter. Every line of code is one more hour to live.",
+      "values": "Automation → Efficiency → Freedom → Full life"
+    },
+    "softSkills": {
+      "title": "KEY SOFT SKILLS",
+      "empathy": {
+        "title": "Empathy & Collaboration",
+        "description": "Authentic connections with colleagues, technical mentoring, and effective teamwork."
+      },
+      "adaptability": {
+        "title": "Adaptability",
+        "description": "Continuous learning, open mind, and ability to pivot according to project needs."
+      },
+      "balance": {
+        "title": "Balance & Resilience",
+        "description": "Work-life separation, resilience through sports and meditation."
       }
     },
     "human": {
@@ -132,32 +219,59 @@
           "title": "Explorer",
           "description": "I like traveling, discovering cultures, meditating, and connecting with nature"
         }
-      },
-      "philosophy": {
-        "title": "My Philosophy",
-        "quote": "I don't work more hours, I work smarter. Every line of code is one more hour to live.",
-        "flow": "Automation → Efficiency → Freedom → Full life"
-      }
-    },
-    "softSkills": {
-      "title": "KEY SOFT SKILLS",
-      "empathy": {
-        "title": "Empathy and collaboration",
-        "description": "Authentic connections with colleagues, technical mentoring, and effective teamwork"
-      },
-      "adaptability": {
-        "title": "Adaptability",
-        "description": "Continuous learning, open mind, and ability to pivot according to project needs"
-      },
-      "balance": {
-        "title": "Balance and resilience",
-        "description": "Work-life separation, resilience through sports and meditation"
       }
     }
   },
   "contact": {
     "title": "CONTACT ME",
     "subtitle": "Complete file available. Ready to work together and bring real value to your team or company.",
+    "cv": {
+      "title": "Curriculum Vitae",
+      "description": "Detailed CV with technical cases, implemented architectures, and impact metrics.",
+      "download": "Download CV"
+    },
+    "social": {
+      "title": "Connect with me",
+      "github": {
+        "title": "GitHub",
+        "subtitle": "Code and projects",
+        "aria": "Open GitHub in new tab"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "subtitle": "Professional Profile",
+        "aria": "Open LinkedIn in new tab"
+      },
+      "instagram": {
+        "text": "See personal side",
+        "aria": "Open Instagram in new tab"
+      }
+    },
+    "form": {
+      "title": "Let's get in touch",
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your@email.com"
+      },
+      "projectType": {
+        "label": "Project type",
+        "other": "Other"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell me about your project and how we can automate processes to generate impact..."
+      },
+      "submit": "Send Proposal",
+      "guarantee": "Response guaranteed within 24 hours."
+    },
+    "footer_made_with": "Made with",
+    "footer_by": "by",
+    "footer_available": "Available",
+    "footer_freelance": "For projects",
     "info": {
       "title": "Information",
       "location": {
@@ -172,40 +286,7 @@
         "label": "Availability",
         "value": "Remote/Hybrid"
       }
-    },
-    "cv": {
-      "title": "Curriculum Vitae",
-      "description": "Detailed CV with technical cases, implemented architectures, and impact metrics.",
-      "download": "Download CV"
-    },
-    "social": {
-      "title": "Connect with me",
-      "github": "Code and projects",
-      "linkedin": "Professional Profile",
-      "instagram": "See personal side"
-    },
-    "form": {
-      "title": "Let's get in touch",
-      "name": "Name",
-      "namePlaceholder": "Your name",
-      "email": "Email",
-      "emailPlaceholder": "your@email.com",
-      "projectType": "Project type",
-      "projectTypes": {
-        "backend": "Backend Development",
-        "fullstack": "Full-Stack Application",
-        "devops": "DevOps and Cloud",
-        "automation": "Process Automation",
-        "consulting": "Technical Consulting",
-        "other": "Other"
-      },
-      "message": "Message",
-      "messagePlaceholder": "Tell me about your project and how we can automate processes to generate impact...",
-      "submit": "Send Proposal",
-      "guarantee": "Response guaranteed within 24 hours."
-    },
-    "footer_made_with": "Made with",
-    "footer_by": "by"
+    }
   },
   "footer": {
     "brand": "NICOLÁS GARCÍA",

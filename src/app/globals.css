@@ -4,11 +4,10 @@
 :root,
 [data-theme="dark"] {
   /* Backgrounds */
-  --bg-primary: #050507;
-  --bg-secondary: #151520;
-  --bg-tertiary: #1C1C1E;
-  --bg-card: rgba(5, 5, 7, 0.6);
-  --bg-card-hover: rgba(5, 5, 7, 0.8);
+  --background: #050507;
+  --surface: #151520;
+  --surface-elevated: #1C1C1E;
+  --surface-hover: rgba(21, 21, 32, 0.5);
   
   /* Text colors */
   --text-primary: #F2F2F7;
@@ -16,15 +15,11 @@
   --text-tertiary: #6B7280;
   
   /* Accent colors */
-  --accent-gold: #E6B93D;
-  --accent-red: #E63946;
-  --accent-burgundy: #4A0E1F;
-  --accent-burgundy-light: rgba(74, 14, 31, 0.2);
+  --accent-primary: #E63946;
+  --accent-secondary: #E6B93D;
   
   /* Borders */
-  --border-primary: rgba(21, 21, 32, 0.3);
-  --border-secondary: rgba(74, 14, 31, 0.2);
-  --border-accent: rgba(230, 185, 61, 0.5);
+  --border: rgba(74, 14, 31, 0.2);
   
   /* Status colors */
   --status-success: #10B981;
@@ -36,11 +31,10 @@
 /* ===== Light Mode ===== */
 [data-theme="light"] {
   /* Backgrounds */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F5F5F7;
-  --bg-tertiary: #E5E5EA;
-  --bg-card: rgba(255, 255, 255, 0.8);
-  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --background: #FFFFFF;
+  --surface: #F5F5F7;
+  --surface-elevated: #E5E5EA;
+  --surface-hover: rgba(229, 229, 234, 0.5);
   
   /* Text colors */
   --text-primary: #1C1C1E;
@@ -48,15 +42,11 @@
   --text-tertiary: #6B7280;
   
   /* Accent colors */
-  --accent-gold: #D4AF37;
-  --accent-red: #DC2626;
-  --accent-burgundy: #7C2D3E;
-  --accent-burgundy-light: rgba(124, 45, 62, 0.1);
+  --accent-primary: #DC2626;
+  --accent-secondary: #D4AF37;
   
   /* Borders */
-  --border-primary: rgba(60, 60, 67, 0.15);
-  --border-secondary: rgba(124, 45, 62, 0.2);
-  --border-accent: rgba(212, 175, 55, 0.5);
+  --border: rgba(124, 45, 62, 0.2);
   
   /* Status colors */
   --status-success: #059669;
@@ -67,25 +57,26 @@
 
 @theme inline {
   /* Exponemos las variables CSS como tokens de Tailwind */
-  --color-bg-primary: var(--bg-primary);
-  --color-bg-secondary: var(--bg-secondary);
-  --color-bg-tertiary: var(--bg-tertiary);
-  --color-bg-card: var(--bg-card);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-hover: var(--surface-hover);
   
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
   
-  --color-accent-gold: var(--accent-gold);
-  --color-accent-red: var(--accent-red);
-  --color-accent-burgundy: var(--accent-burgundy);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  
+  --color-border: var(--border);
   
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--bg-primary);
+  background: var(--background);
   color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;

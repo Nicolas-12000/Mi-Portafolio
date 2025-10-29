@@ -21,7 +21,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Validar locale
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as 'es' | 'en' | 'it')) {
     notFound();
   }
 

@@ -65,6 +65,42 @@
   "tech": {
     "title": "DASHBOARD TÉCNICO",
     "subtitle": "Arsenal tecnológico optimizado para máxima eficiencia. Cada herramienta seleccionada estratégicamente.",
+    "backend": {
+      "title": "Backend y Arquitectura"
+    },
+    "databases": {
+      "title": "Bases de datos y Metodologías"
+    },
+    "devops": {
+      "title": "DevOps y Cloud"
+    },
+    "fullstack": {
+      "title": "Full-Stack"
+    },
+    "tools": {
+      "title": "Herramientas"
+    },
+    "frontend": {
+      "title": "Frontend Moderno"
+    },
+    "ai": {
+      "title": "AI y ML"
+    },
+    "cloud": {
+      "title": "Cloud Native"
+    },
+    "automation": {
+      "title": "Automatización"
+    },
+    "strong": {
+      "title": "PUNTOS FUERTES (2+ años)"
+    },
+    "consolidated": {
+      "title": "COMPETENCIAS CONSOLIDADAS"
+    },
+    "learning": {
+      "title": "EN DESARROLLO ACTIVO"
+    },
     "categories": {
       "strengths": "PUNTOS FUERTES (2+ años)",
       "consolidated": "COMPETENCIAS CONSOLIDADAS",
@@ -101,7 +137,23 @@
     "title": "EL HUMANO DETRÁS DEL CÓDIGO",
     "subtitle": "Como muchos, valoro el equilibrio entre trabajo y vida personal, usando la tecnología para optimizar el tiempo y crear conexiones auténticas.",
     "engineer": {
-      "title": "El ingeniero",
+      "title": "El Ingeniero",
+      "location": {
+        "title": "Ubicación",
+        "description": "Basado en Pasto, Nariño, Colombia. Abierto a trabajo remoto y oportunidades híbridas."
+      },
+      "experience": {
+        "title": "Experiencia",
+        "description": "2+ años de experiencia práctica en desarrollo backend con Spring Boot, Django y optimización de bases de datos."
+      },
+      "methods": {
+        "title": "Metodologías",
+        "description": "Especializado en Scrum, metodologías ágiles, principios SOLID y KISS. Experiencia liderando equipos pequeños e implementando mejores prácticas."
+      },
+      "projects": {
+        "title": "Proyectos Reales",
+        "description": "Desarrollo web para instituciones educativas, optimización de procesos para empresa avícola con stack Django/MySQL/Flutter."
+      },
       "formation": {
         "title": "Formación y experiencia",
         "content": "Estudiante de Ingeniería de Software en la Universidad Cooperativa de Colombia con 2 años de experiencia práctica. He sido monitor universitario, guiando a estudiantes en conceptos técnicos y colaborando en proyectos institucionales."
@@ -109,10 +161,45 @@
       "methodologies": {
         "title": "Metodologías y liderazgo",
         "content": "Especializado en Scrum y metodologías ágiles, principios SOLID y KISS, con experiencia liderando equipos pequeños en la implementación de mejores prácticas. Enfoque en documentación técnica comprehensiva y mentoring básico."
+      }
+    },
+    "personal": {
+      "title": "El Ser Humano",
+      "intro": "¡Hola! Soy Nicolás Alejandro García Pasmiño. A lo largo de mi vida me han llamado de muchas formas, así que siéntete libre de elegir la que desees.",
+      "hobbies": "Cuando no estoy inmerso en el código, me encuentras compartiendo café (¡soy un fanático!), entrenando con amigos o buscando buenas conversaciones."
+    },
+    "interests": {
+      "music": {
+        "title": "Melómano",
+        "description": "Desde salsa y rock en español hasta pop, rap y variedad de géneros musicales en varios idiomas. A veces me animo a tocar la batería."
       },
-      "projects": {
-        "title": "Proyectos reales",
-        "content": "Contribuciones en desarrollo web para instituciones educativas con WordPress, y actualmente optimizando procesos para una empresa avícola con stack Django/MySQL/Flutter."
+      "sports": {
+        "title": "Gym y Deportes",
+        "description": "2 años de disciplina en el gym. El Muay Thai es mi escape favorito en el tiempo libre."
+      },
+      "explorer": {
+        "title": "Explorador",
+        "description": "Me gustan los viajes, conocer culturas, meditar y conectar con la naturaleza."
+      }
+    },
+    "philosophy": {
+      "title": "Mi Filosofía",
+      "quote": "No trabajo más horas, trabajo más inteligente. Cada línea de código es una hora más para vivir.",
+      "values": "Automatización → Eficiencia → Libertad → Vida plena"
+    },
+    "softSkills": {
+      "title": "HABILIDADES BLANDAS CLAVE",
+      "empathy": {
+        "title": "Empatía y Colaboración",
+        "description": "Conexiones auténticas con colegas, mentoring técnico y trabajo en equipo efectivo."
+      },
+      "adaptability": {
+        "title": "Adaptabilidad",
+        "description": "Aprendizaje continuo, mente abierta y capacidad para pivotear según necesidades del proyecto."
+      },
+      "balance": {
+        "title": "Equilibrio y Resiliencia",
+        "description": "Separación trabajo-vida personal, resiliencia a través del deporte y meditación."
       }
     },
     "human": {
@@ -132,32 +219,59 @@
           "title": "Explorador",
           "description": "Me gustan los viajes, conocer culturas, meditar y conectar con la naturaleza"
         }
-      },
-      "philosophy": {
-        "title": "Mi Filosofía",
-        "quote": "No trabajo más horas, trabajo más inteligente. Cada línea de código es una hora más para vivir.",
-        "flow": "Automatización → Eficiencia → Libertad → Vida plena"
-      }
-    },
-    "softSkills": {
-      "title": "HABILIDADES BLANDAS CLAVE",
-      "empathy": {
-        "title": "Empatía y colaboración",
-        "description": "Conexiones auténticas con colegas, mentoring técnico y trabajo en equipo efectivo"
-      },
-      "adaptability": {
-        "title": "Adaptabilidad",
-        "description": "Aprendizaje continuo, mente abierta y capacidad para pivotear según necesidades del proyecto"
-      },
-      "balance": {
-        "title": "Equilibrio y resiliencia",
-        "description": "Separación trabajo-vida personal, resiliencia a través del deporte y meditación"
       }
     }
   },
   "contact": {
     "title": "CONTÁCTAME",
     "subtitle": "Expediente completo disponible. Listo para trabajar juntos y aportar valor real a tu equipo o empresa.",
+    "cv": {
+      "title": "Currículum Vitae",
+      "description": "CV detallado con casos técnicos, arquitecturas implementadas y métricas de impacto.",
+      "download": "Descargar CV"
+    },
+    "social": {
+      "title": "Conecta conmigo",
+      "github": {
+        "title": "GitHub",
+        "subtitle": "Código y proyectos",
+        "aria": "Abrir GitHub en nueva pestaña"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "subtitle": "Perfil Profesional",
+        "aria": "Abrir LinkedIn en nueva pestaña"
+      },
+      "instagram": {
+        "text": "Ver lado personal",
+        "aria": "Abrir Instagram en nueva pestaña"
+      }
+    },
+    "form": {
+      "title": "Pongámonos en contacto",
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Tu nombre"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "tu@email.com"
+      },
+      "projectType": {
+        "label": "Tipo de proyecto",
+        "other": "Otro"
+      },
+      "message": {
+        "label": "Mensaje",
+        "placeholder": "Cuéntame sobre tu proyecto y cómo podemos automatizar procesos para generar impacto..."
+      },
+      "submit": "Enviar Propuesta",
+      "guarantee": "Respuesta garantizada en 24 horas."
+    },
+    "footer_made_with": "Hecho con",
+    "footer_by": "por",
+    "footer_available": "Disponible",
+    "footer_freelance": "Para proyectos",
     "info": {
       "title": "Información",
       "location": {
@@ -172,40 +286,7 @@
         "label": "Disponibilidad",
         "value": "Remoto/Híbrido"
       }
-    },
-    "cv": {
-      "title": "Currículum Vitae",
-      "description": "CV detallado con casos técnicos, arquitecturas implementadas y métricas de impacto.",
-      "download": "Descargar CV"
-    },
-    "social": {
-      "title": "Conecta conmigo",
-      "github": "Código y proyectos",
-      "linkedin": "Perfil Profesional",
-      "instagram": "Ver lado personal"
-    },
-    "form": {
-      "title": "Pongámonos en contacto",
-      "name": "Nombre",
-      "namePlaceholder": "Tu nombre",
-      "email": "Email",
-      "emailPlaceholder": "tu@email.com",
-      "projectType": "Tipo de proyecto",
-      "projectTypes": {
-        "backend": "Backend Development",
-        "fullstack": "Full-Stack Application",
-        "devops": "DevOps y Cloud",
-        "automation": "Process Automation",
-        "consulting": "Technical Consulting",
-        "other": "Otro"
-      },
-      "message": "Mensaje",
-      "messagePlaceholder": "Cuéntame sobre tu proyecto y cómo podemos automatizar procesos para generar impacto...",
-      "submit": "Enviar Propuesta",
-      "guarantee": "Respuesta garantizada en 24 horas."
-    },
-    "footer_made_with": "Hecho con",
-    "footer_by": "por"
+    }
   },
   "footer": {
     "brand": "NICOLÁS GARCÍA",

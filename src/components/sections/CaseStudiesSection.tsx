@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Database, Settings, Cloud, ExternalLink, Play, Mail } from 'lucide-react';
+import { Database, Settings, ExternalLink, Play, Mail } from 'lucide-react';
 
 interface CaseStudiesSectionProps {
   onNavigate: (sectionId: string) => void;

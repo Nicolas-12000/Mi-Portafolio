@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Github, Linkedin, Instagram, Mail, Heart, Code2 } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail, Code2 } from 'lucide-react';
 
 export function Footer() {
   const t = useTranslations('contact');
