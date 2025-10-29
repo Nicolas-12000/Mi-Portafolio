@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, Instagram, MapPin, Clock, Send, ChevronRight, ChevronLeft, Sparkles, Code2, Rocket, FileText, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface StepperProps {
   currentStep: number;
@@ -84,6 +85,7 @@ const projectIcons = {
 };
 
 export function ContactSection() {
+  const t = useTranslations('contact');
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -132,11 +134,11 @@ export function ContactSection() {
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5">
             <span className="bg-gradient-to-r from-[#F2F2F7] via-[#E6B93D] to-[#D4AF37] bg-clip-text text-transparent">
-              Hagamos algo increíble
+              {t('form.title')}
             </span>
           </h2>
           <p className="text-lg text-[#9CA3AF] max-w-2xl mx-auto">
-            ¿Tienes un proyecto en mente? Cuéntame tu idea y trabajemos juntos para convertirla en realidad
+            {t('subtitle')}
           </p>
         </motion.div>
 
@@ -152,30 +154,30 @@ export function ContactSection() {
             <div className="group bg-gradient-to-br from-[#0F0F1A] to-[#1C1C28] rounded-2xl border border-[#2A2A35] p-6 hover:border-[#E6B93D]/30 transition-all duration-300">
               <h3 className="text-xl font-bold text-[#E6B93D] mb-6 flex items-center">
                 <Mail className="w-5 h-5 mr-2" />
-                Información de contacto
+                {t('info.title')}
               </h3>
               <div className="space-y-5">
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-[#E6B93D] mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-medium text-[#D1D5DB]">Ubicación</p>
-                    <p className="text-sm text-[#6B7280]">Pasto, Nariño, Colombia</p>
+                    <p className="text-sm font-medium text-[#D1D5DB]">{t('info.location.title')}</p>
+                    <p className="text-sm text-[#6B7280]">{t('info.location.value')}</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Mail className="w-5 h-5 text-[#E6B93D] mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-medium text-[#D1D5DB]">Email</p>
+                    <p className="text-sm font-medium text-[#D1D5DB]">{t('info.email.title')}</p>
                     <a href="mailto:nikolasg1200@gmail.com" className="text-sm text-[#6B7280] hover:text-[#E6B93D] transition-colors">
-                      nikolasg1200@gmail.com
+                      {t('info.email.value')}
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Clock className="w-5 h-5 text-[#E6B93D] mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-medium text-[#D1D5DB]">Disponibilidad</p>
-                    <p className="text-sm text-[#6B7280]">Remoto/Híbrido</p>
+                    <p className="text-sm font-medium text-[#D1D5DB]">{t('info.availability.title')}</p>
+                    <p className="text-sm text-[#6B7280]">{t('info.availability.value')}</p>
                   </div>
                 </div>
               </div>
@@ -183,7 +185,7 @@ export function ContactSection() {
 
             {/* Social Links */}
             <div className="bg-gradient-to-br from-[#0F0F1A] to-[#1C1C28] rounded-2xl border border-[#2A2A35] p-6">
-              <h3 className="text-lg font-bold text-[#F2F2F7] mb-4">Conéctate conmigo</h3>
+              <h3 className="text-lg font-bold text-[#F2F2F7] mb-4">{t('social.title')}</h3>
               <div className="space-y-3">
                 <a 
                   href="https://github.com/Nicolas-12000" 
@@ -193,7 +195,7 @@ export function ContactSection() {
                 >
                   <div className="flex items-center space-x-3">
                     <Github className="w-5 h-5 text-[#9CA3AF] group-hover:text-[#F2F2F7]" />
-                    <span className="text-sm font-medium text-[#D1D5DB]">GitHub</span>
+                    <span className="text-sm font-medium text-[#D1D5DB]">{t('social.github.title')}</span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-[#6B7280] group-hover:text-[#E6B93D] transform group-hover:translate-x-1 transition-all" />
                 </a>
@@ -206,7 +208,7 @@ export function ContactSection() {
                 >
                   <div className="flex items-center space-x-3">
                     <Linkedin className="w-5 h-5 text-[#0A66C2]" />
-                    <span className="text-sm font-medium text-[#D1D5DB]">LinkedIn</span>
+                    <span className="text-sm font-medium text-[#D1D5DB]">{t('social.linkedin.title')}</span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-[#6B7280] group-hover:text-[#0A66C2] transform group-hover:translate-x-1 transition-all" />
                 </a>
@@ -231,12 +233,12 @@ export function ContactSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-[#E6B93D]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <FileText className="w-8 h-8 text-[#E6B93D] mb-3" />
-                <h4 className="font-bold text-[#F2F2F7] text-lg mb-2">Descarga mi CV</h4>
+                <h4 className="font-bold text-[#F2F2F7] text-lg mb-2">{t('cv.title')}</h4>
                 <p className="text-sm text-[#9CA3AF] mb-4">
-                  Conoce mi experiencia y habilidades completas
+                  {t('cv.description')}
                 </p>
                 <button className="w-full bg-gradient-to-r from-[#E6B93D] to-[#D4AF37] hover:from-[#D4AF37] hover:to-[#E6B93D] text-[#0A0A0F] px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#E6B93D]/20">
-                  Descargar CV
+                  {t('cv.download')}
                 </button>
               </div>
             </div>

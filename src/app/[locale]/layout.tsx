@@ -29,7 +29,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#0a0a14]/30 via-[#F5F1E8]/80 to-[#F5F1E8] dark:from-background/50 dark:via-background/95 dark:to-background">
+      <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#0a0a14] via-[#0a0a14]/60 via-[#050507]/80 to-[#050507] dark:from-background/50 dark:via-background/95 dark:to-background">
         <Navigation locale={locale as Locale} />
         <main className="flex-1">
           {children}
