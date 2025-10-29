@@ -135,25 +135,9 @@
   },
   "profile": {
     "title": "EL HUMANO DETRÁS DEL CÓDIGO",
-    "subtitle": "Como muchos, valoro el equilibrio entre trabajo y vida personal, usando la tecnología para optimizar el tiempo y crear conexiones auténticas.",
+    "subtitle": "La tecnología es mi herramienta, pero el impacto humano es mi objetivo.",
     "engineer": {
       "title": "El Ingeniero",
-      "location": {
-        "title": "Ubicación",
-        "description": "Basado en Pasto, Nariño, Colombia. Abierto a trabajo remoto y oportunidades híbridas."
-      },
-      "experience": {
-        "title": "Experiencia",
-        "description": "2+ años de experiencia práctica en desarrollo backend con Spring Boot, Django y optimización de bases de datos."
-      },
-      "methods": {
-        "title": "Metodologías",
-        "description": "Especializado en Scrum, metodologías ágiles, principios SOLID y KISS. Experiencia liderando equipos pequeños e implementando mejores prácticas."
-      },
-      "projects": {
-        "title": "Proyectos Reales",
-        "description": "Desarrollo web para instituciones educativas, optimización de procesos para empresa avícola con stack Django/MySQL/Flutter."
-      },
       "formation": {
         "title": "Formación y experiencia",
         "content": "Estudiante de Ingeniería de Software en la Universidad Cooperativa de Colombia con 2 años de experiencia práctica. He sido monitor universitario, guiando a estudiantes en conceptos técnicos y colaborando en proyectos institucionales."
@@ -161,20 +145,24 @@
       "methodologies": {
         "title": "Metodologías y liderazgo",
         "content": "Especializado en Scrum y metodologías ágiles, principios SOLID y KISS, con experiencia liderando equipos pequeños en la implementación de mejores prácticas. Enfoque en documentación técnica comprehensiva y mentoring básico."
+      },
+      "projects": {
+        "title": "Proyectos reales",
+        "content": "Contribuciones en desarrollo web para instituciones educativas con WordPress, y actualmente optimizando procesos para una empresa avícola con stack Django/MySQL/Flutter."
       }
     },
     "personal": {
       "title": "El Ser Humano",
-      "intro": "¡Hola! Soy Nicolás Alejandro García Pasmiño. A lo largo de mi vida me han llamado de muchas formas, así que siéntete libre de elegir la que desees.",
-      "hobbies": "Cuando no estoy inmerso en el código, me encuentras compartiendo café (¡soy un fanático!), entrenando con amigos o buscando buenas conversaciones."
+      "intro": "¡Hola! Soy Nicolás Alejandro García Pasmiño. A lo largo de mi vida me han llamado de muchas formas, así que siéntete libre de elegir la que desees. Mi hambre de conocimiento no empezó en la universidad, sino mucho antes, con un curso de robótica a los 8 años, alimentado por una curiosidad insaciable por la tecnología, física y los videojuegos.",
+      "hobbies": "Cuando no estoy inmerso en el mundo del código, probablemente me encuentres compartiendo un buen café (¡soy un fanático!), entrenando con amigos o simplemente buscando una buena conversación. Creo que las mejores ideas y conexiones nacen de esos momentos auténticos."
     },
     "interests": {
       "music": {
         "title": "Melómano",
-        "description": "Desde salsa y rock en español hasta pop, rap y variedad de géneros musicales en varios idiomas. A veces me animo a tocar la batería."
+        "description": "Disfruto desde salsa y rock en español hasta pop, rap y variedad de géneros musicales en varios idiomas. A veces me animo a tocar la batería."
       },
       "sports": {
-        "title": "Gym y Deportes",
+        "title": "Gym y deportes",
         "description": "2 años de disciplina en el gym. El Muay Thai es mi escape favorito en el tiempo libre."
       },
       "explorer": {
@@ -275,15 +263,15 @@
     "info": {
       "title": "Información",
       "location": {
-        "label": "Ubicación",
+        "title": "Ubicación",
         "value": "Pasto, Nariño, Colombia"
       },
       "email": {
-        "label": "Email",
+        "title": "Email",
         "value": "nikolasg1200@gmail.com"
       },
       "availability": {
-        "label": "Disponibilidad",
+        "title": "Disponibilidad",
         "value": "Remoto/Híbrido"
       }
     }

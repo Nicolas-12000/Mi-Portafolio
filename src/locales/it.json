@@ -135,25 +135,9 @@
   },
   "profile": {
     "title": "L'UMANO DIETRO IL CODICE",
-    "subtitle": "Come molti, valuto l'equilibrio tra lavoro e vita personale, usando la tecnologia per ottimizzare il tempo e creare connessioni autentiche.",
+    "subtitle": "La tecnologia è il mio strumento, ma l'impatto umano è il mio obiettivo.",
     "engineer": {
       "title": "L'ingegnere",
-      "location": {
-        "title": "Ubicazione",
-        "description": "Pasto, Nariño, Colombia"
-      },
-      "experience": {
-        "title": "Esperienza",
-        "description": "2+ anni sviluppando soluzioni backend, DevOps e full-stack"
-      },
-      "methods": {
-        "title": "Metodologie",
-        "description": "Scrum, principi SOLID/KISS, documentazione tecnica e mentoring"
-      },
-      "projects": {
-        "title": "Progetti reali",
-        "description": "API REST enterprise, automazione avicola, pipeline DevOps Azure"
-      },
       "formation": {
         "title": "Formazione ed esperienza",
         "content": "Studente di Ingegneria del Software presso l'Università Cooperativa della Colombia con 2 anni di esperienza pratica. Sono stato assistente universitario, guidando studenti in concetti tecnici e collaborando a progetti istituzionali."
@@ -161,6 +145,10 @@
       "methodologies": {
         "title": "Metodologie e leadership",
         "content": "Specializzato in Scrum e metodologie agili, principi SOLID e KISS, con esperienza nella guida di piccoli team nell'implementazione delle migliori pratiche. Focus su documentazione tecnica completa e mentoring di base."
+      },
+      "projects": {
+        "title": "Progetti reali",
+        "content": "Contributi nello sviluppo web per istituzioni educative con WordPress, e attualmente ottimizzando processi per un'azienda avicola con stack Django/MySQL/Flutter."
       }
     },
     "personal": {
@@ -179,37 +167,13 @@
       },
       "explorer": {
         "title": "Esploratore",
-        "description": "Mi piace viaggiare, conoscere culture, meditare e connettermi con la natura"
+        "description": "Mi piace viaggiare, conoscere culture, meditare e connettermi con la natura."
       }
     },
     "philosophy": {
       "title": "La mia filosofia",
       "quote": "Non lavoro più ore, lavoro più intelligentemente. Ogni riga di codice è un'ora in più da vivere.",
       "values": "Automazione → Efficienza → Libertà → Vita piena"
-    },
-    "human": {
-      "title": "L'essere umano",
-      "intro": "Ciao! Sono Nicolás Alejandro García Pasmiño. Nel corso della mia vita mi hanno chiamato in molti modi, quindi sentiti libero di scegliere quello che preferisci. La mia fame di conoscenza non è iniziata all'università, ma molto prima, con un corso di robotica a 8 anni, alimentata da una curiosità insaziabile per tecnologia, fisica e videogiochi.",
-      "personal": "Quando non sono immerso nel mondo del codice, probabilmente mi troverai a condividere un buon caffè (sono un fanatico!), ad allenarmi con gli amici o semplicemente a cercare una buona conversazione. Credo che le migliori idee e connessioni nascano da quei momenti autentici.",
-      "hobbies": {
-        "music": {
-          "title": "Melomane",
-          "description": "Mi piace di tutto, dalla salsa e rock spagnolo al pop, rap e varietà di generi musicali in diverse lingue. A volte mi cimento anche con la batteria."
-        },
-        "gym": {
-          "title": "Palestra e sport",
-          "description": "2 anni di disciplina in palestra. Il Muay Thai è la mia fuga preferita nel tempo libero."
-        },
-        "explorer": {
-          "title": "Esploratore",
-          "description": "Mi piace viaggiare, conoscere culture, meditare e connettermi con la natura"
-        }
-      },
-      "philosophy": {
-        "title": "La mia filosofia",
-        "quote": "Non lavoro più ore, lavoro più intelligentemente. Ogni riga di codice è un'ora in più da vivere.",
-        "flow": "Automazione → Efficienza → Libertà → Vita piena"
-      }
     },
     "softSkills": {
       "title": "SOFT SKILLS CHIAVE",
@@ -280,15 +244,15 @@
     "info": {
       "title": "Informazioni",
       "location": {
-        "label": "Ubicazione",
+        "title": "Ubicazione",
         "value": "Pasto, Nariño, Colombia"
       },
       "email": {
-        "label": "Email",
+        "title": "Email",
         "value": "nikolasg1200@gmail.com"
       },
       "availability": {
-        "label": "Disponibilità",
+        "title": "Disponibilità",
         "value": "Remoto/Ibrido"
       }
     }

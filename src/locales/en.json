@@ -135,25 +135,9 @@
   },
   "profile": {
     "title": "THE HUMAN BEHIND THE CODE",
-    "subtitle": "Like many, I value work-life balance, using technology to optimize time and create authentic connections.",
+    "subtitle": "Technology is my tool, but human impact is my goal.",
     "engineer": {
       "title": "The Engineer",
-      "location": {
-        "title": "Location",
-        "description": "Based in Pasto, Nariño, Colombia. Open to remote work and hybrid opportunities."
-      },
-      "experience": {
-        "title": "Experience",
-        "description": "2+ years of practical experience in backend development with Spring Boot, Django, and database optimization."
-      },
-      "methods": {
-        "title": "Methodologies",
-        "description": "Specialized in Scrum, agile methodologies, SOLID and KISS principles. Experience leading small teams and implementing best practices."
-      },
-      "projects": {
-        "title": "Real Projects",
-        "description": "Web development for educational institutions, process optimization for poultry company with Django/MySQL/Flutter stack."
-      },
       "formation": {
         "title": "Training and experience",
         "content": "Software Engineering student at Universidad Cooperativa de Colombia with 2 years of practical experience. I've been a university teaching assistant, guiding students in technical concepts and collaborating on institutional projects."
@@ -161,20 +145,24 @@
       "methodologies": {
         "title": "Methodologies and leadership",
         "content": "Specialized in Scrum and agile methodologies, SOLID and KISS principles, with experience leading small teams in implementing best practices. Focus on comprehensive technical documentation and basic mentoring."
+      },
+      "projects": {
+        "title": "Real projects",
+        "content": "Contributions in web development for educational institutions with WordPress, and currently optimizing processes for a poultry company with Django/MySQL/Flutter stack."
       }
     },
     "personal": {
       "title": "The Human Being",
-      "intro": "Hi! I'm Nicolás Alejandro García Pasmiño. Throughout my life I've been called many names, so feel free to choose whichever you prefer.",
-      "hobbies": "When I'm not immersed in code, you'll find me sharing coffee (I'm a fanatic!), training with friends, or seeking good conversations."
+      "intro": "Hi! I'm Nicolás Alejandro García Pasmiño. Throughout my life I've been called many names, so feel free to choose whichever you prefer. My hunger for knowledge didn't start at university, but much earlier, with a robotics course at age 8, fueled by an insatiable curiosity for technology, physics, and video games.",
+      "hobbies": "When I'm not immersed in the world of code, you'll probably find me sharing a good coffee (I'm a fanatic!), training with friends, or simply seeking a good conversation. I believe the best ideas and connections are born from those authentic moments."
     },
     "interests": {
       "music": {
         "title": "Music Lover",
-        "description": "From salsa and Spanish rock to pop, rap, and various genres in several languages. Sometimes I dare to play the drums."
+        "description": "I enjoy everything from salsa and Spanish rock to pop, rap, and a variety of musical genres in several languages. Sometimes I dare to play the drums."
       },
       "sports": {
-        "title": "Gym & Sports",
+        "title": "Gym & sports",
         "description": "2 years of gym discipline. Muay Thai is my favorite escape in my free time."
       },
       "explorer": {
@@ -275,15 +263,15 @@
     "info": {
       "title": "Information",
       "location": {
-        "label": "Location",
+        "title": "Location",
         "value": "Pasto, Nariño, Colombia"
       },
       "email": {
-        "label": "Email",
+        "title": "Email",
         "value": "nikolasg1200@gmail.com"
       },
       "availability": {
-        "label": "Availability",
+        "title": "Availability",
         "value": "Remote/Hybrid"
       }
     }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { User, Music, Dumbbell, Coffee, Zap, Target, MapPin, Calendar } from 'lucide-react';
+import { User, Music, Dumbbell, Coffee, Zap, Target } from 'lucide-react';
 
 export function ProfileSection() {
   const t = useTranslations('profile');
@@ -43,29 +43,18 @@ export function ProfileSection() {
             
             <div className="space-y-5">
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="w-4 h-4 text-accent-primary" />
-                  <h4 className="font-semibold text-accent-primary text-sm">{t('engineer.location.title')}</h4>
-                </div>
-                <p className="text-text-tertiary text-sm leading-relaxed">{t('engineer.location.description')}</p>
+                <h4 className="font-semibold text-accent-primary mb-2 text-sm">{t('engineer.formation.title')}</h4>
+                <p className="text-text-tertiary text-sm leading-relaxed">{t('engineer.formation.content')}</p>
               </div>
               
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-4 h-4 text-accent-primary" />
-                  <h4 className="font-semibold text-accent-primary text-sm">{t('engineer.experience.title')}</h4>
-                </div>
-                <p className="text-text-tertiary text-sm leading-relaxed">{t('engineer.experience.description')}</p>
-              </div>
-              
-              <div>
-                <h4 className="font-semibold text-accent-primary mb-2 text-sm">{t('engineer.methods.title')}</h4>
-                <p className="text-text-tertiary text-sm leading-relaxed">{t('engineer.methods.description')}</p>
+                <h4 className="font-semibold text-accent-primary mb-2 text-sm">{t('engineer.methodologies.title')}</h4>
+                <p className="text-text-tertiary text-sm leading-relaxed">{t('engineer.methodologies.content')}</p>
               </div>
               
               <div>
                 <h4 className="font-semibold text-accent-primary mb-2 text-sm">{t('engineer.projects.title')}</h4>
-                <p className="text-text-tertiary text-sm leading-relaxed">{t('engineer.projects.description')}</p>
+                <p className="text-text-tertiary text-sm leading-relaxed">{t('engineer.projects.content')}</p>
               </div>
             </div>
           </div>

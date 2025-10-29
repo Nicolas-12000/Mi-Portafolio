@@ -29,8 +29,29 @@ export function ContactSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {/* Left Column: CV + Social */}
+          {/* Left Column: Info + CV + Social */}
           <div className="space-y-6">
+            {/* Contact Info Card */}
+            <div className="bg-surface-elevated/60 backdrop-blur-lg rounded-xl border border-border p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 text-accent-secondary">{t('info.title')}</h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-sm font-semibold text-accent-primary mb-1">{t('info.location.title')}</h4>
+                  <p className="text-sm text-text-tertiary">{t('info.location.value')}</p>
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-accent-primary mb-1">{t('info.email.title')}</h4>
+                  <a href="mailto:nikolasg1200@gmail.com" className="text-sm text-text-tertiary hover:text-accent-primary transition-colors">
+                    nikolasg1200@gmail.com
+                  </a>
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-accent-primary mb-1">{t('info.availability.title')}</h4>
+                  <p className="text-sm text-text-tertiary">{t('info.availability.value')}</p>
+                </div>
+              </div>
+            </div>
+
             {/* CV Download */}
             <div className="bg-surface-elevated/60 backdrop-blur-lg rounded-xl border border-border p-6 sm:p-8">
               <div className="p-6 bg-gradient-to-r from-accent-secondary/20 to-accent-primary/20 rounded-xl border border-accent-primary/30">
