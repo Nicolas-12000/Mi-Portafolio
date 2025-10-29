@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import React from 'react';
 import { 
   HeroSection,
@@ -35,7 +35,7 @@ const Portfolio = () => {
       <div className="relative z-10">
         <HeroSection onNavigate={scrollToSection} />
         <CaseStudiesSection onNavigate={scrollToSection} />
-        <TechStackSection onNavigate={scrollToSection} />
+        <TechStackSection />
         <ProfileSection />
         <ContactSection />
       </div>
