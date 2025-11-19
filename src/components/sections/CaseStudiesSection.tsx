@@ -334,17 +334,17 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                       {/* Details */}
                       <div className="space-y-3 mb-6 theme-surface rounded-lg p-4 border theme-border">
                         <div className="text-sm">
-                          <span className="theme-accent font-semibold">{tCommon('problem')}: </span>
+                          <span className="theme-accent font-semibold">{tCommon('problem')} </span>
                           <span className="theme-text-muted">{t(`${currentCase.id}.problem`)}</span>
                         </div>
                         <div className="h-px theme-border"></div>
                         <div className="text-sm">
-                          <span className="font-semibold" style={{ color: 'var(--gold-alt)' }}>{tCommon('solution')}: </span>
+                          <span className="font-semibold" style={{ color: 'var(--gold-alt)' }}>{tCommon('solution')} </span>
                           <span className="theme-text-muted">{t(`${currentCase.id}.solution`)}</span>
                         </div>
                         <div className="h-px theme-border"></div>
                         <div className="text-sm">
-                          <span className="theme-accent font-semibold">{tCommon('impact')}: </span>
+                          <span className="theme-accent font-semibold">{tCommon('impact')} </span>
                           <span className="theme-text-muted">{t(`${currentCase.id}.impact`)}</span>
                         </div>
                       </div>
