@@ -208,7 +208,18 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="relative"
+                className="relative cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(_, info) => {
+                  const threshold = 80;
+                  if (info.offset.x < -threshold) {
+                    handleNext();
+                  } else if (info.offset.x > threshold) {
+                    handlePrev();
+                  }
+                }}
               >
                 {currentCase.isGithubCTA ? (
                   // GitHub CTA Slide
@@ -392,21 +403,25 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
             </AnimatePresence>
 
             {/* Navigation Buttons */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-16 w-12 h-12 theme-glass border theme-border hover:border-[var(--accent-secondary)]/40 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 theme-shadow-lg z-10"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-6 h-6 theme-accent" />
-            </button>
+            <div className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-16 z-10">
+              <button
+                onClick={handlePrev}
+                className="w-12 h-12 theme-glass border theme-border hover:border-[var(--accent-secondary)]/40 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 theme-shadow-lg"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-6 h-6 theme-accent" />
+              </button>
+            </div>
 
-            <button
-              onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-16 w-12 h-12 theme-glass border theme-border hover:border-[var(--accent-secondary)]/40 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 theme-shadow-lg z-10"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-6 h-6 theme-accent" />
-            </button>
+            <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-16 z-10">
+              <button
+                onClick={handleNext}
+                className="w-12 h-12 theme-glass border theme-border hover:border-[var(--accent-secondary)]/40 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 theme-shadow-lg"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-6 h-6 theme-accent" />
+              </button>
+            </div>
           </div>
 
           {/* Counter */}

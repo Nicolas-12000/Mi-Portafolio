@@ -286,7 +286,7 @@ export function Navigation({ locale }: NavigationProps) {
               className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm border border-[#7A6E5C]/20 shadow-lg"
               style={{ minHeight: isMobile ? `${CARD_HEIGHT_MOBILE}px` : '80px' }}
             >
-              <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm">
+              <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm text-[#E6B93D]">
                 {card.label}
               </div>
               <div className="flex flex-col gap-0.5 sm:gap-1 mt-auto">
@@ -294,7 +294,7 @@ export function Navigation({ locale }: NavigationProps) {
                   <button
                     key={i}
                     onClick={() => scrollToSection(link.id)}
-                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1"
+                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1 text-[#E6B93D]"
                   >
                     {link.icon && <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />}
                     {link.label}

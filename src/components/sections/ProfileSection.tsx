@@ -188,11 +188,11 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
 
       {selected && (
         <div
-          className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/80 [data-theme='light']:bg-white/80 backdrop-blur-sm animate-fadeIn"
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4 sm:p-6 bg-black/80 [data-theme='light']:bg-white/80 backdrop-blur-sm animate-fadeIn"
           onClick={() => setSelected(null)}
         >
           <div
-            className="theme-elevated border border-[var(--accent-primary)]/40 rounded-2xl p-8 max-w-2xl w-full relative animate-scaleIn shadow-2xl shadow-[var(--accent-primary)]/20"
+            className="theme-elevated border border-[var(--accent-primary)]/40 rounded-2xl p-6 sm:p-8 max-w-lg sm:max-w-2xl w-full relative animate-scaleIn shadow-2xl shadow-[var(--accent-primary)]/20 max-h-[90vh] overflow-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -205,7 +205,7 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
 
             <Quote className="w-12 h-12 theme-accent mb-6 opacity-80" />
 
-            <p className="text-lg theme-text mb-8 leading-relaxed italic">&ldquo;{selected.text}&rdquo;</p>
+            <p className="text-base sm:text-lg theme-text mb-8 leading-relaxed italic">&ldquo;{selected.text}&rdquo;</p>
 
             <div className="flex items-center gap-4 pt-6 border-t theme-border">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--accent-primary)] to-[var(--gold-alt)] flex items-center justify-center theme-bg font-bold text-2xl shadow-xl shadow-[var(--accent-primary)]/30">

@@ -255,9 +255,16 @@ export function ContactSection() {
               <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">{t('cv.tags.metrics')}</span>
             </div>
 
-            <button className="w-full theme-btn-primary px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
+            <a
+              href="/CV.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center theme-btn-primary px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+              aria-label={t('cv.download')}
+            >
               {t('cv.download')}
-            </button>
+            </a>
           </motion.div>
         </div>
 
