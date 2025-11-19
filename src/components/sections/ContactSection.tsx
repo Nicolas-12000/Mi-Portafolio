@@ -108,9 +108,9 @@ export function ContactSection() {
   ];
 
   const socialLinks = [
-    { key: 'github', name: 'GitHub', icon: Github, url: 'https://github.com/Nicolas-12000', color: 'text-[var(--text-primary)] hover:text-[var(--accent-primary)]' },
-    { key: 'linkedin', name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/nicolás-alejandro-garcía-pasmiño-82765333b/', color: 'text-[var(--text-primary)] hover:text-[#0A66C2]' },
-    { key: 'instagram', name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[var(--text-primary)] hover:text-[#E4405F]' }
+    { key: 'github', name: 'GitHub', icon: Github, url: 'https://github.com/Nicolas-12000', color: 'text-[var(--text-primary)] transition-colors duration-200 group-hover:text-[var(--accent-primary)]' },
+    { key: 'linkedin', name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/nicolás-alejandro-garcía-pasmiño-82765333b/', color: 'text-[var(--text-primary)] transition-colors duration-200 group-hover:text-[#0A66C2]' },
+    { key: 'instagram', name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[var(--text-primary)] transition-colors duration-200 group-hover:text-[#E4405F]' }
   ];
 
   const handleNext = () => {
@@ -214,10 +214,10 @@ export function ContactSection() {
                     href={social.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between p-3 theme-surface hover:theme-elevated rounded-lg transition-all duration-300 theme-border hover:border-[var(--accent-primary)]/50"
+                    className="group flex items-center justify-between p-3 sm:p-3.5 theme-surface hover:theme-elevated rounded-lg transition-all duration-300 theme-border hover:border-[var(--accent-primary)]/50"
                   >
                     <div className="flex items-center gap-3">
-                      <Icon className={`w-5 h-5 ${social.color}`} />
+                      <Icon className={`w-5 h-5 sm:w-5 sm:h-5 ${social.color}`} />
                         <span className="text-sm font-medium theme-text-secondary group-hover:theme-text">{t(`social.${social.key}.title`)}</span>
                     </div>
                     <ArrowUpRight className="w-4 h-4 theme-text-muted group-hover:theme-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />

@@ -6,8 +6,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 export function Footer() {
-  // translations not used in this footer currently
-  // const t = useTranslations('contact');
+  const t = useTranslations('footer');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -53,9 +52,7 @@ export function Footer() {
         
         {/* Main Content - Hero Section */}
         <div className="text-center mb-16">
-          <p className="text-base sm:text-lg theme-text-muted italic mb-6">
-            ¿Listo para convertir ideas en código?
-          </p>
+          <p className="text-base sm:text-lg theme-text-muted italic mb-6">{t('cta_question')}</p>
           <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold theme-text mb-12">
             Let&apos;s start
           </h2>
@@ -131,7 +128,7 @@ export function Footer() {
           
           {/* Left: Brand + Quote */}
           <div className="text-center md:text-left space-y-3">
-            <div className="flex items-center gap-3 justify-center md:justify-start">
+              <div className="flex items-center gap-3 justify-center md:justify-start">
               <div className="relative">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center ring-1" style={{ background: 'linear-gradient(to bottom right, var(--accent-secondary), var(--red-dark), var(--red-darker))', boxShadow: '0 0 20px rgba(230,57,70,0.3)', borderColor: 'var(--accent-secondary)' }}>
                     <Code2 className="w-5 h-5 text-white" strokeWidth={2.5} />
@@ -139,26 +136,25 @@ export function Footer() {
                   <div className="absolute inset-0 rounded-lg blur-lg opacity-16" style={{ backgroundColor: 'var(--accent-secondary)' }}></div>
                 </div>
               <div>
-                <p className="text-sm font-bold theme-text">NICOLÁS GARCÍA</p>
+                <p className="text-sm font-bold theme-text">{t('brand')}</p>
                 <p className="text-xs theme-text-muted">Software Engineer</p>
               </div>
             </div>
             <p className="text-xs theme-text-muted italic">
-              &ldquo;Cada línea de código es una hora más para vivir&rdquo;
+              {t('quote')}
             </p>
           </div>
 
           {/* Center: Copyright */}
           <div className="text-center space-y-1">
-            <p className="text-sm theme-text-muted">
-              © {new Date().getFullYear()} Nicolás Alejandro García Pasmiño
-            </p>
+            <p className="text-sm theme-text-muted">© {new Date().getFullYear()} {t('brand')}</p>
+            <p className="text-xs theme-text-muted">{t('made_with')} ❤️ {t('by')} {t('brand')}</p>
           </div>
 
           {/* Right: Location + Tech */}
           <div className="text-center md:text-right space-y-2">
             <p className="text-sm theme-text-muted">
-              Pasto, Nariño, Colombia
+              {t('status') === 'Available' ? 'Pasto, Nariño, Colombia' : 'Pasto, Nariño, Colombia'}
             </p>
             <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
               Built with Next.js • React • TypeScript

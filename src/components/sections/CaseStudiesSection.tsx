@@ -18,36 +18,95 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
     {
       id: 'case1',
       icon: Database,
-      iconColor: 'text-[#E6B93D]',
-      bgColor: 'bg-[#E6B93D]/20',
+      iconColor: 'text-[var(--accent-primary)]',
+      bgColor: 'bg-[var(--accent-primary)]/20',
       status: 'completed',
-      statusBg: 'bg-[#E6B93D]/20',
-      statusText: 'text-[#E6B93D]',
-        tags: [
-        { label: 'Spring Boot', color: 'bg-amber-500/20 text-amber-400' },
-        { label: 'MySQL', color: 'bg-amber-500/20 text-amber-400' },
-        { label: 'JWT', color: 'bg-amber-500/20 text-amber-400' },
-        { label: 'Swagger', color: 'bg-amber-500/20 text-amber-400' }
+      statusBg: 'bg-[var(--accent-primary)]/20',
+      statusText: 'text-[var(--accent-primary)]',
+      tags: [
+        { label: 'Django', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Django REST Framework', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Swagger/OpenAPI', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Bootstrap', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' }
       ],
       metrics: [
-        { icon: TrendingUp, label: '99.9% Uptime', color: 'text-[#E63946]' },
-        { icon: Code2, label: '40% Faster', color: 'text-[#E63946]' },
-        { icon: CheckCircle2, label: 'Production Ready', color: 'text-[#E63946]' }
+        { icon: TrendingUp, label: 'Not measured yet', color: 'text-[#E63946]' }
       ]
+    },
+    {
+      id: 'chromamind',
+      icon: Sparkles,
+      iconColor: 'text-[var(--accent-primary)]',
+      bgColor: 'bg-[var(--accent-primary)]/20',
+      status: 'completed',
+      statusBg: 'bg-[var(--accent-primary)]/20',
+      statusText: 'text-[var(--accent-primary)]',
+      tags: [
+        { label: 'Flutter', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Provider', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Color Picker', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Google Gemini', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' }
+      ],
+      metrics: [
+        { icon: CheckCircle2, label: 'Prototype · Open Source', color: 'text-[#E63946]' }
+      ],
+      repoUrl: 'https://github.com/Nicolas-12000/ChromaMind'
+    },
+    {
+      id: 'django-libros',
+      icon: Database,
+      iconColor: 'text-[var(--accent-primary)]',
+      bgColor: 'bg-[var(--accent-primary)]/20',
+      status: 'completed',
+      statusBg: 'bg-[var(--accent-primary)]/20',
+      statusText: 'text-[var(--accent-primary)]',
+      tags: [
+        { label: 'Django', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Bootstrap', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'SQLite', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Class-Based Views', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' }
+      ],
+      metrics: [
+        { icon: CheckCircle2, label: 'Deployed', color: 'text-[#E63946]' },
+        { icon: TrendingUp, label: 'CRUD · Search · Filters', color: 'text-[#E63946]' }
+      ],
+      demoUrl: 'https://django-libros-epn5.onrender.com/',
+      repoUrl: 'https://github.com/Juan-Camilo-Martinez-B/Django-libros'
+    },
+    {
+      id: 'turno-track',
+      icon: CheckCircle2,
+      iconColor: 'text-[var(--accent-primary)]',
+      bgColor: 'bg-[var(--accent-primary)]/20',
+      status: 'completed',
+      statusBg: 'bg-[var(--accent-primary)]/20',
+      statusText: 'text-[var(--accent-primary)]',
+      tags: [
+        { label: 'Flutter', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Supabase', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'OpenStreetMap', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Gemini AI', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Riverpod', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' }
+      ],
+      metrics: [
+        { icon: CheckCircle2, label: 'Production-ready', color: 'text-[#E63946]' },
+        { icon: TrendingUp, label: 'Supabase RLS & Analytics', color: 'text-[#E63946]' }
+      ],
+      repoUrl: 'https://github.com/DMaTeoG/App_TurnoTrack'
     },
     {
       id: 'case2',
       icon: Settings,
-      iconColor: 'text-[#D4AF37]',
-      bgColor: 'bg-[#D4AF37]/20',
+      iconColor: 'text-[var(--accent-primary)]',
+      bgColor: 'bg-[var(--accent-primary)]/20',
       status: 'inProgress',
-      statusBg: 'bg-[#D4AF37]/20',
-      statusText: 'text-[#D4AF37]',
-        tags: [
-        { label: 'Django', color: 'bg-amber-500/20 text-amber-400' },
-        { label: 'Flutter', color: 'bg-amber-500/20 text-amber-400' },
-        { label: 'MySQL', color: 'bg-amber-500/20 text-amber-400' },
-        { label: 'REST API', color: 'bg-amber-500/20 text-amber-400' }
+      statusBg: 'bg-[var(--accent-primary)]/20',
+      statusText: 'text-[var(--accent-primary)]',
+      tags: [
+        { label: 'Django', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'Flutter', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'MySQL', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' },
+        { label: 'REST API', color: 'bg-[var(--accent-primary)]/20 text-[var(--accent-primary)]' }
       ],
       metrics: [
         { icon: TrendingUp, label: 'In Development', color: 'text-[#E63946]' },
@@ -58,11 +117,25 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
     {
       id: 'github-cta',
       icon: Github,
-      iconColor: 'text-[#E6B93D]',
-      bgColor: 'bg-gradient-to-br from-[#E6B93D]/20 to-[#D4AF37]/20',
+      iconColor: 'text-[var(--accent-primary)]',
+      bgColor: 'bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--gold-alt)]/20',
       isGithubCTA: true
     }
   ];
+
+  // Replace metrics labels for case1 from translations (so we can show localized coverage text)
+  try {
+    // t is available above: useTranslations('cases')
+    const coverageLabel = t('case1.metrics.coverage');
+    const case1 = cases.find((c) => c.id === 'case1');
+    if (case1) {
+      case1.metrics = [
+        { icon: TrendingUp, label: coverageLabel, color: 'text-[#E63946]' }
+      ];
+    }
+  } catch (e) {
+    // ignore if translation key missing
+  }
 
   const handlePrev = () => {
     setCurrentSlide((prev) => (prev === 0 ? cases.length - 1 : prev - 1));
@@ -155,7 +228,7 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                           boxShadow: '0 25px 50px -12px rgba(var(--accent-primary-rgb), 0.3)'
                         }}
                       >
-                        <Github className="w-10 h-10" style={{ color: 'var(--background)' }} strokeWidth={2} />
+                        <Github className="w-10 h-10 text-[var(--text-primary)] transition-colors duration-200" strokeWidth={2} />
                       </motion.div>
 
                       <h3 className="text-2xl sm:text-3xl font-bold theme-text mb-4">
@@ -276,18 +349,31 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
 
                       {/* CTA */}
                       <div className="flex items-center gap-3">
-                        <button className="group flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all duration-300" style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--background)', borderColor: 'var(--accent-primary)' }}>
-                          <span>{t(`${currentCase.id}.cta`)}</span>
-                          {currentCase.status === 'completed' ? (
-                            <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                          ) : (
-                            <Play className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                          )}
-                        </button>
-                        
-                        {(currentCase.id === 'case1' || currentCase.id === 'case2') && (
+                        {currentCase.id === 'case1' || currentCase.id === 'django-libros' ? (
                           <a
-                            href={currentCase.id === 'case1' ? "https://github.com/Nicolas-12000/API-REST-Spring-Boot" : "https://github.com/Nicolas-12000"}
+                            href={currentCase.demoUrl ?? "https://estudify.onrender.com/"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all duration-300"
+                            style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--background)', borderColor: 'var(--accent-primary)' }}
+                          >
+                            <span>{t(`${currentCase.id}.cta`)}</span>
+                            <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          </a>
+                        ) : (
+                          <button className="group flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all duration-300" style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--background)', borderColor: 'var(--accent-primary)' }}>
+                            <span>{t(`${currentCase.id}.cta`)}</span>
+                            {currentCase.status === 'completed' ? (
+                              <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            ) : (
+                              <Play className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            )}
+                          </button>
+                        )}
+                        
+                        {(currentCase.id === 'case1' || currentCase.id === 'case2' || currentCase.id === 'django-libros') && (
+                          <a
+                            href={currentCase.id === 'case1' ? "https://github.com/Nicolas-12000/Estudify-Django" : (currentCase.repoUrl ?? "https://github.com/Nicolas-12000")}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all duration-300"

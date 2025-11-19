@@ -34,12 +34,39 @@
       "inProgress": "EN PROGRESO"
     },
     "case1": {
-      "title": "API REST enterprise",
-      "description": "Desarrollo de API segura con Spring Boot, implementando JWT, documentación Swagger y optimización de queries MySQL.",
-      "problem": "Sistema legacy sin API unificada",
-      "solution": "Arquitectura hexagonal + Spring Security",
-      "impact": "70% reducción en tiempo de consultas",
-      "cta": "Ver desplegado"
+      "title": "Estudify - Plataforma Académica",
+      "description": "Plataforma de gestión académica desarrollada con Django y Django REST Framework. Incluye gestión de roles, cursos, calificaciones, asistencia, reportes y tareas asíncronas opcionales.",
+      "problem": "Procesos académicos fragmentados y tareas administrativas manuales",
+      "solution": "Plataforma web con acceso por roles, API REST, reportes automatizados y dashboard administrativo",
+      "impact": "Métricas aún no medidas",
+      "metrics": {
+        "coverage": "Cobertura de tests: 80% (GitHub Actions)"
+      },
+      "cta": "Visitar demo"
+    },
+    "django-libros": {
+      "title": "Biblioteca Digital - Gestión de Libros y Autores",
+      "description": "Sistema profesional en Django para la gestión completa de libros y autores, con diseño clásico estilo biblioteca en tonos burgundy, crema y dorado. Incluye CRUD completo, búsquedas avanzadas, filtros, paginación y panel de administración personalizado.",
+      "problem": "Gestión manual de libros y autores, registros dispersos y falta de UX administrativa dedicada.",
+      "solution": "Modelos relacionales Autor-Libro, formularios validados, búsquedas avanzadas y una UI basada en Bootstrap con CBVs y manejo de variables de entorno.",
+      "impact": "Demo desplegada disponible",
+      "cta": "Visitar demo"
+    },
+    "chromamind": {
+      "title": "ChromaMind - Generador de Colores (Flutter)",
+      "description": "App en Flutter que genera paletas de color desde prompts en lenguaje natural (por ejemplo, 'azul atardecer marino') y devuelve valores RGB con una breve descripción. Incluye copiar al portapapeles y persistencia local.",
+      "problem": "Diseñadores y desarrolladores necesitan sugerencias de color rápidas y valores RGB listos para copiar.",
+      "solution": "Utilidad Flutter ligera que usa Provider, UI de selección de color y Google Generative AI opcional para crear paletas descriptivas. Persiste preferencias con SharedPreferences.",
+      "impact": "Prototipo open-source en GitHub",
+      "cta": "Ver repositorio"
+    },
+    "turno-track": {
+      "title": "Asistión (TurnoTrack) - Control de Asistencia",
+      "description": "Sistema móvil en Flutter y Supabase: check-ins verificados por foto, integración con OpenStreetMap, sincronización offline y análisis predictivo con Gemini AI.",
+      "problem": "Registro de asistencia manual, susceptible a fraude y sin validación precisa de ubicación.",
+      "solution": "Check-in/out con foto + GPS, widget OpenStreetMap, Supabase con políticas RLS, sincronización offline y Gemini AI para predicciones y coaching.",
+      "impact": "Listo para producción: RLS seguro, dashboards y exportaciones",
+      "cta": "Ver código"
     },
     "case2": {
       "title": "Sistema avícola integral",
@@ -194,7 +221,27 @@
     },
     "testimonials": {
       "title": "Testimonios",
-      "description": "Testimonios de colegas y clientes con quienes he trabajado"
+      "description": "Testimonios de colegas y clientes con quienes he trabajado",
+      "items": [
+        {
+          "name": "Tomás",
+          "role": "Estudiante",
+          "company": "Universidad Cooperativa de Colombia",
+          "text": "Nicolás es un ingeniero de calidad altamente enfocado en la resolución de problemas, con una capacidad única para programar soluciones innovadoras que se adaptan a contextos complejos. Como compañero de equipo, destaca por su amabilidad genuina, su habilidad para escuchar activamente y fomentar un ambiente colaborativo, lo que refleja una fuerte inteligencia emocional y una resiliencia que inspira a los demás a superar desafíos con calma y optimismo. Lo recomiendo completamente y volvería a trabajar con él con gusto, ya que su enfoque equilibrado contribuye a un equipo más cohesionado y productivo."
+        },
+        {
+          "name": "Johnatan Matheu Ruales Galvis",
+          "role": "Estudiante",
+          "company": "Universidad Cooperativa de Colombia",
+          "text": "He colaborado con Nicolás en proyectos académicos y personales de programación. Me impresionó su rapidez para aprender y adaptarse a nuevas herramientas, mostrando una mentalidad flexible y una curiosidad que lo motiva a innovar sin estancarse. En equipo, manejó código clave y siempre apoyó en dudas, con una comunicación clara y empática que alivia tensiones y impulsa ideas colectivas. Su base técnica sólida, junto a esa resiliencia y enfoque colaborativo, lo hace un gran aporte para cualquier grupo."
+        },
+        {
+          "name": "Natalie Julieta Benavides",
+          "role": "Estudiante",
+          "company": "Universidad Mariana",
+          "text": "Nicolás destaca por su responsabilidad y habilidades técnicas, evidentes en cómo aborda los proyectos: siempre cumple plazos con eficiencia, optimizando procesos y buscando mejoras innovadoras. Su pasión y creatividad lo impulsan a disfrutar el aprendizaje, enfocándose en el crecimiento tanto personal como en el resultado final. Es empático, respetuoso y colaborativo, siempre dispuesto a ayudar y compartir conocimientos, lo que fortalece las relaciones en equipo y crea un ambiente motivador. Su claridad mental y adaptabilidad lo hacen ideal para manejar desafíos complejos con calma."
+        }
+      ]
     }
   },
   "contact": {
@@ -302,7 +349,12 @@
     "brand": "NICOLÁS GARCÍA",
     "copyright": "© 2025 Nicolás Alejandro García Pasmiño",
     "quote": "Cada línea de código es una hora más para vivir",
-    "status": "Disponible"
+    "status": "Disponible",
+    "made_with": "Hecho con",
+    "by": "por",
+    "available": "Disponible",
+    "freelance": "Para proyectos",
+    "cta_question": "¿Listo para convertir ideas en código?"
   },
   "common": {
     "problem": "Problema:",

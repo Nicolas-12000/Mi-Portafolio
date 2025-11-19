@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import {
   User,
@@ -21,27 +21,22 @@ type Testimonial = {
   text: string;
 };
 
-function TestimonialLoop({
-  testimonials,
-  speed = 15,
-}: {
-  testimonials: Testimonial[];
-  speed?: number;
-}) {
+function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimonial[]; speed?: number; }) {
   const [selected, setSelected] = useState<Testimonial | null>(null);
-  const repeated = useMemo(() => [...testimonials, ...testimonials], [testimonials]);
-
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const innerRef = React.useRef<HTMLDivElement | null>(null);
   const rafRef = React.useRef<number | null>(null);
   const lastTimeRef = React.useRef<number | null>(null);
   const posRef = React.useRef<number>(0);
-  const [renderTick, setRenderTick] = useState(0);
 
   const isPausedRef = React.useRef(false);
   const isDraggingRef = React.useRef(false);
   const dragStartXRef = React.useRef(0);
   const dragStartPosRef = React.useRef(0);
+
+  const [renderTick, setRenderTick] = useState(0);
+
+  const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25 } as const;
 
   const measure = React.useCallback(() => {
     const inner = innerRef.current;
@@ -50,20 +45,36 @@ function TestimonialLoop({
     return { halfWidth: total / 2 };
   }, []);
 
+  // keep animation smooth and respect prefers-reduced-motion
   React.useEffect(() => {
+    const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const step = (t: number) => {
       if (lastTimeRef.current == null) lastTimeRef.current = t;
-      const dt = t - lastTimeRef.current;
+      const dtMs = t - lastTimeRef.current;
+      const dt = Math.max(0, dtMs) / 1000;
       lastTimeRef.current = t;
+
+      if (prefersReduced) {
+        // jump to neutral transform
+        if (innerRef.current) innerRef.current.style.transform = `translateX(0)`;
+        return;
+      }
 
       if (!isPausedRef.current && !isDraggingRef.current) {
         const { halfWidth } = measure();
         if (halfWidth > 0) {
-          const speedPxPerSec = halfWidth / (speed || 30);
-          posRef.current = (posRef.current + (speedPxPerSec * dt) / 1000) % halfWidth;
-          if (innerRef.current) {
-            innerRef.current.style.transform = `translateX(-${Math.floor(posRef.current)}px)`;
-          }
+          const targetPxPerSec = halfWidth / (speed || 15); // speed = seconds to traverse halfWidth
+          // exponential smoothing toward target velocity
+          const velocityRef = (step as any)._velocity ?? 0;
+          const easingFactor = 1 - Math.exp(-dt / ANIMATION_CONFIG.SMOOTH_TAU);
+          const newVelocity = velocityRef + (targetPxPerSec - velocityRef) * easingFactor;
+          (step as any)._velocity = newVelocity;
+
+          let next = posRef.current + newVelocity * dt;
+          next = ((next % halfWidth) + halfWidth) % halfWidth;
+          posRef.current = next;
+          if (innerRef.current) innerRef.current.style.transform = `translateX(-${Math.floor(posRef.current)}px)`;
         }
       }
 
@@ -71,18 +82,22 @@ function TestimonialLoop({
     };
 
     rafRef.current = requestAnimationFrame(step);
+
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
       lastTimeRef.current = null;
+      (step as any)._velocity = 0;
     };
   }, [measure, speed]);
 
+  // pause when a card is opened
   React.useEffect(() => {
     isPausedRef.current = !!selected;
     setRenderTick((s) => s + 1);
   }, [selected]);
 
+  // pointer drag handlers
   React.useEffect(() => {
     const wrapper = wrapperRef.current;
     const inner = innerRef.current;
@@ -115,16 +130,16 @@ function TestimonialLoop({
       }
     };
 
-    wrapper.addEventListener("pointerdown", onPointerDown);
-    window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("pointerup", onPointerUp);
-    window.addEventListener("pointercancel", onPointerUp);
+    wrapper.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
 
     return () => {
-      wrapper.removeEventListener("pointerdown", onPointerDown);
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerup", onPointerUp);
-      window.removeEventListener("pointercancel", onPointerUp);
+      wrapper.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
     };
   }, [measure]);
 
@@ -138,7 +153,7 @@ function TestimonialLoop({
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[var(--background)] via-[var(--background)]/80 to-transparent z-10 pointer-events-none" />
 
         <div ref={innerRef} className="flex items-stretch relative z-20 transition-transform duration-100 ease-linear" style={{ gap: 16, transform: "translateX(0)" }}>
-          {repeated.map((t, i) => (
+          {Array.from({ length: 2 }).flatMap(() => testimonials).map((t, i) => (
             <button
               key={`${t.name}-${i}`}
               type="button"
@@ -227,6 +242,16 @@ function TestimonialLoop({
 
 export function ProfileSection() {
   const t = useTranslations('profile');
+  const locale = useLocale();
+
+  // load raw locale JSON so we can read arrays/objects (next-intl's `t` only supports strings)
+  // import locale files statically to keep this component client-friendly
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const enLocales = require('../../locales/en.json');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const esLocales = require('../../locales/es.json');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const itLocales = require('../../locales/it.json');
   
   const interests = useMemo(
     () => [
@@ -252,34 +277,11 @@ export function ProfileSection() {
     [t]
   );
 
-  const testimonials: Testimonial[] = useMemo(
-    () => [
-      {
-        name: "María González",
-        role: "Product Manager",
-        company: "Tech Solutions Inc",
-        text: "Nicolás es un ingeniero excepcional. Su capacidad para entender problemas complejos y traducirlos en soluciones elegantes es impresionante. Siempre entrega más de lo esperado y su atención al detalle es incomparable.",
-      },
-      {
-        name: "Carlos Rodríguez",
-        role: "CTO",
-        company: "StartupXYZ",
-        text: "Trabajar con Nicolás fue una experiencia transformadora para nuestro equipo. No solo aportó habilidades técnicas de primer nivel, sino que también elevó la calidad del código de todo el equipo.",
-      },
-      {
-        name: "Ana Martínez",
-        role: "Tech Lead",
-        company: "Digital Innovations",
-        text: "La proactividad y creatividad de Nicolás son notables. Siempre encuentra formas innovadoras de resolver problemas y su código es limpio, eficiente y bien documentado.",
-      },
-      {
-        name: "Jorge López",
-        role: "Senior Developer",
-        text: "Nicolás tiene un equilibrio perfecto entre habilidades técnicas y soft skills. Es un excelente comunicador y un gran mentor para desarrolladores junior.",
-      },
-    ],
-    []
-  );
+  const testimonials: Testimonial[] = useMemo(() => {
+    const msgs: any = locale === 'es' ? esLocales : locale === 'it' ? itLocales : enLocales;
+    const items = msgs?.profile?.testimonials?.items;
+    return Array.isArray(items) ? items : [];
+  }, [locale]);
 
   return (
     <section id="profile" className="relative py-16 md:py-24 theme-bg overflow-hidden">

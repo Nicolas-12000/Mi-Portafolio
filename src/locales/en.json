@@ -34,13 +34,40 @@
       "inProgress": "IN PROGRESS"
     },
       "case1": {
-      "title": "Enterprise REST API",
-      "description": "Development of secure API with Spring Boot, implementing JWT, Swagger documentation and MySQL query optimization.",
-      "problem": "Legacy system without unified API",
-      "solution": "Hexagonal architecture + Spring Security",
-      "impact": "70% reduction in query time",
-      "cta": "View live demo"
-    },
+        "title": "Estudify - Academic Management",
+        "description": "Full academic management platform built with Django and Django REST Framework. Includes user roles, course management, grades, attendance, reports and optional Celery-based tasks.",
+        "problem": "Fragmented academic processes and manual administrative tasks",
+        "solution": "Web platform with role-based access, REST API, automated reports and an admin dashboard",
+        "impact": "Metrics not measured yet",
+        "metrics": {
+          "coverage": "Test coverage: 80% (GitHub Actions)"
+        },
+        "cta": "Visit demo"
+      },
+      "django-libros": {
+        "title": "Biblioteca Digital - Library Management",
+        "description": "Professional Django application for managing books and authors with a classic library design (burgundy, cream and gold). Includes full CRUD, advanced search, filters, pagination and a customized admin.",
+        "problem": "Manual management of books and authors, scattered records and no dedicated admin UX.",
+        "solution": "Relational Author-Book models, validated forms, advanced search and Bootstrap UI with CBV architecture and environment-based settings.",
+        "impact": "Deployed demo available",
+        "cta": "Visit demo"
+      },
+      "chromamind": {
+        "title": "ChromaMind - Color Generator (Flutter)",
+        "description": "Flutter app that generates color palettes from natural language prompts (e.g. 'sunset navy blue') and returns RGB values with a short description. Includes copy-to-clipboard and local persistence.",
+        "problem": "Designers and developers need quick, descriptive color suggestions and copyable RGB values.",
+        "solution": "A small Flutter utility using Provider, color picker UI and optional Google Generative AI to create descriptive color palettes. Persist preferences with SharedPreferences.",
+        "impact": "Open-source prototype on GitHub",
+        "cta": "View repo"
+      },
+      "turno-track": {
+        "title": "Asistión (TurnoTrack) - Attendance & Geolocation",
+        "description": "Mobile attendance system built with Flutter and Supabase: photo-verified check-ins, OpenStreetMap integration, offline-sync and AI-driven insights via Gemini.",
+        "problem": "Manual attendance tracking with potential fraud and poor location validation.",
+        "solution": "Photo + GPS check-in/out, OpenStreetMap widget, Supabase with RLS policies, offline sync and Gemini AI for predictions and coaching.",
+        "impact": "Production-ready: secure RLS, dashboards and exports",
+        "cta": "View code"
+      },
     "case2": {
       "title": "Poultry management system",
       "description": "Complete automation of inventories and forms with Django backend, Flutter mobile and MySQL optimizations.",
@@ -194,7 +221,27 @@
     },
     "testimonials": {
       "title": "Testimonials",
-      "description": "Testimonials from colleagues and clients I've worked with"
+      "description": "Testimonials from colleagues and clients I've worked with",
+      "items": [
+        {
+          "name": "Tomás",
+          "role": "Student",
+          "company": "Universidad Cooperativa de Colombia",
+          "text": "Nicolás is a highly focused quality engineer with a unique ability to develop innovative solutions suited to complex contexts. As a teammate he stands out for genuine kindness, active listening and fostering a collaborative atmosphere — showing strong emotional intelligence and resilience that inspires others to overcome challenges with calm and optimism. I fully recommend him and would gladly work with him again, as his balanced approach helps build a more cohesive and productive team."
+        },
+        {
+          "name": "Johnatan Matheu Ruales Galvis",
+          "role": "Student",
+          "company": "Universidad Cooperativa de Colombia",
+          "text": "I've collaborated with Nicolás on academic and personal programming projects. I was impressed by his quick learning and adaptability to new tools, demonstrating a flexible mindset and curiosity that drives him to innovate. In team settings he handled key code areas and consistently supported others with clear, empathetic communication that eases tensions and boosts collective ideas. His solid technical foundation, resilience and collaborative focus make him a valuable addition to any group."
+        },
+        {
+          "name": "Natalie Julieta Benavides",
+          "role": "Student",
+          "company": "Universidad Mariana",
+          "text": "Nicolás stands out for responsibility and technical skills, evident in how he approaches projects: he reliably meets deadlines while optimizing processes and seeking innovative improvements. His passion and creativity drive his enjoyment of learning, focusing on both personal growth and final outcomes. He is empathetic, respectful and collaborative, always willing to help and share knowledge, which strengthens team relationships and creates a motivating environment. His clarity and adaptability make him ideal for handling complex challenges with composure."
+        }
+      ]
     }
     
   },
@@ -303,7 +350,12 @@
     "brand": "NICOLÁS GARCÍA",
     "copyright": "© 2025 Nicolás Alejandro García Pasmiño",
     "quote": "Every line of code is one more hour to live",
-    "status": "Available"
+    "status": "Available",
+    "made_with": "Made with",
+    "by": "by",
+    "available": "Available",
+    "freelance": "For projects",
+    "cta_question": "Ready to turn ideas into code?"
   },
   "common": {
     "problem": "Problem:",
