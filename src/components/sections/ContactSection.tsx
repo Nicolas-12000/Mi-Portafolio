@@ -38,7 +38,7 @@ function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: Step
                   }`}
                 >
                   {isComplete ? (
-                    <CheckCircle2 className="w-5 h-5 theme-bg" strokeWidth={2.5} />
+                    <CheckCircle2 className="w-5 h-5 text-[var(--background)]" strokeWidth={2.5} />
                   ) : (
                     <span className={`text-sm font-bold ${isActive ? 'theme-accent' : 'theme-text-muted'}`}>
                       {step}
@@ -49,7 +49,7 @@ function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: Step
                   <motion.div
                     className="absolute inset-0 rounded-full"
                     style={{ backgroundColor: 'var(--accent-primary)' }}
-                    initial={{ scale: 1, opacity: 0.5 }}
+                    initial={{ scale: 1, opacity: 0.22 }}
                     animate={{ scale: 1.3, opacity: 0 }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
@@ -234,8 +234,8 @@ export function ContactSection() {
             className="bg-gradient-to-br from-[var(--accent-primary)]/15 via-[var(--gold-alt)]/10 to-[var(--accent-primary)]/15 backdrop-blur-md rounded-xl border border-[var(--accent-primary)]/40 p-6 group hover:border-[var(--accent-primary)]/60 transition-all duration-300 theme-shadow-lg hover:shadow-[var(--accent-primary)]/20"
           >
             <div className="flex items-start gap-3 mb-4">
-              <div className="p-3 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--accent-primary)', opacity: 0.2 }}>
-                <FileText className="w-6 h-6 theme-accent" />
+              <div className="p-3 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--accent-primary)', opacity: 0.12 }}>
+                <FileText className="w-6 h-6 text-[var(--background)]" />
               </div>
               <div className="flex-1">
                 <h4 className="font-bold theme-text text-base">Curriculum Vitae</h4>

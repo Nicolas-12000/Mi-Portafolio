@@ -176,7 +176,8 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           
           <button 
             onClick={() => onNavigate('tech')}
-            className="w-full sm:w-auto group relative overflow-hidden border-2 hover:bg-[var(--accent-primary)]/10 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98]" style={{ borderColor: 'var(--accent-primary)', opacity: 0.5, boxShadow: '0 0 25px var(--shadow-gold)' }}
+            className="w-full sm:w-auto group relative overflow-hidden border-2 hover:bg-[var(--accent-primary)]/10 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98]"
+            style={{ borderColor: 'var(--accent-primary)', opacity: theme === 'light' ? 0.92 : 0.5, boxShadow: theme === 'light' ? '0 10px 30px rgba(0,0,0,0.06)' : '0 0 25px var(--shadow-gold)' }}
           >
             {/* Efecto de brillo dorado que se desliza */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/25 to-transparent skew-x-12 rounded-lg" />
@@ -192,21 +193,23 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
 
         {/* Quick Links con efectos dorados - Centrados */}
         <div className="flex justify-center gap-8 pointer-events-auto">
-          <button 
+          <button
             onClick={() => onNavigate('profile')}
-            className="group relative theme-text-muted transition-all duration-300 text-sm sm:text-base active:scale-95 font-medium px-4 py-2 rounded-lg overflow-hidden" style={{ color: 'var(--accent-primary)', background: 'linear-gradient(to right, var(--accent-primary), var(--accent-primary))', opacity: 0.1, boxShadow: '0 0 20px var(--shadow-gold)' }}
+            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden"
+            style={{ color: theme === 'light' ? '#0b0b0b' : '#ffffff', backgroundColor: theme === 'light' ? 'rgba(184,139,47,0.06)' : 'transparent', boxShadow: '0 0 20px var(--shadow-gold)' }}
           >
             {/* Efecto de brillo dorado */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent" />
-            <span className="relative z-10 group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] font-semibold">{t('quickLinks.about')}</span>
+            <span className="relative z-10 group-hover:theme-accent group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] font-semibold">{t('quickLinks.about')}</span>
           </button>
-          <button 
+          <button
             onClick={() => onNavigate('contact')}
-            className="group relative theme-text-muted transition-all duration-300 text-sm sm:text-base active:scale-95 font-medium px-4 py-2 rounded-lg overflow-hidden border border-transparent" style={{ color: 'var(--accent-primary)', background: 'linear-gradient(to right, var(--accent-primary), var(--accent-primary))', opacity: 0.1, boxShadow: '0 0 20px var(--shadow-gold)', borderColor: 'var(--accent-primary)' }}
+            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden border border-transparent"
+            style={{ color: theme === 'light' ? '#0b0b0b' : '#ffffff', backgroundColor: theme === 'light' ? 'rgba(184,139,47,0.06)' : 'transparent', boxShadow: '0 0 20px var(--shadow-gold)', borderColor: 'var(--accent-primary)' }}
           >
             {/* Efecto de brillo dorado */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent" />
-            <span className="relative z-10 group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] font-semibold">{t('quickLinks.contact')}</span>
+            <span className="relative z-10 group-hover:theme-accent group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] font-semibold">{t('quickLinks.contact')}</span>
           </button>
         </div>
       </div>

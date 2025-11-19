@@ -61,10 +61,23 @@ export function Navigation({ locale }: NavigationProps) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Cerrar selector de idiomas cuando se cierra el menú
+  useEffect(() => {
+    if (!isMenuOpen && isLanguageSelectorOpen) {
+      setIsLanguageSelectorOpen(false);
+    }
+  }, [isMenuOpen, isLanguageSelectorOpen]);
+
   // Cerrar menú al hacer click fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isMenuOpen && navRef.current && !navRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      
+      // Verificar si el click fue dentro del nav o del dropdown de idiomas
+      const clickedInNav = navRef.current?.contains(target);
+      const clickedInLanguageDropdown = (target as Element).closest('.language-dropdown-portal');
+      
+      if (isMenuOpen && !clickedInNav && !clickedInLanguageDropdown) {
         closeMenu();
       }
     };
@@ -170,6 +183,15 @@ export function Navigation({ locale }: NavigationProps) {
     }
   };
 
+  // Abrir menú si no está abierto
+  const openMenuIfClosed = () => {
+    const tl = tlRef.current;
+    if (!tl || isMenuOpen) return;
+    
+    setIsMenuOpen(true);
+    tl.play(0);
+  };
+
   // Scroll suave a sección
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -196,10 +218,11 @@ export function Navigation({ locale }: NavigationProps) {
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-4 md:pt-6 px-2 sm:px-4">
       <nav
         ref={navRef}
-        className="card-nav w-full max-w-4xl theme-glass backdrop-blur-xl rounded-xl sm:rounded-2xl theme-shadow-lg overflow-hidden will-change-[height]"
+        className="card-nav w-full max-w-4xl backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden will-change-[height]"
         style={{ 
           height: isMobile ? NAV_HEIGHT_MOBILE : NAV_HEIGHT_DESKTOP,
-          border: '1px solid var(--accent-primary)'
+          background: 'rgba(10, 10, 20, 0.4)',
+          border: '1px solid rgba(230, 185, 61, 0.15)'
         }}
       >
         {/* Barra Superior */}
@@ -214,22 +237,22 @@ export function Navigation({ locale }: NavigationProps) {
               className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? 'translate-y-1 rotate-45' : ''
               }`}
-              style={{ backgroundColor: 'var(--accent-primary)', boxShadow: '0 0 8px var(--shadow-gold)' }}
+              style={{ backgroundColor: '#E6B93D', boxShadow: '0 0 8px rgba(230,185,61,0.45)' }}
             />
             <div
               className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? '-translate-y-1 -rotate-45' : ''
               }`}
-              style={{ backgroundColor: 'var(--accent-primary)', boxShadow: '0 0 8px var(--shadow-gold)' }}
+              style={{ backgroundColor: '#E6B93D', boxShadow: '0 0 8px rgba(230,185,61,0.45)' }}
             />
           </button>
 
           {/* Logo */}
           <div className="flex items-center gap-2 sm:gap-2.5 order-1 md:order-none md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center ring-1" style={{ background: 'linear-gradient(to bottom right, var(--accent-secondary), var(--red-dark), var(--red-darker))', boxShadow: '0 0 20px rgba(230,57,70,0.3)', borderColor: 'var(--accent-secondary)' }}>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-[#E63946] via-[#8B0000] to-[#1a0000] rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(230,57,70,0.3)] ring-1 ring-red-500/30">
               <Code2 className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white drop-shadow-lg" strokeWidth={2.5} />
             </div>
-            <span className="font-bold text-base sm:text-lg md:text-xl theme-text drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] tracking-wide">
+            <span className="font-bold text-base sm:text-lg md:text-xl text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] tracking-wide">
               GARCÍA LABS
             </span>
           </div>
@@ -237,11 +260,13 @@ export function Navigation({ locale }: NavigationProps) {
           {/* Controles */}
           <div className="flex items-center gap-1 sm:gap-2 order-3">
             <ThemeToggle />
-            <LanguageSelector 
-              currentLocale={locale} 
-              isOpen={isLanguageSelectorOpen}
-              onOpenChange={setIsLanguageSelectorOpen}
-            />
+            <div onClick={openMenuIfClosed}>
+              <LanguageSelector 
+                currentLocale={locale} 
+                isOpen={isLanguageSelectorOpen}
+                onOpenChange={setIsLanguageSelectorOpen}
+              />
+            </div>
           </div>
         </div>
 
@@ -261,10 +286,10 @@ export function Navigation({ locale }: NavigationProps) {
             <div
               key={idx}
               ref={setCardRef(idx)}
-              className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] theme-card border theme-border theme-shadow-md"
+              className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm bg-[#E0D9CC]/95 dark:bg-[#1a1a28]/85 border border-[#7A6E5C]/20 dark:border-transparent text-[#2C2416] dark:text-[#FFD700] shadow-lg dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
               style={{ minHeight: isMobile ? `${CARD_HEIGHT_MOBILE}px` : '80px' }}
             >
-              <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm theme-text">
+              <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm">
                 {card.label}
               </div>
               <div className="flex flex-col gap-0.5 sm:gap-1 mt-auto">
@@ -272,7 +297,7 @@ export function Navigation({ locale }: NavigationProps) {
                   <button
                     key={i}
                     onClick={() => scrollToSection(link.id)}
-                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1 theme-text-secondary"
+                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1"
                   >
                     {link.icon && <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />}
                     {link.label}

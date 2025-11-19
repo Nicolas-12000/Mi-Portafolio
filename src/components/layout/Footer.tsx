@@ -1,12 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Github, Linkedin, Mail, ArrowUp, Code2 } from 'lucide-react';
+import { Github, Linkedin, ArrowUp, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 export function Footer() {
-  const t = useTranslations('contact');
+  // translations not used in this footer currently
+  // const t = useTranslations('contact');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export function Footer() {
             ¿Listo para convertir ideas en código?
           </p>
           <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold theme-text mb-12">
-            Let's start
+            Let&apos;s start
           </h2>
 
           {/* Contact Info Row */}

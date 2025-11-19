@@ -157,7 +157,7 @@ function TestimonialLoop({
                     {t.role && <p className="text-xs theme-text-muted truncate">{t.role}</p>}
                   </div>
                 </div>
-                <p className="text-sm theme-text-secondary line-clamp-3 leading-relaxed mb-3">"{t.text}"</p>
+                <p className="text-sm theme-text-secondary line-clamp-3 leading-relaxed mb-3">&ldquo;{t.text}&rdquo;</p>
                 <div className="flex items-center gap-2 text-xs theme-accent opacity-0 group-hover:opacity-100 transition-opacity">
                   <span>Leer más</span>
                   <span className="transform group-hover:translate-x-1 transition-transform">→</span>
@@ -187,7 +187,7 @@ function TestimonialLoop({
 
             <Quote className="w-12 h-12 theme-accent mb-6 opacity-80" />
 
-            <p className="text-lg theme-text mb-8 leading-relaxed italic">"{selected.text}"</p>
+            <p className="text-lg theme-text mb-8 leading-relaxed italic">&ldquo;{selected.text}&rdquo;</p>
 
             <div className="flex items-center gap-4 pt-6 border-t theme-border">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--accent-primary)] to-[var(--gold-alt)] flex items-center justify-center theme-bg font-bold text-2xl shadow-xl shadow-[var(--accent-primary)]/30">
@@ -429,9 +429,9 @@ export function ProfileSection() {
                 </div>
               </div>
               <h4 className="font-bold theme-accent-red mb-4 text-center text-base md:text-lg tracking-wide">{t('philosophy.title')}</h4>
-              <blockquote className="text-center italic theme-text mb-5 text-sm md:text-base leading-relaxed">
-                "{t('philosophy.quote')}"
-              </blockquote>
+                <blockquote className="text-center italic theme-text mb-5 text-sm md:text-base leading-relaxed">
+                  &ldquo;{t('philosophy.quote')}&rdquo;
+                </blockquote>
               <div className="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm">
                 <span className="px-3 py-1.5 theme-surface rounded-lg theme-text-muted theme-border">Automatización</span>
                 <span className="theme-accent-red">→</span>
