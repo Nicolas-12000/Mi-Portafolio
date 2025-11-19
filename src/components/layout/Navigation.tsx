@@ -12,18 +12,48 @@ interface NavigationProps {
   locale: Locale;
 }
 
+// Constantes para evitar magic numbers
+const MOBILE_BREAKPOINT = 768;
+const NAV_HEIGHT_MOBILE = 56;
+const NAV_HEIGHT_DESKTOP = 64;
+const CARD_HEIGHT_MOBILE = 90;
+const GAP_BETWEEN_CARDS = 10;
+const CONTAINER_PADDING = 12;
+const NUMBER_OF_CARDS = 3;
+
 export function Navigation({ locale }: NavigationProps) {
   const t = useTranslations('nav');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  
   const navRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
-  // Detectar si es mobile solo en el cliente
+  // Estructura de navegación
+  const navCards = [
+    {
+      label: t('cases'),
+      links: [{ id: 'cases', label: t('cases'), icon: true }]
+    },
+    {
+      label: t('tech'),
+      links: [{ id: 'tech', label: t('tech'), icon: true }]
+    },
+    {
+      label: t('profile'),
+      links: [
+        { id: 'profile', label: t('profile'), icon: true },
+        { id: 'contact', label: t('contact'), icon: true }
+      ]
+    }
+  ];
+
+  // Detectar viewport mobile
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.matchMedia('(max-width: 640px)').matches);
+      setIsMobile(window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches);
     };
     
     checkMobile();
@@ -35,8 +65,7 @@ export function Navigation({ locale }: NavigationProps) {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (isMenuOpen && navRef.current && !navRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-        tlRef.current?.reverse();
+        closeMenu();
       }
     };
 
@@ -44,83 +73,36 @@ export function Navigation({ locale }: NavigationProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-    setIsMenuOpen(false);
-    tlRef.current?.reverse();
-  };
-
-  // Estructura de cards - Sin colores hardcodeados para que se adapten al tema
-  const navCards = [
-    {
-      label: t('cases'),
-      links: [
-        { id: 'cases', label: t('cases'), icon: true }
-      ]
-    },
-    {
-      label: t('tech'),
-      links: [
-        { id: 'tech', label: t('tech'), icon: true }
-      ]
-    },
-    {
-      label: t('profile'),
-      links: [
-        { id: 'profile', label: t('profile'), icon: true },
-        { id: 'contact', label: t('contact'), icon: true }
-      ]
-    }
-  ];
-
-  const calculateHeight = () => {
-    const navEl = navRef.current;
-    if (!navEl) return 260;
-
-    const isMobileView = window.matchMedia('(max-width: 768px)').matches;
+  // Calcular altura expandida del nav
+  const calculateExpandedHeight = (): number => {
+    const isMobileView = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches;
+    
     if (isMobileView) {
-      const contentEl = navEl.querySelector('.card-nav-content') as HTMLElement;
-      if (contentEl) {
-        const wasVisible = contentEl.style.visibility;
-        contentEl.style.visibility = 'visible';
-        contentEl.style.position = 'static';
-        contentEl.style.height = 'auto';
-
-        const topBar = 56; // Altura reducida para mobile
-        const padding = 16;
-        const contentHeight = contentEl.scrollHeight;
-
-        contentEl.style.visibility = wasVisible;
-        return topBar + contentHeight + padding;
-      }
+      const cardsHeight = (CARD_HEIGHT_MOBILE * NUMBER_OF_CARDS) + 
+                         (GAP_BETWEEN_CARDS * (NUMBER_OF_CARDS - 1));
+      return NAV_HEIGHT_MOBILE + cardsHeight + CONTAINER_PADDING + 12;
     }
-    return 280;
+    
+    return 280; // Desktop height
   };
 
-  const createTimeline = () => {
+  // Crear timeline de animación
+  const createTimeline = (): gsap.core.Timeline | null => {
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    const isMobileView = window.matchMedia('(max-width: 768px)').matches;
-    const initialHeight = isMobileView ? 56 : 64;
+    const isMobileView = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches;
+    const initialHeight = isMobileView ? NAV_HEIGHT_MOBILE : NAV_HEIGHT_DESKTOP;
 
+    // Setup inicial
     gsap.set(navEl, { height: initialHeight, overflow: 'hidden' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
+    // Timeline de expansión
     const tl = gsap.timeline({ paused: true });
 
     tl.to(navEl, {
-      height: calculateHeight,
+      height: calculateExpandedHeight,
       duration: 0.4,
       ease: 'power3.out'
     });
@@ -136,6 +118,7 @@ export function Navigation({ locale }: NavigationProps) {
     return tl;
   };
 
+  // Inicializar timeline
   useLayoutEffect(() => {
     const tl = createTimeline();
     tlRef.current = tl;
@@ -146,13 +129,13 @@ export function Navigation({ locale }: NavigationProps) {
     };
   }, []);
 
+  // Manejar resize
   useLayoutEffect(() => {
     const handleResize = () => {
       if (!tlRef.current) return;
 
-      // Cerrar el menú al cambiar de tamaño
       if (isMenuOpen) {
-        setIsMenuOpen(false);
+        closeMenu();
       }
 
       // Recrear timeline con nuevas dimensiones
@@ -167,6 +150,14 @@ export function Navigation({ locale }: NavigationProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMenuOpen]);
 
+  // Función para cerrar el menú
+  const closeMenu = () => {
+    setIsLanguageSelectorOpen(false);
+    tlRef.current?.eventCallback('onReverseComplete', () => setIsMenuOpen(false));
+    tlRef.current?.reverse();
+  };
+
+  // Toggle del menú
   const toggleMenu = () => {
     const tl = tlRef.current;
     if (!tl) return;
@@ -175,78 +166,105 @@ export function Navigation({ locale }: NavigationProps) {
       setIsMenuOpen(true);
       tl.play(0);
     } else {
-      tl.eventCallback('onReverseComplete', () => setIsMenuOpen(false));
-      tl.reverse();
+      closeMenu();
     }
   };
 
-  const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
-    if (el) cardsRef.current[i] = el;
+  // Scroll suave a sección
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    const offset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+
+    closeMenu();
+  };
+
+  // Ref helper para cards
+  const setCardRef = (index: number) => (el: HTMLDivElement | null) => {
+    if (el) cardsRef.current[index] = el;
   };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-4 md:pt-6 px-2 sm:px-4">
       <nav
         ref={navRef}
-        className="card-nav w-full max-w-4xl backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden will-change-[height]"
+        className="card-nav w-full max-w-4xl theme-glass backdrop-blur-xl rounded-xl sm:rounded-2xl theme-shadow-lg overflow-hidden will-change-[height]"
         style={{ 
-          height: isMobile ? 56 : 64,
-          background: 'rgba(10, 10, 20, 0.4)',
-          border: '1px solid rgba(230, 185, 61, 0.15)'
+          height: isMobile ? NAV_HEIGHT_MOBILE : NAV_HEIGHT_DESKTOP,
+          border: '1px solid var(--accent-primary)'
         }}
       >
-        {/* Top Bar */}
+        {/* Barra Superior */}
         <div className="absolute inset-x-0 top-0 h-14 sm:h-16 flex items-center justify-between px-2 sm:px-4 z-10">
-          {/* Hamburger Menu */}
+          {/* Botón Hamburguesa */}
           <button
             onClick={toggleMenu}
             className="group flex flex-col items-center justify-center gap-1 sm:gap-1.5 w-9 h-9 sm:w-10 sm:h-10 cursor-pointer order-2 md:order-none transition-opacity hover:opacity-75"
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             <div
-              className={`w-6 sm:w-7 h-0.5 bg-accent-primary transition-all duration-300 ${
+              className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? 'translate-y-1 rotate-45' : ''
               }`}
+              style={{ backgroundColor: 'var(--accent-primary)', boxShadow: '0 0 8px var(--shadow-gold)' }}
             />
             <div
-              className={`w-6 sm:w-7 h-0.5 bg-accent-primary transition-all duration-300 ${
+              className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? '-translate-y-1 -rotate-45' : ''
               }`}
+              style={{ backgroundColor: 'var(--accent-primary)', boxShadow: '0 0 8px var(--shadow-gold)' }}
             />
           </button>
 
-          {/* Logo - Centrado en desktop */}
+          {/* Logo */}
           <div className="flex items-center gap-2 sm:gap-2.5 order-1 md:order-none md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-[#E63946] via-[#8B0000] to-[#1a0000] rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(230,57,70,0.3)] ring-1 ring-red-500/30">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center ring-1" style={{ background: 'linear-gradient(to bottom right, var(--accent-secondary), var(--red-dark), var(--red-darker))', boxShadow: '0 0 20px rgba(230,57,70,0.3)', borderColor: 'var(--accent-secondary)' }}>
               <Code2 className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white drop-shadow-lg" strokeWidth={2.5} />
             </div>
-            <span className="font-bold text-base sm:text-lg md:text-xl text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] tracking-wide">
+            <span className="font-bold text-base sm:text-lg md:text-xl theme-text drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] tracking-wide">
               GARCÍA LABS
             </span>
           </div>
 
-          {/* Actions - Siempre visibles */}
+          {/* Controles */}
           <div className="flex items-center gap-1 sm:gap-2 order-3">
             <ThemeToggle />
-            <div onClick={toggleMenu}>
-              <LanguageSelector currentLocale={locale} />
-            </div>
+            <LanguageSelector 
+              currentLocale={locale} 
+              isOpen={isLanguageSelectorOpen}
+              onOpenChange={setIsLanguageSelectorOpen}
+            />
           </div>
         </div>
 
-        {/* Cards Content */}
+        {/* Contenedor de Cards */}
         <div
-          className={`card-nav-content absolute left-0 right-0 top-14 sm:top-16 bottom-0 p-2 sm:p-3 flex flex-col md:flex-row items-stretch justify-end gap-2 sm:gap-3 z-0 ${
+          className={`card-nav-content left-0 right-0 p-2 sm:p-3 flex flex-col md:flex-row items-stretch justify-end gap-2.5 sm:gap-3 ${
             isMenuOpen ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
           }`}
+          style={{
+            position: 'absolute',
+            top: isMobile ? `${NAV_HEIGHT_MOBILE}px` : `${NAV_HEIGHT_DESKTOP}px`,
+            bottom: 0,
+            zIndex: 0
+          }}
         >
           {navCards.map((card, idx) => (
             <div
               key={idx}
               ref={setCardRef(idx)}
-              className="nav-card flex flex-col gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl min-h-[70px] sm:min-h-[80px] md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm bg-[#E0D9CC]/95 dark:bg-[#1a1a28]/85 border border-[#7A6E5C]/20 dark:border-transparent text-[#2C2416] dark:text-[#FFD700] shadow-lg dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+              className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] theme-card border theme-border theme-shadow-md"
+              style={{ minHeight: isMobile ? `${CARD_HEIGHT_MOBILE}px` : '80px' }}
             >
-              <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm">
+              <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm theme-text">
                 {card.label}
               </div>
               <div className="flex flex-col gap-0.5 sm:gap-1 mt-auto">
@@ -254,7 +272,7 @@ export function Navigation({ locale }: NavigationProps) {
                   <button
                     key={i}
                     onClick={() => scrollToSection(link.id)}
-                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1"
+                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1 theme-text-secondary"
                   >
                     {link.icon && <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />}
                     {link.label}

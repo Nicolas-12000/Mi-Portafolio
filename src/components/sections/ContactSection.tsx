@@ -1,18 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, Github, Linkedin, Instagram, MapPin, Clock, Send, ChevronRight, ChevronLeft, Sparkles, Code2, Rocket, FileText, CheckCircle2 } from 'lucide-react';
+import { Mail, Github, Linkedin, Instagram, MapPin, Clock, Send, ChevronRight, ChevronLeft, Sparkles, Code2, Rocket, FileText, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslations } from 'next-intl';
 
 interface StepperProps {
   currentStep: number;
   totalSteps: number;
+  prefersReducedMotion?: boolean;
 }
 
-function Stepper({ currentStep, totalSteps }: StepperProps) {
+function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: StepperProps) {
   return (
-    <div className="flex items-center justify-between mb-10 px-4">
+    <div className="flex items-center justify-between mb-8 px-2">
       {[...Array(totalSteps)].map((_, index) => {
         const step = index + 1;
         const isComplete = currentStep > step;
@@ -29,41 +29,42 @@ function Stepper({ currentStep, totalSteps }: StepperProps) {
                 className="relative"
               >
                 <div 
-                  className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
+                  className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
                     isComplete 
-                      ? 'bg-gradient-to-br from-[#E6B93D] to-[#D4AF37] border-[#E6B93D] shadow-lg shadow-[#E6B93D]/30' 
+                      ? 'bg-gradient-to-br from-[var(--accent-primary)] to-[var(--gold-alt)] border-[var(--accent-primary)] theme-shadow-lg' 
                       : isActive 
-                      ? 'bg-[#0A0A0F] border-[#E6B93D] shadow-lg shadow-[#E6B93D]/20' 
-                      : 'bg-[#0A0A0F] border-[#2A2A35]'
+                      ? 'theme-surface border-[var(--accent-primary)] theme-shadow-lg' 
+                      : 'theme-surface theme-border'
                   }`}
                 >
                   {isComplete ? (
-                    <CheckCircle2 className="w-6 h-6 text-[#0A0A0F]" strokeWidth={2.5} />
+                    <CheckCircle2 className="w-5 h-5 theme-bg" strokeWidth={2.5} />
                   ) : (
-                    <span className={`text-sm font-bold ${isActive ? 'text-[#E6B93D]' : 'text-[#6B7280]'}`}>
+                    <span className={`text-sm font-bold ${isActive ? 'theme-accent' : 'theme-text-muted'}`}>
                       {step}
                     </span>
                   )}
                 </div>
-                {isActive && (
+                {isActive && !prefersReducedMotion && (
                   <motion.div
-                    className="absolute inset-0 rounded-full bg-[#E6B93D]"
+                    className="absolute inset-0 rounded-full"
+                    style={{ backgroundColor: 'var(--accent-primary)' }}
                     initial={{ scale: 1, opacity: 0.5 }}
                     animate={{ scale: 1.3, opacity: 0 }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
                 )}
               </motion.div>
-              <p className={`text-xs mt-2 font-medium text-center ${isActive ? 'text-[#E6B93D]' : 'text-[#6B7280]'}`}>
+              <p className={`text-xs mt-2 font-medium text-center ${isActive ? 'theme-accent' : 'theme-text-muted'}`}>
                 {step === 1 ? 'Info' : step === 2 ? 'Proyecto' : 'Mensaje'}
               </p>
             </div>
             {step < totalSteps && (
-              <div className="flex-1 h-[2px] mx-2 bg-[#1C1C28] relative overflow-hidden">
+              <div className="flex-1 h-[2px] mx-2 theme-elevated relative overflow-hidden">
                 <motion.div
                   initial={false}
                   animate={{ width: isComplete ? '100%' : '0%' }}
-                  className="h-full bg-gradient-to-r from-[#E6B93D] to-[#D4AF37]"
+                  className="h-full bg-gradient-to-r from-[var(--accent-primary)] to-[var(--gold-alt)]"
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 />
               </div>
@@ -85,7 +86,6 @@ const projectIcons = {
 };
 
 export function ContactSection() {
-  const t = useTranslations('contact');
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -104,6 +104,12 @@ export function ContactSection() {
     'Other'
   ];
 
+  const socialLinks = [
+    { name: 'GitHub', icon: Github, url: 'https://github.com/Nicolas-12000', color: 'text-[#F2F2F7] hover:text-[#E6B93D]' },
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/nicolás-alejandro-garcía-pasmiño-82765333b/', color: 'text-[#0A66C2]' },
+    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[#E4405F]' }
+  ];
+
   const handleNext = () => {
     if (currentStep < 3) setCurrentStep(currentStep + 1);
   };
@@ -118,11 +124,12 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-20 md:py-28 bg-gradient-to-b from-[#050507] via-[#0A0A0F] to-[#050507] overflow-hidden">
-      {/* Decorative elements */}
+    <section id="contact" className="relative py-16 md:py-24 theme-bg overflow-hidden">
+      {/* Background effects - matching portfolio style */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02]" />
-      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#E6B93D] rounded-full blur-[120px] opacity-10" />
-      <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-[#D4AF37] rounded-full blur-[120px] opacity-10" />
+      <div className="absolute top-1/4 -right-64 w-[600px] h-[600px] rounded-full blur-[150px] opacity-[0.08]" style={{ background: 'radial-gradient(circle, var(--accent-primary), var(--gold-alt))' }} />
+      <div className="absolute bottom-1/4 -left-64 w-[600px] h-[600px] rounded-full blur-[150px] opacity-[0.08]" style={{ background: 'radial-gradient(circle, var(--gold-alt), var(--accent-primary))' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-3xl opacity-10" style={{ background: 'radial-gradient(circle, var(--accent-primary), transparent, transparent)' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -130,340 +137,341 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5">
-            <span className="bg-gradient-to-r from-[#F2F2F7] via-[#E6B93D] to-[#D4AF37] bg-clip-text text-transparent">
-              {t('form.title')}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="theme-gradient-text">
+              Empecemos a colaborar
             </span>
           </h2>
-          <p className="text-lg text-[#9CA3AF] max-w-2xl mx-auto">
-            {t('subtitle')}
+          <p className="text-base sm:text-lg theme-text-muted max-w-3xl mx-auto leading-relaxed">
+            Completa el formulario y cuéntame sobre tu proyecto. Estaré encantado de ayudarte a llevarlo al siguiente nivel.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Sidebar */}
+        {/* Main Grid - 3 sections */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {/* Contact Info Card */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 space-y-6"
+            whileHover={{ scale: 1.02 }}
+            className="theme-glass rounded-xl p-6 hover:border-[var(--accent-primary)]/50 transition-all duration-300 theme-shadow-lg"
           >
-            {/* Contact Info Card */}
-            <div className="group bg-gradient-to-br from-[#0F0F1A] to-[#1C1C28] rounded-2xl border border-[#2A2A35] p-6 hover:border-[#E6B93D]/30 transition-all duration-300">
-              <h3 className="text-xl font-bold text-[#E6B93D] mb-6 flex items-center">
-                <Mail className="w-5 h-5 mr-2" />
-                {t('info.title')}
-              </h3>
-              <div className="space-y-5">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-[#E6B93D] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-medium text-[#D1D5DB]">{t('info.location.title')}</p>
-                    <p className="text-sm text-[#6B7280]">{t('info.location.value')}</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Mail className="w-5 h-5 text-[#E6B93D] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-medium text-[#D1D5DB]">{t('info.email.title')}</p>
-                    <a href="mailto:nikolasg1200@gmail.com" className="text-sm text-[#6B7280] hover:text-[#E6B93D] transition-colors">
-                      {t('info.email.value')}
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Clock className="w-5 h-5 text-[#E6B93D] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-medium text-[#D1D5DB]">{t('info.availability.title')}</p>
-                    <p className="text-sm text-[#6B7280]">{t('info.availability.value')}</p>
-                  </div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--gold-alt)]/20">
+                <Mail className="w-5 h-5 theme-accent" />
+              </div>
+              <h3 className="text-lg font-bold theme-text">Información</h3>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 theme-accent mt-0.5 flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-xs font-medium theme-text-muted">Ubicación</p>
+                  <p className="text-sm theme-text-secondary">Pasto, Nariño, Colombia</p>
                 </div>
               </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="bg-gradient-to-br from-[#0F0F1A] to-[#1C1C28] rounded-2xl border border-[#2A2A35] p-6">
-              <h3 className="text-lg font-bold text-[#F2F2F7] mb-4">{t('social.title')}</h3>
-              <div className="space-y-3">
-                <a 
-                  href="https://github.com/Nicolas-12000" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-3 bg-[#1C1C28] hover:bg-[#2A2A35] rounded-xl transition-all duration-300 border border-transparent hover:border-[#E6B93D]/20"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Github className="w-5 h-5 text-[#9CA3AF] group-hover:text-[#F2F2F7]" />
-                    <span className="text-sm font-medium text-[#D1D5DB]">{t('social.github.title')}</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-[#6B7280] group-hover:text-[#E6B93D] transform group-hover:translate-x-1 transition-all" />
-                </a>
-                
-                <a 
-                  href="https://www.linkedin.com/in/nicol%C3%A1s-alejandro-garc%C3%ADa-pasmi%C3%B1o-82765333b/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-3 bg-[#1C1C28] hover:bg-[#2A2A35] rounded-xl transition-all duration-300 border border-transparent hover:border-[#0A66C2]/30"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Linkedin className="w-5 h-5 text-[#0A66C2]" />
-                    <span className="text-sm font-medium text-[#D1D5DB]">{t('social.linkedin.title')}</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-[#6B7280] group-hover:text-[#0A66C2] transform group-hover:translate-x-1 transition-all" />
-                </a>
-
-                <a 
-                  href="https://www.instagram.com/nico.gp12/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-3 bg-[#1C1C28] hover:bg-[#2A2A35] rounded-xl transition-all duration-300 border border-transparent hover:border-[#E4405F]/30"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Instagram className="w-5 h-5 text-[#E4405F]" />
-                    <span className="text-sm font-medium text-[#D1D5DB]">Instagram</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-[#6B7280] group-hover:text-[#E4405F] transform group-hover:translate-x-1 transition-all" />
-                </a>
+              <div className="flex items-start gap-3">
+                <Mail className="w-4 h-4 theme-accent mt-0.5 flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-xs font-medium theme-text-muted">Email</p>
+                  <a href="mailto:nikolasg1200@gmail.com" className="text-sm theme-text-secondary hover:theme-accent transition-colors break-all">
+                    nikolasg1200@gmail.com
+                  </a>
+                </div>
               </div>
-            </div>
-
-            {/* CV Download */}
-            <div className="relative bg-gradient-to-br from-[#E6B93D]/10 to-[#D4AF37]/10 rounded-2xl border border-[#E6B93D]/30 p-6 overflow-hidden group hover:border-[#E6B93D]/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#E6B93D]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative">
-                <FileText className="w-8 h-8 text-[#E6B93D] mb-3" />
-                <h4 className="font-bold text-[#F2F2F7] text-lg mb-2">{t('cv.title')}</h4>
-                <p className="text-sm text-[#9CA3AF] mb-4">
-                  {t('cv.description')}
-                </p>
-                <button className="w-full bg-gradient-to-r from-[#E6B93D] to-[#D4AF37] hover:from-[#D4AF37] hover:to-[#E6B93D] text-[#0A0A0F] px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#E6B93D]/20">
-                  {t('cv.download')}
-                </button>
+              <div className="flex items-start gap-3">
+                <Clock className="w-4 h-4 theme-accent mt-0.5 flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-xs font-medium theme-text-muted">Disponibilidad</p>
+                  <p className="text-sm theme-text-secondary">Remoto / Híbrido</p>
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Right - Stepper Form */}
+          {/* Social Links */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-8"
+            transition={{ delay: 0.1 }}
+            whileHover={{ scale: 1.02 }}
+            className="theme-glass rounded-xl p-6 hover:border-[var(--accent-primary)]/50 transition-all duration-300 theme-shadow-lg"
           >
-            <div className="bg-gradient-to-br from-[#0F0F1A] to-[#1C1C28] rounded-2xl border border-[#2A2A35] p-8 sm:p-10">
-              {!submitted ? (
-                <>
-                  <Stepper currentStep={currentStep} totalSteps={3} />
-                  
-                  <div className="mt-8">
-                    <AnimatePresence mode="wait">
-                      {/* Step 1 */}
-                      {currentStep === 1 && (
-                        <motion.div
-                          key="step1"
-                          initial={{ opacity: 0, x: 30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -30 }}
-                          transition={{ duration: 0.3 }}
-                          className="space-y-6"
-                        >
-                          <div className="mb-8">
-                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">{t('form.title')}</h3>
-                            <p className="text-[#9CA3AF]">{t('subtitle')}</p>
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-[#D1D5DB] mb-2">
-                              {t('form.name.label')} *
-                            </label>
-                            <input 
-                              type="text" 
-                              value={formData.name}
-                              onChange={(e) => setFormData({...formData, name: e.target.value})}
-                              className="w-full bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3.5 text-[#F2F2F7] placeholder-[#6B7280] focus:border-[#E6B93D] focus:outline-none transition-colors"
-                              placeholder={t('form.name.placeholder')}
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-[#D1D5DB] mb-2">
-                              {t('form.email.label')} *
-                            </label>
-                            <input 
-                              type="email" 
-                              value={formData.email}
-                              onChange={(e) => setFormData({...formData, email: e.target.value})}
-                              className="w-full bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3.5 text-[#F2F2F7] placeholder-[#6B7280] focus:border-[#E6B93D] focus:outline-none transition-colors"
-                              placeholder={t('form.email.placeholder')}
-                            />
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {/* Step 2 */}
-                      {currentStep === 2 && (
-                        <motion.div
-                          key="step2"
-                          initial={{ opacity: 0, x: 30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -30 }}
-                          transition={{ duration: 0.3 }}
-                          className="space-y-6"
-                        >
-                          <div className="mb-8">
-                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">{t('form.projectType.label')}</h3>
-                            <p className="text-[#9CA3AF]">{t('subtitle')}</p>
-                          </div>
-
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {projectTypes.map((type) => {
-                              const Icon = projectIcons[type as keyof typeof projectIcons];
-                              return (
-                                <label
-                                  key={type}
-                                  className={`relative flex items-center p-4 rounded-xl cursor-pointer transition-all duration-300 ${
-                                    formData.projectType === type
-                                      ? 'bg-gradient-to-br from-[#E6B93D]/20 to-[#D4AF37]/10 border-2 border-[#E6B93D] shadow-lg shadow-[#E6B93D]/10'
-                                      : 'bg-[#0A0A0F] border-2 border-[#2A2A35] hover:border-[#E6B93D]/50'
-                                  }`}
-                                  onClick={() => setFormData({...formData, projectType: type})}
-                                >
-                                  <div className="flex items-center space-x-3 flex-1">
-                                    <div className={`p-2 rounded-lg ${
-                                      formData.projectType === type 
-                                        ? 'bg-[#E6B93D]/20' 
-                                        : 'bg-[#1C1C28]'
-                                    }`}>
-                                      <Icon className={`w-5 h-5 ${
-                                        formData.projectType === type ? 'text-[#E6B93D]' : 'text-[#9CA3AF]'
-                                      }`} />
-                                    </div>
-                                    <span className={`text-sm font-medium ${
-                                      formData.projectType === type ? 'text-[#F2F2F7]' : 'text-[#D1D5DB]'
-                                    }`}>
-                                      {type}
-                                    </span>
-                                  </div>
-                                  {formData.projectType === type && (
-                                    <CheckCircle2 className="w-5 h-5 text-[#E6B93D] flex-shrink-0" />
-                                  )}
-                                </label>
-                              );
-                            })}
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {/* Step 3 */}
-                      {currentStep === 3 && (
-                        <motion.div
-                          key="step3"
-                          initial={{ opacity: 0, x: 30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -30 }}
-                          transition={{ duration: 0.3 }}
-                          className="space-y-6"
-                        >
-                          <div className="mb-8">
-                            <h3 className="text-2xl font-bold text-[#F2F2F7] mb-2">{t('form.message.label')}</h3>
-                            <p className="text-[#9CA3AF]">{t('subtitle')}</p>
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-[#D1D5DB] mb-2">
-                              {t('form.message.label')} *
-                            </label>
-                            <textarea 
-                              rows={7}
-                              value={formData.message}
-                              onChange={(e) => setFormData({...formData, message: e.target.value})}
-                              className="w-full bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3.5 text-[#F2F2F7] placeholder-[#6B7280] focus:border-[#E6B93D] focus:outline-none transition-colors resize-none"
-                              placeholder={t('form.message.placeholder')}
-                            />
-                          </div>
-
-                          <div className="bg-gradient-to-br from-[#E6B93D]/10 to-[#D4AF37]/5 border border-[#E6B93D]/30 rounded-xl p-5">
-                            <div className="flex items-start space-x-3">
-                              <Sparkles className="w-5 h-5 text-[#E6B93D] flex-shrink-0 mt-0.5" />
-                              <div>
-                                <p className="text-sm font-semibold text-[#E6B93D] mb-1">{t('form.submit')}</p>
-                                <p className="text-sm text-[#9CA3AF]">{t('form.guarantee')}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {/* Navigation */}
-                    <div className="flex justify-between items-center mt-10 pt-6 border-t border-[#2A2A35]">
-                      <button
-                        type="button"
-                        onClick={handleBack}
-                        disabled={currentStep === 1}
-                        className="group flex items-center space-x-2 px-5 py-2.5 text-[#9CA3AF] hover:text-[#F2F2F7] disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium"
-                      >
-                        <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        <span>Atrás</span>
-                      </button>
-                      
-                      {currentStep < 3 ? (
-                        <button
-                          type="button"
-                          onClick={handleNext}
-                          className="group flex items-center space-x-2 bg-gradient-to-r from-[#E6B93D] to-[#D4AF37] hover:from-[#D4AF37] hover:to-[#E6B93D] text-[#0A0A0F] px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#E6B93D]/30"
-                        >
-                          <span>Siguiente</span>
-                          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={handleSubmit}
-                          className="group flex items-center space-x-2 bg-gradient-to-r from-[#E6B93D] to-[#D4AF37] hover:from-[#D4AF37] hover:to-[#E6B93D] text-[#0A0A0F] px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#E6B93D]/30"
-                        >
-                          <Send className="w-4 h-4" />
-                          <span>Enviar mensaje</span>
-                        </button>
-                      )}
+            <h3 className="text-lg font-bold theme-text mb-5">Conecta conmigo</h3>
+            <div className="space-y-2">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a 
+                    key={social.name}
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-3 theme-surface hover:theme-elevated rounded-lg transition-all duration-300 theme-border hover:border-[var(--accent-primary)]/50"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon className={`w-5 h-5 ${social.color}`} />
+                      <span className="text-sm font-medium theme-text-secondary group-hover:theme-text">{social.name}</span>
                     </div>
-                  </div>
-                </>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-16"
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.2 }}
-                    className="w-24 h-24 bg-gradient-to-br from-[#E6B93D] to-[#D4AF37] rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-[#E6B93D]/30"
-                  >
-                    <CheckCircle2 className="w-12 h-12 text-[#0A0A0F]" strokeWidth={2.5} />
-                  </motion.div>
-                  <h3 className="text-3xl font-bold text-[#F2F2F7] mb-3">¡Mensaje enviado con éxito!</h3>
-                  <p className="text-[#9CA3AF] mb-8 max-w-md mx-auto">
-                    Gracias por contactarme, <span className="text-[#E6B93D] font-semibold">{formData.name}</span>. Revisaré tu mensaje y te responderé pronto.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setCurrentStep(1);
-                      setFormData({ name: '', email: '', projectType: 'Backend Development', message: '' });
-                    }}
-                    className="text-[#E6B93D] hover:text-[#D4AF37] transition-colors font-medium inline-flex items-center space-x-2 group"
-                  >
-                    <span>Enviar otro mensaje</span>
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </motion.div>
-              )}
+                    <ArrowUpRight className="w-4 h-4 theme-text-muted group-hover:theme-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </a>
+                );
+              })}
             </div>
+          </motion.div>
+
+          {/* CV Download */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ scale: 1.02 }}
+            className="bg-gradient-to-br from-[var(--accent-primary)]/15 via-[var(--gold-alt)]/10 to-[var(--accent-primary)]/15 backdrop-blur-md rounded-xl border border-[var(--accent-primary)]/40 p-6 group hover:border-[var(--accent-primary)]/60 transition-all duration-300 theme-shadow-lg hover:shadow-[var(--accent-primary)]/20"
+          >
+            <div className="flex items-start gap-3 mb-4">
+              <div className="p-3 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--accent-primary)', opacity: 0.2 }}>
+                <FileText className="w-6 h-6 theme-accent" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-bold theme-text text-base">Curriculum Vitae</h4>
+                <p className="text-sm theme-text-muted">CV detallado con casos técnicos</p>
+              </div>
+            </div>
+            <p className="text-sm theme-text-muted mb-4 leading-relaxed">
+              Descarga mi CV completo con proyectos implementados, arquitecturas y métricas de impacto.
+            </p>
+
+            <div className="flex gap-2 flex-wrap mb-4">
+              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">Proyectos</span>
+              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">Arquitecturas</span>
+              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">Métricas</span>
+            </div>
+
+            <button className="w-full theme-btn-primary px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
+              Descargar CV
+            </button>
           </motion.div>
         </div>
+
+        {/* Form Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="theme-glass rounded-xl p-6 sm:p-8 shadow-xl"
+        >
+          {!submitted ? (
+            <>
+              <Stepper currentStep={currentStep} totalSteps={3} />
+              
+              <div className="mt-8">
+                <AnimatePresence mode="wait">
+                  {/* Step 1 */}
+                  {currentStep === 1 && (
+                    <motion.div
+                      key="step1"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-5"
+                    >
+                      <div>
+                        <h3 className="text-xl font-bold theme-text mb-1">Cuéntame de ti</h3>
+                        <p className="text-sm theme-text-muted mb-5">Necesito saber cómo contactarte y quién eres</p>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium theme-text-secondary mb-2">
+                          Nombre completo *
+                        </label>
+                        <input 
+                          type="text" 
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20"
+                          placeholder="Tu nombre"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium theme-text-secondary mb-2">
+                          Email de contacto *
+                        </label>
+                        <input 
+                          type="email" 
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20"
+                          placeholder="tu@email.com"
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Step 2 */}
+                  {currentStep === 2 && (
+                    <motion.div
+                      key="step2"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-5"
+                    >
+                      <div>
+                        <h3 className="text-xl font-bold theme-text mb-1">¿Qué necesitas?</h3>
+                        <p className="text-sm theme-text-muted mb-5">Selecciona el tipo de proyecto que tienes en mente</p>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {projectTypes.map((type) => {
+                          const Icon = projectIcons[type as keyof typeof projectIcons];
+                          return (
+                            <button
+                              key={type}
+                              onClick={() => setFormData({...formData, projectType: type})}
+                              className={`relative flex items-center gap-3 p-4 rounded-lg transition-all duration-300 border-2 text-left ${
+                                formData.projectType === type
+                                  ? 'border-[var(--accent-primary)] theme-shadow-lg' : 'theme-surface theme-border hover:border-[var(--accent-primary)]/40'
+                              }`}
+                              style={{ backgroundColor: formData.projectType === type ? 'var(--accent-primary)' : undefined, opacity: formData.projectType === type ? 0.2 : 1 }}
+                            >
+                              <div className={`p-2 rounded-lg flex-shrink-0 ${
+                                formData.projectType === type 
+                                  ? 'bg-[var(--accent-primary)]/30' 
+                                  : 'theme-elevated'
+                              }`}>
+                                <Icon className={`w-5 h-5 ${
+                                  formData.projectType === type ? 'theme-accent' : 'theme-text-muted'
+                                }`} />
+                              </div>
+                              <div className="flex-1">
+                                <span className={`text-sm font-medium ${
+                                  formData.projectType === type ? 'theme-text' : 'theme-text-secondary'
+                                }`}>
+                                  {type}
+                                </span>
+                              </div>
+                              {formData.projectType === type && (
+                                <CheckCircle2 className="w-5 h-5 theme-accent flex-shrink-0" />
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Step 3 */}
+                  {currentStep === 3 && (
+                    <motion.div
+                      key="step3"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-5"
+                    >
+                      <div>
+                        <h3 className="text-xl font-bold theme-text mb-1">Cuéntame más</h3>
+                        <p className="text-sm theme-text-muted mb-5">Describe tu proyecto, objetivos y lo que esperas lograr</p>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium theme-text-secondary mb-2">
+                          Tu mensaje *
+                        </label>
+                        <textarea 
+                          rows={6}
+                          value={formData.message}
+                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20 resize-none"
+                          placeholder="Cuéntame sobre tu proyecto, presupuesto, timeline y cualquier detalle importante..."
+                        />
+                      </div>
+
+                      <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--accent-primary)', opacity: 0.15, border: '1px solid var(--accent-primary)' }}>
+                        <div className="flex gap-3">
+                          <Sparkles className="w-5 h-5 theme-accent flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="text-sm font-semibold theme-accent mb-0.5">Garantía de respuesta</p>
+                            <p className="text-xs theme-text-muted">Te responderé en máximo 24 horas con un plan personalizado para tu proyecto.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Navigation */}
+                <div className="flex justify-between items-center mt-8 pt-6 border-t theme-border">
+                  <button
+                    onClick={handleBack}
+                    disabled={currentStep === 1}
+                    className="flex items-center gap-2 px-4 py-2 theme-text-muted hover:theme-text disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium text-sm"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    Atrás
+                  </button>
+                  
+                  {currentStep < 3 ? (
+                    <button
+                      onClick={handleNext}
+                      className="flex items-center gap-2 theme-btn-primary px-5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      Siguiente
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleSubmit}
+                      className="flex items-center gap-2 theme-btn-primary px-5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <Send className="w-4 h-4" />
+                      Enviar
+                    </button>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-12 px-4"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", delay: 0.2 }}
+                className="w-20 h-20 bg-gradient-to-br from-[var(--accent-primary)] to-[var(--gold-alt)] rounded-full flex items-center justify-center mx-auto mb-5 shadow-2xl shadow-[var(--accent-primary)]/30"
+              >
+                <CheckCircle2 className="w-10 h-10 theme-bg" strokeWidth={2.5} />
+              </motion.div>
+              <h3 className="text-2xl font-bold theme-text mb-2">¡Mensaje enviado con éxito!</h3>
+              <p className="text-sm theme-text-muted mb-6 max-w-sm mx-auto">
+                Gracias por contactarme, <span className="theme-accent font-semibold">{formData.name}</span>. Revisaré tu mensaje y te responderé en breve.
+              </p>
+              <button
+                onClick={() => {
+                  setSubmitted(false);
+                  setCurrentStep(1);
+                  setFormData({ name: '', email: '', projectType: 'Backend Development', message: '' });
+                }}
+                className="theme-accent hover:text-[var(--gold-alt)] transition-colors text-sm font-medium inline-flex items-center gap-2 group"
+              >
+                <span>Enviar otro mensaje</span>
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+          )}
+        </motion.div>
       </div>
     </section>
   );

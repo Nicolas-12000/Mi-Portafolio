@@ -39,7 +39,7 @@
       "problem": "Sistema legacy sin API unificada",
       "solution": "Arquitectura hexagonal + Spring Security",
       "impact": "70% reducción en tiempo de consultas",
-      "cta": "Ver detalles"
+      "cta": "Ver desplegado"
     },
     "case2": {
       "title": "Sistema avícola integral",
@@ -47,7 +47,7 @@
       "problem": "Gestión manual de inventarios",
       "solution": "App móvil + dashboard web automatizado",
       "impact": "85% reducción en tiempo de registro",
-      "cta": "Ver progreso"
+      "cta": "Ver código"
     },
     "case3": {
       "title": "Pipeline DevOps Azure",
@@ -60,7 +60,24 @@
     "footer": {
       "question": "¿Te interesa algún caso específico?",
       "cta": "Solicitar detalles técnicos"
-    }
+    },
+    "github": {
+      "title": "Explora Más Proyectos",
+      "description": "Descubre todos mis repositorios, contribuciones y código abierto en GitHub. Más de 50 commits este año.",
+      "stats": {
+        "repos": "Repos",
+        "contributions": "Commits",
+        "languages": "Lenguajes"
+      },
+      "activity": {
+        "title": "Actividad Reciente",
+        "item1": "Sistema avícola con Django + Flutter",
+        "item2": "API REST con Spring Boot",
+        "item3": "Pipeline CI/CD con Azure DevOps"
+      },
+      "cta": "Visitar Mi GitHub"
+    },
+    "viewCode": "Ver código"
   },
   "tech": {
     "title": "DASHBOARD TÉCNICO",
@@ -118,17 +135,17 @@
       "automation": "Automatización"
     },
     "roadmap": {
-      "title": "METAS 2025",
+      "title": "HOJA DE RUTA {year}",
       "q1": {
-        "title": "Q1: Backend mastery",
-        "description": "Consolidación Spring Boot + Azure + patrones avanzados"
+        "title": "Q1: Mobile-first y diseño adaptativo",
+        "description": "Flutter nativo + Next.js responsive con enfoque mobile-first y UX optimizada"
       },
       "q2": {
-        "title": "Q2: Frontend + Cloud",
-        "description": "React/Next.js avanzado + arquitecturas cloud-native"
+        "title": "Q2: Backend y arquitecturas cloud",
+        "description": "Spring Boot avanzado + arquitecturas cloud-native en Azure"
       },
       "q3": {
-        "title": "Q3-Q4: AI integration",
+        "title": "Q3-Q4: Integración de IA",
         "description": "PyTorch aplicado + LLMs en soluciones empresariales"
       }
     }
@@ -153,8 +170,8 @@
     },
     "personal": {
       "title": "El Ser Humano",
-      "intro": "¡Hola! Soy Nicolás Alejandro García Pasmiño. A lo largo de mi vida me han llamado de muchas formas, así que siéntete libre de elegir la que desees. Mi hambre de conocimiento no empezó en la universidad, sino mucho antes, con un curso de robótica a los 8 años, alimentado por una curiosidad insaciable por la tecnología, física y los videojuegos.",
-      "hobbies": "Cuando no estoy inmerso en el mundo del código, probablemente me encuentres compartiendo un buen café (¡soy un fanático!), entrenando con amigos o simplemente buscando una buena conversación. Creo que las mejores ideas y conexiones nacen de esos momentos auténticos."
+      "intro": "¡Hola! Soy Nicolás Alejandro García Pasmiño. A lo largo de mi vida me han llamado de muchas formas, así que siéntete libre de elegir la que desees. Mi hambre de conocimiento no empezó en la universidad, sino mucho antes, con un curso de robótica a los 8 años, alimentado por una curiosidad insaciable por la tecnología, la física y los videojuegos.",
+      "hobbies": "Cuando no estoy inmerso en el mundo del código, probablemente me encuentres compartiendo un buen café, entrenando con amigos o simplemente buscando una buena conversación. Creo que las mejores ideas y conexiones nacen de esos momentos auténticos."
     },
     "interests": {
       "music": {
@@ -175,39 +192,9 @@
       "quote": "No trabajo más horas, trabajo más inteligente. Cada línea de código es una hora más para vivir.",
       "values": "Automatización → Eficiencia → Libertad → Vida plena"
     },
-    "softSkills": {
-      "title": "HABILIDADES BLANDAS CLAVE",
-      "empathy": {
-        "title": "Empatía y Colaboración",
-        "description": "Conexiones auténticas con colegas, mentoring técnico y trabajo en equipo efectivo."
-      },
-      "adaptability": {
-        "title": "Adaptabilidad",
-        "description": "Aprendizaje continuo, mente abierta y capacidad para pivotear según necesidades del proyecto."
-      },
-      "balance": {
-        "title": "Equilibrio y Resiliencia",
-        "description": "Separación trabajo-vida personal, resiliencia a través del deporte y meditación."
-      }
-    },
-    "human": {
-      "title": "El ser humano",
-      "intro": "¡Hola! Soy Nicolás Alejandro García Pasmiño. A lo largo de mi vida me han llamado de muchas formas, así que siéntete libre de elegir la que desees. Mi hambre de conocimiento no empezó en la universidad, sino mucho antes, con un curso de robótica a los 8 años, alimentado por una curiosidad insaciable por la tecnología, física y los videojuegos.",
-      "personal": "Cuando no estoy inmerso en el mundo del código, probablemente me encuentres compartiendo un buen café (¡soy un fanático!), entrenando con amigos o simplemente buscando una buena conversación. Creo que las mejores ideas y conexiones nacen de esos momentos auténticos.",
-      "hobbies": {
-        "music": {
-          "title": "Melómano",
-          "description": "Disfruto desde salsa y rock en español hasta pop, rap y variedad de géneros musicales en varios idiomas. A veces me animo a tocar la batería."
-        },
-        "gym": {
-          "title": "Gym y deportes",
-          "description": "2 años de disciplina en el gym. El Muay Thai es mi escape favorito en el tiempo libre."
-        },
-        "explorer": {
-          "title": "Explorador",
-          "description": "Me gustan los viajes, conocer culturas, meditar y conectar con la naturaleza"
-        }
-      }
+    "testimonials": {
+      "title": "Testimonios",
+      "description": "Testimonios de colegas y clientes con quienes he trabajado"
     }
   },
   "contact": {

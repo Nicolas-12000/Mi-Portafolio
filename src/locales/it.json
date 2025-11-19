@@ -39,15 +39,15 @@
       "problem": "Sistema legacy senza API unificata",
       "solution": "Architettura esagonale + Spring Security",
       "impact": "70% riduzione tempo di query",
-      "cta": "Vedi dettagli"
+      "cta": "Vedi deploy"
     },
     "case2": {
-      "title": "Sistema avicolo integrale",
+      "title": "Sistema di gestione del pollame",
       "description": "Automazione completa di inventari e moduli con backend Django, mobile Flutter e ottimizzazioni MySQL.",
       "problem": "Gestione manuale degli inventari",
       "solution": "App mobile + dashboard web automatizzato",
       "impact": "85% riduzione tempo di registrazione",
-      "cta": "Vedi progressi"
+      "cta": "Vedi codice"
     },
     "case3": {
       "title": "Pipeline DevOps Azure",
@@ -60,7 +60,24 @@
     "footer": {
       "question": "Interessato a un caso specifico?",
       "cta": "Richiedi dettagli tecnici"
-    }
+    },
+      "github": {
+      "title": "Esplora Altri Progetti",
+      "description": "Scopri tutti i miei repository, contributi e codice open source su GitHub. Oltre 50 commit quest'anno.",
+      "stats": {
+        "repos": "Repository",
+        "contributions": "Commits",
+        "languages": "Linguaggi"
+      },
+      "activity": {
+        "title": "Attività Recente",
+        "item1": "Sistema avicolo con Django + Flutter",
+        "item2": "API REST con Spring Boot",
+        "item3": "Pipeline CI/CD con Azure DevOps"
+      },
+      "cta": "Visita Il Mio GitHub"
+    },
+    "viewCode": "Vedi codice"
   },
   "tech": {
     "title": "DASHBOARD TECNICO",
@@ -118,14 +135,14 @@
       "automation": "Automazione"
     },
     "roadmap": {
-      "title": "OBIETTIVI 2025",
+      "title": "ROADMAP {year}",
       "q1": {
-        "title": "Q1: Backend mastery",
-        "description": "Consolidamento Spring Boot + Azure + pattern avanzati"
+        "title": "Q1: Mobile-first e design adattivo",
+        "description": "Flutter nativo + Next.js responsive con approccio mobile-first e UX ottimizzata"
       },
       "q2": {
-        "title": "Q2: Frontend + Cloud",
-        "description": "React/Next.js avanzato + architetture cloud-native"
+        "title": "Q2: Backend e architetture cloud",
+        "description": "Spring Boot avanzato + architetture cloud-native su Azure"
       },
       "q3": {
         "title": "Q3-Q4: Integrazione AI",
@@ -154,11 +171,11 @@
     "personal": {
       "title": "L'essere umano",
       "intro": "Ciao! Sono Nicolás Alejandro García Pasmiño. Nel corso della mia vita mi hanno chiamato in molti modi, quindi sentiti libero di scegliere quello che preferisci. La mia fame di conoscenza non è iniziata all'università, ma molto prima, con un corso di robotica a 8 anni, alimentata da una curiosità insaziabile per tecnologia, fisica e videogiochi.",
-      "hobbies": "Quando non sono immerso nel mondo del codice, probabilmente mi troverai a condividere un buon caffè (sono un fanatico!), ad allenarmi con gli amici o semplicemente a cercare una buona conversazione. Credo che le migliori idee e connessioni nascano da quei momenti autentici."
+      "hobbies": "Quando non sono immerso nel mondo del codice, probabilmente mi troverai a condividere un buon caffè (sono un appassionato del caffè!), ad allenarmi con gli amici o semplicemente a cercare una buona conversazione. Credo che le migliori idee e connessioni nascano da quei momenti autentici."
     },
     "interests": {
       "music": {
-        "title": "Melomane",
+        "title": "Appassionato di musica",
         "description": "Mi piace di tutto, dalla salsa e rock spagnolo al pop, rap e varietà di generi musicali in diverse lingue. A volte mi cimento anche con la batteria."
       },
       "sports": {
@@ -175,20 +192,9 @@
       "quote": "Non lavoro più ore, lavoro più intelligentemente. Ogni riga di codice è un'ora in più da vivere.",
       "values": "Automazione → Efficienza → Libertà → Vita piena"
     },
-    "softSkills": {
-      "title": "SOFT SKILLS CHIAVE",
-      "empathy": {
-        "title": "Empatia e collaborazione",
-        "description": "Connessioni autentiche con colleghi, mentoring tecnico e lavoro di squadra efficace"
-      },
-      "adaptability": {
-        "title": "Adattabilità",
-        "description": "Apprendimento continuo, mente aperta e capacità di adattarsi alle esigenze del progetto"
-      },
-      "balance": {
-        "title": "Equilibrio e resilienza",
-        "description": "Separazione lavoro-vita personale, resilienza attraverso sport e meditazione"
-      }
+    "testimonials": {
+      "title": "Testimonianze",
+      "description": "Testimonianze di colleghi e clienti con cui ho lavorato"
     }
   },
   "contact": {

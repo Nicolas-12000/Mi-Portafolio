@@ -7,12 +7,18 @@ import { LOCALES, LOCALE_NAMES, type Locale } from '@/lib/constants';
 
 interface LanguageSelectorProps {
   currentLocale: Locale;
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
 }
 
-export function LanguageSelector({ currentLocale }: LanguageSelectorProps) {
+export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpenChange }: LanguageSelectorProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  
+  // Usar estado externo si está disponible, sino usar interno
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+  const setIsOpen = onOpenChange || setInternalIsOpen;
 
   const handleLocaleChange = (newLocale: Locale) => {
     const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '');

@@ -33,21 +33,21 @@
       "completed": "COMPLETED",
       "inProgress": "IN PROGRESS"
     },
-    "case1": {
+      "case1": {
       "title": "Enterprise REST API",
       "description": "Development of secure API with Spring Boot, implementing JWT, Swagger documentation and MySQL query optimization.",
       "problem": "Legacy system without unified API",
       "solution": "Hexagonal architecture + Spring Security",
       "impact": "70% reduction in query time",
-      "cta": "View details"
+      "cta": "View live demo"
     },
     "case2": {
-      "title": "Comprehensive poultry system",
+      "title": "Poultry management system",
       "description": "Complete automation of inventories and forms with Django backend, Flutter mobile and MySQL optimizations.",
       "problem": "Manual inventory management",
       "solution": "Mobile app + automated web dashboard",
       "impact": "85% reduction in registration time",
-      "cta": "View progress"
+      "cta": "View code"
     },
     "case3": {
       "title": "Azure DevOps Pipeline",
@@ -60,7 +60,24 @@
     "footer": {
       "question": "Interested in a specific case?",
       "cta": "Request technical details"
-    }
+    },
+      "github": {
+      "title": "Explore More Projects",
+      "description": "Discover all my repositories, contributions and open source on GitHub. Over 50 commits this year.",
+      "stats": {
+        "repos": "Repositories",
+        "contributions": "Commits",
+        "languages": "Languages"
+      },
+      "activity": {
+        "title": "Recent Activity",
+        "item1": "Poultry management system with Django + Flutter",
+        "item2": "REST API with Spring Boot",
+        "item3": "CI/CD Pipeline with Azure DevOps"
+      },
+      "cta": "Visit My GitHub"
+    },
+    "viewCode": "View code"
   },
   "tech": {
     "title": "TECHNICAL DASHBOARD",
@@ -118,14 +135,14 @@
       "automation": "Automation"
     },
     "roadmap": {
-      "title": "2025 GOALS",
+      "title": "ROADMAP {year}",
       "q1": {
-        "title": "Q1: Backend mastery",
-        "description": "Spring Boot + Azure + advanced patterns consolidation"
+        "title": "Q1: Mobile-first and adaptive design",
+        "description": "Native Flutter + responsive Next.js with mobile-first approach and optimized UX"
       },
       "q2": {
-        "title": "Q2: Frontend + Cloud",
-        "description": "Advanced React/Next.js + cloud-native architectures"
+        "title": "Q2: Backend and cloud architectures",
+        "description": "Advanced Spring Boot + cloud-native architectures on Azure"
       },
       "q3": {
         "title": "Q3-Q4: AI integration",
@@ -154,7 +171,7 @@
     "personal": {
       "title": "The Human Being",
       "intro": "Hi! I'm Nicolás Alejandro García Pasmiño. Throughout my life I've been called many names, so feel free to choose whichever you prefer. My hunger for knowledge didn't start at university, but much earlier, with a robotics course at age 8, fueled by an insatiable curiosity for technology, physics, and video games.",
-      "hobbies": "When I'm not immersed in the world of code, you'll probably find me sharing a good coffee (I'm a fanatic!), training with friends, or simply seeking a good conversation. I believe the best ideas and connections are born from those authentic moments."
+      "hobbies": "When I'm not immersed in the world of code, you'll probably find me sharing a good coffee (I'm a coffee enthusiast!), training with friends, or simply seeking a good conversation. I believe the best ideas and connections are born from those authentic moments."
     },
     "interests": {
       "music": {
@@ -173,42 +190,13 @@
     "philosophy": {
       "title": "My Philosophy",
       "quote": "I don't work more hours, I work smarter. Every line of code is one more hour to live.",
-      "values": "Automation → Efficiency → Freedom → Full life"
+      "values": "Automation → Efficiency → Freedom → A fulfilling life"
     },
-    "softSkills": {
-      "title": "KEY SOFT SKILLS",
-      "empathy": {
-        "title": "Empathy & Collaboration",
-        "description": "Authentic connections with colleagues, technical mentoring, and effective teamwork."
-      },
-      "adaptability": {
-        "title": "Adaptability",
-        "description": "Continuous learning, open mind, and ability to pivot according to project needs."
-      },
-      "balance": {
-        "title": "Balance & Resilience",
-        "description": "Work-life separation, resilience through sports and meditation."
-      }
-    },
-    "human": {
-      "title": "The human being",
-      "intro": "Hi! I'm Nicolás Alejandro García Pasmiño. Throughout my life I've been called many names, so feel free to choose whichever you prefer. My hunger for knowledge didn't start at university, but much earlier, with a robotics course at age 8, fueled by an insatiable curiosity for technology, physics, and video games.",
-      "personal": "When I'm not immersed in the world of code, you'll probably find me sharing a good coffee (I'm a fanatic!), training with friends, or simply seeking a good conversation. I believe the best ideas and connections are born from those authentic moments.",
-      "hobbies": {
-        "music": {
-          "title": "Music lover",
-          "description": "I enjoy everything from salsa and Spanish rock to pop, rap, and a variety of musical genres in several languages. Sometimes I dare to play the drums."
-        },
-        "gym": {
-          "title": "Gym and sports",
-          "description": "2 years of gym discipline. Muay Thai is my favorite escape in my free time."
-        },
-        "explorer": {
-          "title": "Explorer",
-          "description": "I like traveling, discovering cultures, meditating, and connecting with nature"
-        }
-      }
+    "testimonials": {
+      "title": "Testimonials",
+      "description": "Testimonials from colleagues and clients I've worked with"
     }
+    
   },
   "contact": {
     "title": "CONTACT ME",
