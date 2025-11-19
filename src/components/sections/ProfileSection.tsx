@@ -3,6 +3,9 @@
 import React, { useMemo, useState } from "react";
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
+import enLocales from '../../locales/en.json';
+import esLocales from '../../locales/es.json';
+import itLocales from '../../locales/it.json';
 import {
   User,
   Music,
@@ -28,6 +31,7 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
   const rafRef = React.useRef<number | null>(null);
   const lastTimeRef = React.useRef<number | null>(null);
   const posRef = React.useRef<number>(0);
+  const velocityRefMem = React.useRef<number>(0);
 
   const isPausedRef = React.useRef(false);
   const isDraggingRef = React.useRef(false);
@@ -66,10 +70,9 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
         if (halfWidth > 0) {
           const targetPxPerSec = halfWidth / (speed || 15); // speed = seconds to traverse halfWidth
           // exponential smoothing toward target velocity
-          const velocityRef = (step as any)._velocity ?? 0;
           const easingFactor = 1 - Math.exp(-dt / ANIMATION_CONFIG.SMOOTH_TAU);
-          const newVelocity = velocityRef + (targetPxPerSec - velocityRef) * easingFactor;
-          (step as any)._velocity = newVelocity;
+          const newVelocity = velocityRefMem.current + (targetPxPerSec - velocityRefMem.current) * easingFactor;
+          velocityRefMem.current = newVelocity;
 
           let next = posRef.current + newVelocity * dt;
           next = ((next % halfWidth) + halfWidth) % halfWidth;
@@ -87,7 +90,7 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
       lastTimeRef.current = null;
-      (step as any)._velocity = 0;
+      velocityRefMem.current = 0;
     };
   }, [measure, speed]);
 
@@ -244,14 +247,7 @@ export function ProfileSection() {
   const t = useTranslations('profile');
   const locale = useLocale();
 
-  // load raw locale JSON so we can read arrays/objects (next-intl's `t` only supports strings)
-  // import locale files statically to keep this component client-friendly
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const enLocales = require('../../locales/en.json');
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const esLocales = require('../../locales/es.json');
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const itLocales = require('../../locales/it.json');
+  // raw locale JSON imported statically so arrays/objects can be read directly
   
   const interests = useMemo(
     () => [
@@ -278,6 +274,7 @@ export function ProfileSection() {
   );
 
   const testimonials: Testimonial[] = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const msgs: any = locale === 'es' ? esLocales : locale === 'it' ? itLocales : enLocales;
     const items = msgs?.profile?.testimonials?.items;
     return Array.isArray(items) ? items : [];
