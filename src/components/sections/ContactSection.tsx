@@ -14,15 +14,16 @@ interface StepperProps {
 function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: StepperProps) {
   const t = useTranslations('contact');
   return (
-    <div className="flex items-center justify-between mb-8 px-2">
-      {[...Array(totalSteps)].map((_, index) => {
+    <nav aria-label="Form steps" className="mb-8 px-2">
+      <ol className="flex items-center justify-between">
+        {[...Array(totalSteps)].map((_, index) => {
         const step = index + 1;
         const isComplete = currentStep > step;
         const isActive = currentStep === step;
         
         return (
           <React.Fragment key={step}>
-            <div className="flex flex-col items-center flex-1">
+            <li className="flex flex-col items-center flex-1 list-none">
               <motion.div
                 initial={false}
                 animate={{
@@ -60,9 +61,9 @@ function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: Step
               <p className={`text-xs mt-2 font-medium text-center ${isActive ? 'theme-accent' : 'theme-text-muted'}`}>
                 {step === 1 ? t('form.steps.info') : step === 2 ? t('form.steps.project') : t('form.steps.message')}
               </p>
-            </div>
+            </li>
             {step < totalSteps && (
-              <div className="flex-1 h-[2px] mx-2 theme-elevated relative overflow-hidden">
+              <div className="flex-1 h-[2px] mx-2 theme-elevated relative overflow-hidden" aria-hidden="true">
                 <motion.div
                   initial={false}
                   animate={{ width: isComplete ? '100%' : '0%' }}
@@ -74,7 +75,8 @@ function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: Step
           </React.Fragment>
         );
       })}
-    </div>
+      </ol>
+    </nav>
   );
 }
 
@@ -155,7 +157,7 @@ export function ContactSection() {
         {/* Main Grid - 3 sections */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {/* Contact Info Card */}
-          <motion.div 
+          <motion.aside 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -193,10 +195,10 @@ export function ContactSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </motion.aside>
 
           {/* Social Links */}
-          <motion.div 
+          <motion.aside 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -225,10 +227,10 @@ export function ContactSection() {
                 );
               })}
             </div>
-          </motion.div>
+          </motion.aside>
 
           {/* CV Download */}
-          <motion.div 
+          <motion.article 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -258,18 +260,16 @@ export function ContactSection() {
             <a
               href="/CV.pdf"
               download
-              target="_blank"
-              rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center theme-btn-primary px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
               aria-label={t('cv.download')}
             >
               {t('cv.download')}
             </a>
-          </motion.div>
+          </motion.article>
         </div>
 
         {/* Form Section */}
-        <motion.div 
+        <motion.article 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -279,7 +279,17 @@ export function ContactSection() {
             <>
               <Stepper currentStep={currentStep} totalSteps={3} />
               
-              <div className="mt-8">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (currentStep < 3) {
+                    handleNext();
+                  } else {
+                    handleSubmit();
+                  }
+                }}
+                className="mt-8"
+              >
                 <AnimatePresence mode="wait">
                   {/* Step 1 */}
                   {currentStep === 1 && (
@@ -297,10 +307,12 @@ export function ContactSection() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium theme-text-secondary mb-2">
+                        <label htmlFor="contact-name" className="block text-sm font-medium theme-text-secondary mb-2">
                           Nombre completo *
                         </label>
                         <input 
+                          id="contact-name"
+                          name="name"
                           type="text" 
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -310,10 +322,12 @@ export function ContactSection() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium theme-text-secondary mb-2">
+                        <label htmlFor="contact-email" className="block text-sm font-medium theme-text-secondary mb-2">
                           Email de contacto *
                         </label>
                         <input 
+                          id="contact-email"
+                          name="email"
                           type="email" 
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -393,10 +407,12 @@ export function ContactSection() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium theme-text-secondary mb-2">
+                        <label htmlFor="contact-message" className="block text-sm font-medium theme-text-secondary mb-2">
                           {t('form.message.label')}
                         </label>
                         <textarea 
+                          id="contact-message"
+                          name="message"
                           rows={6}
                           value={formData.message}
                           onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -421,6 +437,7 @@ export function ContactSection() {
                 {/* Navigation */}
                 <div className="flex justify-between items-center mt-8 pt-6 border-t theme-border">
                   <button
+                    type="button"
                     onClick={handleBack}
                     disabled={currentStep === 1}
                     className="flex items-center gap-2 px-4 py-2 theme-text-muted hover:theme-text disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium text-sm"
@@ -431,6 +448,7 @@ export function ContactSection() {
                   
                   {currentStep < 3 ? (
                     <button
+                      type="button"
                       onClick={handleNext}
                       className="flex items-center gap-2 theme-btn-primary px-5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
                     >
@@ -439,7 +457,7 @@ export function ContactSection() {
                     </button>
                   ) : (
                     <button
-                      onClick={handleSubmit}
+                      type="submit"
                       className="flex items-center gap-2 theme-btn-primary px-5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
                     >
                       <Send className="w-4 h-4" />
@@ -447,7 +465,7 @@ export function ContactSection() {
                     </button>
                   )}
                 </div>
-              </div>
+            </form>
             </>
           ) : (
             <motion.div
@@ -480,7 +498,7 @@ export function ContactSection() {
               </button>
             </motion.div>
           )}
-        </motion.div>
+        </motion.article>
       </div>
     </section>
   );

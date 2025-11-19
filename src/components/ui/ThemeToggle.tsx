@@ -26,9 +26,11 @@ export function ThemeToggle() {
   
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center group overflow-hidden bg-surface-elevated/80 hover:bg-surface-elevated border border-border hover:border-accent-primary/40 transition-all duration-300 hover:scale-105 active:scale-95"
       aria-label={`Cambiar a modo ${theme === 'dark' ? 'claro' : 'oscuro'}`}
+      aria-pressed={theme === 'dark'}
     >
       {/* Background gradient animado */}
       <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/5 to-accent-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

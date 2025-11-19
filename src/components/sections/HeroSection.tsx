@@ -29,6 +29,8 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   return (
     <section 
       id="hero" 
+      role="region"
+      aria-label="Hero"
       className="min-h-screen flex items-center justify-center relative pt-20 sm:pt-24 overflow-hidden"
     >
       {/* Background - LiquidEther para modo claro, Galaxy para modo oscuro */}

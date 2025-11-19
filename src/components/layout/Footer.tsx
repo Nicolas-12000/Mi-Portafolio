@@ -22,7 +22,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative theme-bg border-t theme-border overflow-hidden">
+    <footer className="relative theme-bg border-t theme-border overflow-hidden" role="contentinfo" aria-label="Footer">
       {/* Background effects */}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, var(--accent-primary), transparent)', opacity: 0.3 }}></div>
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.015]"></div>
@@ -34,6 +34,7 @@ export function Footer() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
+          type="button"
           onClick={scrollToTop}
           className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full flex items-center justify-center theme-shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
           style={{ 

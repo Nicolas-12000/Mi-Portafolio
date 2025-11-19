@@ -390,6 +390,13 @@ body {
   border-color: var(--accent-primary);
 }
 
+/* Make theme-border more visible on hover across components
+   (keeps behaviour consistent and restores lost hover borders) */
+.theme-border:hover {
+  border-color: var(--accent-primary);
+  transition: border-color 0.2s ease;
+}
+
 /* Glassmorphism adaptativo */
 .theme-glass {
   background: rgba(15, 15, 26, 0.6);

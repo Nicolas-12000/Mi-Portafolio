@@ -290,7 +290,7 @@ export function ProfileSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header - matching HeroSection style */}
-        <motion.div 
+        <motion.header 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -304,12 +304,12 @@ export function ProfileSection() {
           <p className="text-base sm:text-lg theme-text-muted max-w-3xl mx-auto leading-relaxed">
             {t('subtitle')}
           </p>
-        </motion.div>
+        </motion.header>
 
-        {/* Two Column Layout */}
+          {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-16">
           {/* Left - Engineer */}
-          <motion.div 
+          <motion.article 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -368,10 +368,10 @@ export function ProfileSection() {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </motion.article>
 
           {/* Right - Personal */}
-          <motion.div 
+          <motion.article 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -400,7 +400,7 @@ export function ProfileSection() {
               {interests.map((interest, idx) => {
                 const Icon = interest.icon;
                 return (
-                  <motion.div 
+                  <motion.article 
                     key={idx}
                     whileHover={{ scale: 1.02, x: 4 }}
                     className="group flex items-start gap-4 p-4 rounded-xl theme-surface hover:theme-glass theme-border hover:border-[var(--accent-secondary)]/30 transition-all duration-300 backdrop-blur-sm"
@@ -412,13 +412,13 @@ export function ProfileSection() {
                       <div className="font-bold theme-text text-sm md:text-base mb-1 group-hover:theme-accent-red transition-colors">{interest.title}</div>
                       <div className="text-xs md:text-sm theme-text-muted leading-relaxed">{interest.desc}</div>
                     </div>
-                  </motion.div>
+                  </motion.article>
                 );
               })}
             </div>
 
             {/* Philosophy */}
-            <motion.div 
+            <motion.article 
               whileHover={{ scale: 1.02 }}
               className="bg-gradient-to-br from-[var(--red-darker)]/20 via-[var(--red-darker)]/15 to-[var(--red-darker)]/20 backdrop-blur-md rounded-xl border border-[var(--red-dark)]/40 hover:border-[var(--accent-secondary)]/60 p-5 md:p-6 mt-4 transition-all duration-300 theme-shadow-lg"
             >
@@ -440,12 +440,12 @@ export function ProfileSection() {
                 <span className="theme-accent-red">→</span>
                 <span className="px-3 py-1.5 bg-gradient-to-r from-[var(--accent-secondary)] to-[var(--red-dark)] rounded-lg font-bold text-white shadow-lg shadow-[var(--accent-secondary)]/40">Vida plena</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </motion.article>
+          </motion.article>
         </div>
 
         {/* Testimonials */}
-        <motion.div 
+        <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -462,7 +462,7 @@ export function ProfileSection() {
             </p>
           </div>
           <TestimonialLoop testimonials={testimonials} speed={15} />
-        </motion.div>
+        </motion.section>
       </div>
     </section>
   );

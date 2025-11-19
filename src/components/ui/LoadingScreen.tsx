@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Code2, Cpu, Terminal } from 'lucide-react';
 
 interface LoadingScreenProps {
@@ -27,6 +27,15 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
     return () => clearInterval(timer);
   }, []);
 
+  // Llamar onComplete cuando llegue al 100%
+  useEffect(() => {
+    if (progress >= 100 && onComplete) {
+      const t = setTimeout(() => onComplete(), 250);
+      return () => clearTimeout(t);
+    }
+    return;
+  }, [progress, onComplete]);
+
   useEffect(() => {
     const texts = [
       'INITIALIZING SYSTEM',
@@ -37,10 +46,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
     ];
     
     const textInterval = setInterval(() => {
-      const index = Math.floor(progress / 20);
-      if (texts[index]) {
-        setLoadingText(texts[index]);
-      }
+      const index = Math.min(Math.floor(progress / 20), texts.length - 1);
+      if (texts[index]) setLoadingText(texts[index]);
     }, 400);
 
     return () => clearInterval(textInterval);
@@ -52,6 +59,9 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       className="fixed inset-0 z-[9999] bg-[#0A0A0F] flex items-center justify-center overflow-hidden"
+      role="status"
+      aria-live="polite"
+      aria-label="Pantalla de carga"
     >
       {/* Grid background */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
@@ -60,17 +70,17 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{ x: [-1000, 1000] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
           className="absolute top-1/4 w-full h-px bg-gradient-to-r from-transparent via-red-500/20 to-transparent"
         />
         <motion.div
           animate={{ x: [1000, -1000] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'linear', delay: 1 }}
           className="absolute top-1/2 w-full h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent"
         />
         <motion.div
           animate={{ x: [-1000, 1000] }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: 'linear', delay: 0.5 }}
           className="absolute top-3/4 w-full h-px bg-gradient-to-r from-transparent via-red-500/20 to-transparent"
         />
       </div>
@@ -85,13 +95,13 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="relative"
         >
           {/* Outer ring */}
           <motion.div
             animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
             className="absolute inset-0 -m-8"
           >
             <div className="w-32 h-32 rounded-full border border-red-500/20 border-dashed" />
@@ -100,7 +110,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
           {/* Middle ring */}
           <motion.div
             animate={{ rotate: -360 }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
             className="absolute inset-0 -m-6"
           >
             <div className="w-28 h-28 rounded-full border border-orange-500/20" />
@@ -163,7 +173,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
               {/* Scanning line effect */}
               <motion.div
                 animate={{ x: [-20, 120] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
                 className="absolute inset-0 w-8 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
               />
             </motion.div>

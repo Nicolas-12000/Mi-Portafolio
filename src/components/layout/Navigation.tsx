@@ -29,8 +29,8 @@ export function Navigation({ locale }: NavigationProps) {
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   
-  const navRef = useRef<HTMLDivElement | null>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const navRef = useRef<HTMLElement | null>(null);
+  const cardsRef = useRef<HTMLElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   // Estructura de navegación
@@ -211,36 +211,43 @@ export function Navigation({ locale }: NavigationProps) {
     closeMenu();
   };
 
-  // Ref helper para cards
-  const setCardRef = (index: number) => (el: HTMLDivElement | null) => {
+  // Ref helper para cards (acepta cualquier HTMLElement para compatibilidad con <li> o <div>)
+  const setCardRef = (index: number) => (el: HTMLElement | null) => {
     if (el) cardsRef.current[index] = el;
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-4 md:pt-6 px-2 sm:px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-4 md:pt-6 px-2 sm:px-4">
       <nav
         ref={navRef}
+        id="site-navigation"
+        aria-label="Main navigation"
         className={`card-nav w-full max-w-4xl backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden will-change-[height] h-14 sm:h-16 theme-card theme-border`}
       >
         {/* Barra Superior */}
         <div className="absolute inset-x-0 top-0 h-14 sm:h-16 flex items-center justify-between px-2 sm:px-4 z-10">
           {/* Botón Hamburguesa */}
           <button
+            type="button"
             onClick={toggleMenu}
-            className="group flex flex-col items-center justify-center gap-1 sm:gap-1.5 w-9 h-9 sm:w-10 sm:h-10 cursor-pointer order-2 md:order-none transition-opacity hover:opacity-75"
+            aria-controls="card-nav-content"
+            aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            className="group flex flex-col items-center justify-center gap-1 sm:gap-1.5 w-9 h-9 sm:w-10 sm:h-10 cursor-pointer order-2 md:order-none transition-opacity hover:opacity-75"
           >
             <div
               className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? 'translate-y-1 rotate-45' : ''
               }`}
               style={{ backgroundColor: '#E6B93D', boxShadow: '0 0 8px rgba(230,185,61,0.45)' }}
+              aria-hidden="true"
             />
             <div
               className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? '-translate-y-1 -rotate-45' : ''
               }`}
               style={{ backgroundColor: '#E6B93D', boxShadow: '0 0 8px rgba(230,185,61,0.45)' }}
+              aria-hidden="true"
             />
           </button>
 
@@ -269,6 +276,9 @@ export function Navigation({ locale }: NavigationProps) {
 
         {/* Contenedor de Cards */}
         <div
+          id="card-nav-content"
+          role="region"
+          aria-hidden={!isMenuOpen}
           className={`card-nav-content left-0 right-0 p-2 sm:p-3 flex flex-col md:flex-row items-stretch justify-end gap-2.5 sm:gap-3 ${
             isMenuOpen ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
           }`}
@@ -279,32 +289,36 @@ export function Navigation({ locale }: NavigationProps) {
             zIndex: 0
           }}
         >
-          {navCards.map((card, idx) => (
-            <div
-              key={idx}
-              ref={setCardRef(idx)}
-              className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm border border-[#7A6E5C]/20 shadow-lg"
-              style={{ minHeight: isMobile ? `${CARD_HEIGHT_MOBILE}px` : '80px' }}
-            >
-              <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm text-[#E6B93D]">
-                {card.label}
-              </div>
-              <div className="flex flex-col gap-0.5 sm:gap-1 mt-auto">
-                {card.links.map((link, i) => (
-                  <button
-                    key={i}
-                    onClick={() => scrollToSection(link.id)}
-                    className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1 text-[#E6B93D]"
-                  >
-                    {link.icon && <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />}
-                    {link.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
+          <ul className="flex flex-col md:flex-row gap-3 w-full list-none m-0 p-0">
+            {navCards.map((card, idx) => (
+              <li
+                key={idx}
+                ref={setCardRef(idx)}
+                className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm border border-[#7A6E5C]/20 shadow-lg"
+                style={{ minHeight: isMobile ? `${CARD_HEIGHT_MOBILE}px` : '80px' }}
+                role="listitem"
+              >
+                <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm text-[#E6B93D]">
+                  {card.label}
+                </div>
+                <div className="flex flex-col gap-0.5 sm:gap-1 mt-auto">
+                  {card.links.map((link, i) => (
+                    <a
+                      key={i}
+                      href={`#${link.id}`}
+                      onClick={(e) => { e.preventDefault(); scrollToSection(link.id); }}
+                      className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1 text-[#E6B93D]"
+                    >
+                      {link.icon && <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />}
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </nav>
-    </div>
+    </header>
   );
 }

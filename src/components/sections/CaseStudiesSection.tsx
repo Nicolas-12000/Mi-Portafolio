@@ -156,7 +156,7 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <motion.div 
+        <motion.header 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -170,12 +170,12 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
           <p className="text-base sm:text-lg md:text-xl theme-text-muted max-w-3xl mx-auto px-2">
             {t('subtitle')}
           </p>
-        </motion.div>
+        </motion.header>
 
         {/* Carousel Container */}
         <div className="relative max-w-4xl mx-auto">
           {/* Progress Indicators */}
-          <div className="flex justify-center gap-2 mb-8">
+          <nav aria-label="Carousel navigation" className="flex justify-center gap-2 mb-8">
             {cases.map((_, index) => (
               <button
                 key={index}
@@ -197,12 +197,12 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                 )}
               </button>
             ))}
-          </div>
+          </nav>
 
           {/* Main Carousel */}
           <div className="relative">
             <AnimatePresence mode="wait">
-              <motion.div
+              <motion.article
                 key={currentSlide}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -223,7 +223,7 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
               >
                 {currentCase.isGithubCTA ? (
                   // GitHub CTA Slide
-                  <div className="theme-glass rounded-2xl border-2 border-[var(--accent-primary)]/40 p-8 sm:p-12 text-center relative overflow-hidden">
+                  <article className="theme-glass rounded-2xl border-2 border-[var(--accent-primary)]/40 p-8 sm:p-12 text-center relative overflow-hidden">
                     {/* Decorative elements */}
                     <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[100px] opacity-10" style={{ background: 'radial-gradient(circle, var(--accent-primary), transparent)' }} />
                     <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-[100px] opacity-10" style={{ background: 'radial-gradient(circle, var(--gold-alt), transparent)' }} />
@@ -298,10 +298,10 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     </div>
-                  </div>
-                ) : (
+                  </article>
+                  ) : (
                   // Case Study Slide
-                  <div className="theme-glass rounded-2xl border theme-border hover:border-[var(--accent-secondary)]/40 transition-all duration-300 overflow-hidden">
+                  <article className="theme-glass rounded-2xl border theme-border hover:border-[var(--accent-secondary)]/40 transition-all duration-300 overflow-hidden">
                     <div className="p-6 sm:p-8">
                       {/* Header */}
                       <div className="flex items-center justify-between mb-6">
@@ -397,9 +397,9 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </article>
                 )}
-              </motion.div>
+              </motion.article>
             </AnimatePresence>
 
             {/* Navigation Buttons */}
