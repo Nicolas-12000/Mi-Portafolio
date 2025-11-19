@@ -64,12 +64,12 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
             {/* Email */}
             <a 
-              href="mailto:nicolasgarcia12000@gmail.com"
+              href="mailto:nikolasg1200@gmail.com"
               className="group"
             >
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold theme-text hover:text-[var(--accent-primary)] transition-colors duration-300">
-                nicolasgarcia12000@gmail.com
-              </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold theme-text hover:text-[var(--accent-primary)] transition-colors duration-300">
+                  nikolasg1200@gmail.com
+                </div>
               <div className="h-0.5 w-0 group-hover:w-full transition-all duration-500 mx-auto" style={{ background: 'linear-gradient(to right, var(--accent-primary), var(--gold-alt))' }}></div>
             </a>
 

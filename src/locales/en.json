@@ -58,8 +58,8 @@
       "cta": "View architecture"
     },
     "footer": {
-      "question": "Interested in a specific case?",
-      "cta": "Request technical details"
+      "question": "Would you like to learn the technical details of these projects?",
+      "cta": "Request Detailed Information"
     },
       "github": {
       "title": "Explore More Projects",
@@ -204,7 +204,13 @@
     "cv": {
       "title": "Curriculum Vitae",
       "description": "Detailed CV with technical cases, implemented architectures, and impact metrics.",
-      "download": "Download CV"
+      "download": "Download CV",
+      "fullDownload": "Download my full CV with implemented projects, architectures and impact metrics.",
+      "tags": {
+        "projects": "Projects",
+        "architectures": "Architectures",
+        "metrics": "Metrics"
+      }
     },
     "social": {
       "title": "Connect with me",
@@ -219,12 +225,14 @@
         "aria": "Open LinkedIn in new tab"
       },
       "instagram": {
+        "title": "Instagram",
         "text": "See personal side",
         "aria": "Open Instagram in new tab"
       }
     },
     "form": {
       "title": "Let's get in touch",
+      "lead": "Fill the form and tell me about your project. I'll be happy to help you take it to the next level.",
       "name": {
         "label": "Name",
         "placeholder": "Your name"
@@ -239,10 +247,37 @@
       },
       "message": {
         "label": "Message",
-        "placeholder": "Tell me about your project and how we can automate processes to generate impact..."
+        "placeholder": "Tell me about your project, budget, timeline and any important details..."
       },
+      "step1Title": "Tell me about you",
+      "step1Subtitle": "I need to know how to contact you and who you are",
+      "step2Title": "What do you need?",
+      "step2Subtitle": "Select the type of project you have in mind",
+        "step3Title": "Tell me more",
+        "step3Subtitle": "Describe your project, goals and what you expect to achieve",
+        "steps": {
+          "info": "Info",
+          "project": "Project",
+          "message": "Message"
+        },
+        "back": "Back",
+        "next": "Next",
+        "guaranteeTitle": "Response guarantee",
       "submit": "Send Proposal",
       "guarantee": "Response guaranteed within 24 hours."
+    },
+      "projectTypes": {
+        "backend": "Backend Development",
+        "fullstack": "Full-Stack Application",
+        "devops": "DevOps & Cloud",
+        "automation": "Process Automation",
+        "consulting": "Technical Consulting",
+        "other": "Other"
+      },
+    "submitted": {
+      "title": "Message sent successfully!",
+      "message": "Thanks for contacting me, {name}. I will review your message and reply shortly.",
+      "action": "Send another message"
     },
     "footer_made_with": "Made with",
     "footer_by": "by",

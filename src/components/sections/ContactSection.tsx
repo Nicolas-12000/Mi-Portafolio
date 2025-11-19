@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Mail, Github, Linkedin, Instagram, MapPin, Clock, Send, ChevronRight, ChevronLeft, Sparkles, Code2, Rocket, FileText, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -11,6 +12,7 @@ interface StepperProps {
 }
 
 function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: StepperProps) {
+  const t = useTranslations('contact');
   return (
     <div className="flex items-center justify-between mb-8 px-2">
       {[...Array(totalSteps)].map((_, index) => {
@@ -38,7 +40,7 @@ function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: Step
                   }`}
                 >
                   {isComplete ? (
-                    <CheckCircle2 className="w-5 h-5 text-[var(--background)]" strokeWidth={2.5} />
+                    <CheckCircle2 className="w-5 h-5 text-[var(--text-primary)]" strokeWidth={2.5} />
                   ) : (
                     <span className={`text-sm font-bold ${isActive ? 'theme-accent' : 'theme-text-muted'}`}>
                       {step}
@@ -56,7 +58,7 @@ function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: Step
                 )}
               </motion.div>
               <p className={`text-xs mt-2 font-medium text-center ${isActive ? 'theme-accent' : 'theme-text-muted'}`}>
-                {step === 1 ? 'Info' : step === 2 ? 'Proyecto' : 'Mensaje'}
+                {step === 1 ? t('form.steps.info') : step === 2 ? t('form.steps.project') : t('form.steps.message')}
               </p>
             </div>
             {step < totalSteps && (
@@ -77,37 +79,38 @@ function Stepper({ currentStep, totalSteps, prefersReducedMotion = false }: Step
 }
 
 const projectIcons = {
-  'Backend Development': Code2,
-  'Full-Stack Application': Rocket,
-  'DevOps y Cloud': Sparkles,
-  'Process Automation': Sparkles,
-  'Technical Consulting': FileText,
-  'Other': Code2,
+  backend: Code2,
+  fullstack: Rocket,
+  devops: Sparkles,
+  automation: Sparkles,
+  consulting: FileText,
+  other: Code2,
 };
 
 export function ContactSection() {
+  const t = useTranslations('contact');
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Backend Development',
+    projectType: 'backend',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
 
   const projectTypes = [
-    'Backend Development',
-    'Full-Stack Application',
-    'DevOps y Cloud',
-    'Process Automation',
-    'Technical Consulting',
-    'Other'
+    'backend',
+    'fullstack',
+    'devops',
+    'automation',
+    'consulting',
+    'other'
   ];
 
   const socialLinks = [
-    { name: 'GitHub', icon: Github, url: 'https://github.com/Nicolas-12000', color: 'text-[#F2F2F7] hover:text-[#E6B93D]' },
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/nicolás-alejandro-garcía-pasmiño-82765333b/', color: 'text-[#0A66C2]' },
-    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[#E4405F]' }
+    { key: 'github', name: 'GitHub', icon: Github, url: 'https://github.com/Nicolas-12000', color: 'text-[#F2F2F7] hover:text-[#E6B93D]' },
+    { key: 'linkedin', name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/nicolás-alejandro-garcía-pasmiño-82765333b/', color: 'text-[#0A66C2]' },
+    { key: 'instagram', name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[#E4405F]' }
   ];
 
   const handleNext = () => {
@@ -141,11 +144,11 @@ export function ContactSection() {
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             <span className="theme-gradient-text">
-              Empecemos a colaborar
+              {t('title')}
             </span>
           </h2>
           <p className="text-base sm:text-lg theme-text-muted max-w-3xl mx-auto leading-relaxed">
-            Completa el formulario y cuéntame sobre tu proyecto. Estaré encantado de ayudarte a llevarlo al siguiente nivel.
+            {t('form.lead')}
           </p>
         </motion.div>
 
@@ -163,30 +166,30 @@ export function ContactSection() {
               <div className="p-2 rounded-lg bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--gold-alt)]/20">
                 <Mail className="w-5 h-5 theme-accent" />
               </div>
-              <h3 className="text-lg font-bold theme-text">Información</h3>
+                <h3 className="text-lg font-bold theme-text">{t('info.title')}</h3>
             </div>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 theme-accent mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs font-medium theme-text-muted">Ubicación</p>
-                  <p className="text-sm theme-text-secondary">Pasto, Nariño, Colombia</p>
+                  <p className="text-xs font-medium theme-text-muted">{t('info.location.title')}</p>
+                  <p className="text-sm theme-text-secondary">{t('info.location.value')}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 theme-accent mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
                   <p className="text-xs font-medium theme-text-muted">Email</p>
-                  <a href="mailto:nikolasg1200@gmail.com" className="text-sm theme-text-secondary hover:theme-accent transition-colors break-all">
-                    nikolasg1200@gmail.com
+                  <a href={`mailto:${t('info.email.value')}`} className="text-sm theme-text-secondary hover:theme-accent transition-colors break-all">
+                    {t('info.email.value')}
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Clock className="w-4 h-4 theme-accent mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs font-medium theme-text-muted">Disponibilidad</p>
-                  <p className="text-sm theme-text-secondary">Remoto / Híbrido</p>
+                  <p className="text-xs font-medium theme-text-muted">{t('info.availability.title')}</p>
+                  <p className="text-sm theme-text-secondary">{t('info.availability.value')}</p>
                 </div>
               </div>
             </div>
@@ -201,7 +204,7 @@ export function ContactSection() {
             whileHover={{ scale: 1.02 }}
             className="theme-glass rounded-xl p-6 hover:border-[var(--accent-primary)]/50 transition-all duration-300 theme-shadow-lg"
           >
-            <h3 className="text-lg font-bold theme-text mb-5">Conecta conmigo</h3>
+            <h3 className="text-lg font-bold theme-text mb-5">{t('social.title')}</h3>
             <div className="space-y-2">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -215,7 +218,7 @@ export function ContactSection() {
                   >
                     <div className="flex items-center gap-3">
                       <Icon className={`w-5 h-5 ${social.color}`} />
-                      <span className="text-sm font-medium theme-text-secondary group-hover:theme-text">{social.name}</span>
+                        <span className="text-sm font-medium theme-text-secondary group-hover:theme-text">{t(`social.${social.key}.title`)}</span>
                     </div>
                     <ArrowUpRight className="w-4 h-4 theme-text-muted group-hover:theme-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
@@ -234,26 +237,26 @@ export function ContactSection() {
             className="bg-gradient-to-br from-[var(--accent-primary)]/15 via-[var(--gold-alt)]/10 to-[var(--accent-primary)]/15 backdrop-blur-md rounded-xl border border-[var(--accent-primary)]/40 p-6 group hover:border-[var(--accent-primary)]/60 transition-all duration-300 theme-shadow-lg hover:shadow-[var(--accent-primary)]/20"
           >
             <div className="flex items-start gap-3 mb-4">
-              <div className="p-3 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--accent-primary)', opacity: 0.12 }}>
-                <FileText className="w-6 h-6 text-[var(--background)]" />
+              <div className="p-3 rounded-lg flex items-center justify-center bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--gold-alt)]/20">
+                <FileText className="w-6 h-6 theme-accent" />
               </div>
               <div className="flex-1">
-                <h4 className="font-bold theme-text text-base">Curriculum Vitae</h4>
-                <p className="text-sm theme-text-muted">CV detallado con casos técnicos</p>
+                <h4 className="font-bold theme-text text-base">{t('cv.title')}</h4>
+                <p className="text-sm theme-text-muted">{t('cv.description')}</p>
               </div>
             </div>
             <p className="text-sm theme-text-muted mb-4 leading-relaxed">
-              Descarga mi CV completo con proyectos implementados, arquitecturas y métricas de impacto.
+              {t('cv.fullDownload')}
             </p>
 
             <div className="flex gap-2 flex-wrap mb-4">
-              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">Proyectos</span>
-              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">Arquitecturas</span>
-              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">Métricas</span>
+              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">{t('cv.tags.projects')}</span>
+              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">{t('cv.tags.architectures')}</span>
+              <span className="px-2 py-1 theme-surface-hover rounded text-xs theme-text-muted">{t('cv.tags.metrics')}</span>
             </div>
 
             <button className="w-full theme-btn-primary px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
-              Descargar CV
+              {t('cv.download')}
             </button>
           </motion.div>
         </div>
@@ -282,8 +285,8 @@ export function ContactSection() {
                       className="space-y-5"
                     >
                       <div>
-                        <h3 className="text-xl font-bold theme-text mb-1">Cuéntame de ti</h3>
-                        <p className="text-sm theme-text-muted mb-5">Necesito saber cómo contactarte y quién eres</p>
+                        <h3 className="text-xl font-bold theme-text mb-1">{t('form.step1Title')}</h3>
+                        <p className="text-sm theme-text-muted mb-5">{t('form.step1Subtitle')}</p>
                       </div>
 
                       <div>
@@ -295,7 +298,7 @@ export function ContactSection() {
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
                           className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20"
-                          placeholder="Tu nombre"
+                          placeholder={t('form.name.placeholder')}
                         />
                       </div>
 
@@ -308,7 +311,7 @@ export function ContactSection() {
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
                           className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20"
-                          placeholder="tu@email.com"
+                          placeholder={t('form.email.placeholder')}
                         />
                       </div>
                     </motion.div>
@@ -325,8 +328,8 @@ export function ContactSection() {
                       className="space-y-5"
                     >
                       <div>
-                        <h3 className="text-xl font-bold theme-text mb-1">¿Qué necesitas?</h3>
-                        <p className="text-sm theme-text-muted mb-5">Selecciona el tipo de proyecto que tienes en mente</p>
+                        <h3 className="text-xl font-bold theme-text mb-1">{t('form.step2Title')}</h3>
+                        <p className="text-sm theme-text-muted mb-5">{t('form.step2Subtitle')}</p>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -337,10 +340,9 @@ export function ContactSection() {
                               key={type}
                               onClick={() => setFormData({...formData, projectType: type})}
                               className={`relative flex items-center gap-3 p-4 rounded-lg transition-all duration-300 border-2 text-left ${
-                                formData.projectType === type
-                                  ? 'border-[var(--accent-primary)] theme-shadow-lg' : 'theme-surface theme-border hover:border-[var(--accent-primary)]/40'
-                              }`}
-                              style={{ backgroundColor: formData.projectType === type ? 'var(--accent-primary)' : undefined, opacity: formData.projectType === type ? 0.2 : 1 }}
+                                  formData.projectType === type
+                                    ? 'border-[var(--accent-primary)] theme-shadow-lg bg-[var(--accent-primary)]/12 hover:bg-[var(--accent-primary)]/16' : 'theme-surface theme-border hover:border-[var(--accent-primary)]/40'
+                                }`}
                             >
                               <div className={`p-2 rounded-lg flex-shrink-0 ${
                                 formData.projectType === type 
@@ -348,14 +350,14 @@ export function ContactSection() {
                                   : 'theme-elevated'
                               }`}>
                                 <Icon className={`w-5 h-5 ${
-                                  formData.projectType === type ? 'theme-accent' : 'theme-text-muted'
+                                  formData.projectType === type ? 'text-[var(--text-primary)]' : 'theme-text-muted'
                                 }`} />
                               </div>
                               <div className="flex-1">
                                 <span className={`text-sm font-medium ${
-                                  formData.projectType === type ? 'theme-text' : 'theme-text-secondary'
+                                  formData.projectType === type ? 'text-[var(--text-primary)]' : 'theme-text-secondary'
                                 }`}>
-                                  {type}
+                                  {t(`projectTypes.${type}`)}
                                 </span>
                               </div>
                               {formData.projectType === type && (
@@ -379,30 +381,30 @@ export function ContactSection() {
                       className="space-y-5"
                     >
                       <div>
-                        <h3 className="text-xl font-bold theme-text mb-1">Cuéntame más</h3>
-                        <p className="text-sm theme-text-muted mb-5">Describe tu proyecto, objetivos y lo que esperas lograr</p>
+                        <h3 className="text-xl font-bold theme-text mb-1">{t('form.step3Title')}</h3>
+                        <p className="text-sm theme-text-muted mb-5">{t('form.step3Subtitle')}</p>
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium theme-text-secondary mb-2">
-                          Tu mensaje *
+                          {t('form.message.label')}
                         </label>
                         <textarea 
                           rows={6}
                           value={formData.message}
                           onChange={(e) => setFormData({...formData, message: e.target.value})}
                           className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20 resize-none"
-                          placeholder="Cuéntame sobre tu proyecto, presupuesto, timeline y cualquier detalle importante..."
+                          placeholder={t('form.message.placeholder')}
                         />
                       </div>
 
-                      <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--accent-primary)', opacity: 0.15, border: '1px solid var(--accent-primary)' }}>
+                      <div className="rounded-lg p-4 bg-[var(--accent-primary)]/12 border border-[var(--accent-primary)]/20">
                         <div className="flex gap-3">
                           <Sparkles className="w-5 h-5 theme-accent flex-shrink-0 mt-0.5" />
                           <div>
-                            <p className="text-sm font-semibold theme-accent mb-0.5">Garantía de respuesta</p>
-                            <p className="text-xs theme-text-muted">Te responderé en máximo 24 horas con un plan personalizado para tu proyecto.</p>
-                          </div>
+                              <p className="text-sm font-semibold text-[var(--text-primary)] mb-0.5">{t('form.guaranteeTitle')}</p>
+                              <p className="text-xs theme-text-secondary">{t('form.guarantee')}</p>
+                            </div>
                         </div>
                       </div>
                     </motion.div>
@@ -417,7 +419,7 @@ export function ContactSection() {
                     className="flex items-center gap-2 px-4 py-2 theme-text-muted hover:theme-text disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium text-sm"
                   >
                     <ChevronLeft className="w-4 h-4" />
-                    Atrás
+                    {t('form.back')}
                   </button>
                   
                   {currentStep < 3 ? (
@@ -425,7 +427,7 @@ export function ContactSection() {
                       onClick={handleNext}
                       className="flex items-center gap-2 theme-btn-primary px-5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
                     >
-                      Siguiente
+                      {t('form.next')}
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   ) : (
@@ -434,7 +436,7 @@ export function ContactSection() {
                       className="flex items-center gap-2 theme-btn-primary px-5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
                     >
                       <Send className="w-4 h-4" />
-                      Enviar
+                      {t('form.submit')}
                     </button>
                   )}
                 </div>
@@ -454,9 +456,9 @@ export function ContactSection() {
               >
                 <CheckCircle2 className="w-10 h-10 theme-bg" strokeWidth={2.5} />
               </motion.div>
-              <h3 className="text-2xl font-bold theme-text mb-2">¡Mensaje enviado con éxito!</h3>
+              <h3 className="text-2xl font-bold theme-text mb-2">{t('submitted.title')}</h3>
               <p className="text-sm theme-text-muted mb-6 max-w-sm mx-auto">
-                Gracias por contactarme, <span className="theme-accent font-semibold">{formData.name}</span>. Revisaré tu mensaje y te responderé en breve.
+                {t('submitted.message', { name: formData.name })}
               </p>
               <button
                 onClick={() => {
@@ -466,7 +468,7 @@ export function ContactSection() {
                 }}
                 className="theme-accent hover:text-[var(--gold-alt)] transition-colors text-sm font-medium inline-flex items-center gap-2 group"
               >
-                <span>Enviar otro mensaje</span>
+                <span>{t('submitted.action')}</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>

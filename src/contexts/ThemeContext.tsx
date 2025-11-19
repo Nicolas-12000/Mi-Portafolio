@@ -8,6 +8,7 @@ interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
+  isThemeChanging: boolean;
 }
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -18,6 +19,7 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useLocalStorage<Theme>(STORAGE_KEYS.THEME, DEFAULT_THEME);
+  const [isThemeChanging, setIsThemeChanging] = React.useState(false);
 
   // Aplicar tema al DOM
   useEffect(() => {
@@ -33,11 +35,22 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    // Activar pantalla de loading
+    setIsThemeChanging(true);
+    
+    // Pequeño delay para que se vea la animación de loading
+    setTimeout(() => {
+      setTheme(theme === 'dark' ? 'light' : 'dark');
+      
+      // Esperar a que el tema se aplique y los componentes se rendericen
+      setTimeout(() => {
+        setIsThemeChanging(false);
+      }, 1500);
+    }, 100);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme, isThemeChanging }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -343,7 +343,7 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
           <div className="rounded-xl p-6 max-w-2xl mx-auto theme-surface" style={{ border: '1px solid var(--accent-primary)', backgroundColor: 'var(--surface)', boxShadow: '0 6px 24px rgba(0,0,0,0.04)' }}>
             <Sparkles className="w-8 h-8 mx-auto mb-3 theme-accent" />
             <p className="theme-text mb-6 text-base sm:text-lg font-semibold">
-              ¿Quieres conocer los detalles técnicos de estos proyectos?
+              {t('footer.question')}
             </p>
 
             <div className="flex items-center justify-center mt-2">
@@ -361,7 +361,7 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                 onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = ''; }}
               >
                 <Mail className="w-4 h-4" />
-                <span>Solicitar Información Detallada</span>
+                <span>{t('footer.cta')}</span>
               </button>
             </div>
           </div>

@@ -58,8 +58,8 @@
       "cta": "Vedi architettura"
     },
     "footer": {
-      "question": "Interessato a un caso specifico?",
-      "cta": "Richiedi dettagli tecnici"
+      "question": "Vuoi conoscere i dettagli tecnici di questi progetti?",
+      "cta": "Richiedi informazioni dettagliate"
     },
       "github": {
       "title": "Esplora Altri Progetti",
@@ -203,7 +203,13 @@
     "cv": {
       "title": "Curriculum Vitae",
       "description": "CV dettagliato con casi tecnici, architetture implementate e metriche di impatto.",
-      "download": "Scarica CV"
+      "download": "Scarica CV",
+      "fullDownload": "Scarica il mio CV completo con progetti implementati, architetture e metriche di impatto.",
+      "tags": {
+        "projects": "Progetti",
+        "architectures": "Architetture",
+        "metrics": "Metriche"
+      }
     },
     "social": {
       "title": "Connettiti con me",
@@ -218,18 +224,28 @@
         "aria": "Apri LinkedIn in nuova scheda"
       },
       "instagram": {
+        "title": "Instagram",
         "text": "Vedi lato personale",
         "aria": "Apri Instagram in nuova scheda"
       }
     },
     "form": {
       "title": "Mettiamoci in contatto",
+      "lead": "Compila il modulo e parlami del tuo progetto. Sarò felice di aiutarti a portarlo al livello successivo.",
       "name": {
         "label": "Nome",
         "placeholder": "Il tuo nome"
       },
+      "fullName": {
+        "label": "Nome completo *",
+        "placeholder": "Il tuo nome"
+      },
       "email": {
         "label": "Email",
+        "placeholder": "tua@email.com"
+      },
+      "contactEmail": {
+        "label": "Email di contatto *",
         "placeholder": "tua@email.com"
       },
       "projectType": {
@@ -238,10 +254,41 @@
       },
       "message": {
         "label": "Messaggio",
-        "placeholder": "Raccontami del tuo progetto e come possiamo automatizzare processi per generare impatto..."
+        "placeholder": "Raccontami del tuo progetto, budget, timeline e qualsiasi dettaglio importante..."
+      },
+      "step1Title": "Parlami di te",
+      "step1Subtitle": "Ho bisogno di sapere come contattarti e chi sei",
+      "step2Title": "Di cosa hai bisogno?",
+      "step2Subtitle": "Seleziona il tipo di progetto che hai in mente",
+      "step3Title": "Parlami di più",
+      "step3Subtitle": "Descrivi il tuo progetto, obiettivi e cosa ti aspetti di raggiungere",
+      "guaranteeTitle": "Garanzia di risposta",
+      "steps": {
+        "info": "Info",
+        "project": "Progetto",
+        "message": "Messaggio"
+      },
+      "back": "Indietro",
+      "next": "Avanti",
+      "prompt": {
+        "tellMeAboutYou": "Parlami di te",
+        "needToKnow": "Ho bisogno di sapere come contattarti e chi sei"
       },
       "submit": "Invia Proposta",
       "guarantee": "Risposta garantita entro 24 ore."
+    },
+    "projectTypes": {
+      "backend": "Backend",
+      "fullstack": "Full-Stack",
+      "devops": "DevOps e Cloud",
+      "automation": "Automazione dei processi",
+      "consulting": "Consulenza tecnica",
+      "other": "Altro"
+    },
+    "submitted": {
+      "title": "Messaggio inviato con successo!",
+      "message": "Grazie per avermi contattato, {name}. Esaminerò il tuo messaggio e risponderò a breve.",
+      "action": "Invia un altro messaggio"
     },
     "footer_made_with": "Fatto con",
     "footer_by": "da",

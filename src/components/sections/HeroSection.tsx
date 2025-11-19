@@ -6,14 +6,13 @@ import dynamic from 'next/dynamic';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { useTheme } from '@/hooks/useTheme';
 
-// Lazy load Galaxy (WebGL) - No SSR
-const Galaxy = dynamic(() => import('@/components/effects/Galaxy'), {
+// Lazy load theme-specific LiquidEther variants - No SSR
+const LiquidEtherLight = dynamic(() => import('@/components/effects/LiquidEtherLight'), {
   ssr: false,
   loading: () => <div className="absolute inset-0 theme-bg" />
 });
 
-// Lazy load LiquidEther - No SSR
-const LiquidEther = dynamic(() => import('@/components/effects/LiquidEther'), {
+const LiquidEtherDark = dynamic(() => import('@/components/effects/LiquidEtherDark'), {
   ssr: false,
   loading: () => <div className="absolute inset-0 theme-bg" />
 });
@@ -35,9 +34,9 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       {/* Background - LiquidEther para modo claro, Galaxy para modo oscuro */}
       <div className="absolute inset-0 z-0">
         {!prefersReducedMotion ? (
+          // Use optimized wrapper per theme
           theme === 'light' ? (
-            <LiquidEther
-              colors={['#5227FF', '#FF9FFC', '#B19EEF']}
+            <LiquidEtherLight 
               mouseForce={20}
               cursorSize={100}
               isViscous={false}
@@ -54,21 +53,22 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               autoRampDuration={0.6}
             />
           ) : (
-            <div className="[&_canvas]:!bg-[#0a0a14] dark:[&_canvas]:!bg-black/95">
-              <Galaxy
-                density={1.2}
-                glowIntensity={0.35}
-                saturation={0.12}
-                hueShift={220}
-                speed={0.3}
-                mouseRepulsion={true}
-                repulsionStrength={2.5}
-                twinkleIntensity={0.25}
-                rotationSpeed={0.03}
-                transparent={false}
-                mouseInteraction={true}
-              />
-            </div>
+            <LiquidEtherDark 
+              mouseForce={20}
+              cursorSize={100}
+              isViscous={false}
+              viscous={30}
+              iterationsViscous={32}
+              iterationsPoisson={32}
+              resolution={0.5}
+              isBounce={false}
+              autoDemo={true}
+              autoSpeed={0.5}
+              autoIntensity={2.2}
+              takeoverDuration={0.25}
+              autoResumeDelay={3000}
+              autoRampDuration={0.6}
+            />
           )
         ) : (
           // Fallback estático para usuarios con reduced motion
@@ -76,8 +76,8 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         )}
       </div>
 
-      {/* Overlay suave */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-[var(--background)] pointer-events-none" />
+      {/* Overlay suave - usa CSS para mantener marcado idéntico en SSR/CSR */}
+      <div className="absolute inset-0 z-[1] hero-overlay pointer-events-none" />
 
       {/* IMPORTANTE: pointer-events-none permite que el mouse pase al Galaxy de abajo */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10 pointer-events-none">
@@ -176,8 +176,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           
           <button 
             onClick={() => onNavigate('tech')}
-            className="w-full sm:w-auto group relative overflow-hidden border-2 hover:bg-[var(--accent-primary)]/10 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98]"
-            style={{ borderColor: 'var(--accent-primary)', opacity: theme === 'light' ? 0.92 : 0.5, boxShadow: theme === 'light' ? '0 10px 30px rgba(0,0,0,0.06)' : '0 0 25px var(--shadow-gold)' }}
+            className="w-full sm:w-auto group relative overflow-hidden border-2 border-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98] shadow-sm"
           >
             {/* Efecto de brillo dorado que se desliza */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/25 to-transparent skew-x-12 rounded-lg" />
@@ -195,8 +194,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         <div className="flex justify-center gap-8 pointer-events-auto">
           <button
             onClick={() => onNavigate('profile')}
-            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden"
-            style={{ color: theme === 'light' ? '#0b0b0b' : '#ffffff', backgroundColor: theme === 'light' ? 'rgba(184,139,47,0.06)' : 'transparent', boxShadow: '0 0 20px var(--shadow-gold)' }}
+            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden theme-card shadow-subtle text-text-primary"
           >
             {/* Efecto de brillo dorado */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent" />
@@ -204,8 +202,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </button>
           <button
             onClick={() => onNavigate('contact')}
-            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden border border-transparent"
-            style={{ color: theme === 'light' ? '#0b0b0b' : '#ffffff', backgroundColor: theme === 'light' ? 'rgba(184,139,47,0.06)' : 'transparent', boxShadow: '0 0 20px var(--shadow-gold)', borderColor: 'var(--accent-primary)' }}
+            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden border border-[var(--accent-primary)] theme-card shadow-subtle text-text-primary"
           >
             {/* Efecto de brillo dorado */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent" />

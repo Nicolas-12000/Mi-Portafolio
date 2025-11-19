@@ -7,6 +7,7 @@ import { gsap } from 'gsap';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import type { Locale } from '@/lib/i18n';
+import { useTheme } from '@/hooks/useTheme';
 
 interface NavigationProps {
   locale: Locale;
@@ -23,6 +24,7 @@ const NUMBER_OF_CARDS = 3;
 
 export function Navigation({ locale }: NavigationProps) {
   const t = useTranslations('nav');
+  const { theme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -218,12 +220,7 @@ export function Navigation({ locale }: NavigationProps) {
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-4 md:pt-6 px-2 sm:px-4">
       <nav
         ref={navRef}
-        className="card-nav w-full max-w-4xl backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden will-change-[height]"
-        style={{ 
-          height: isMobile ? NAV_HEIGHT_MOBILE : NAV_HEIGHT_DESKTOP,
-          background: 'rgba(10, 10, 20, 0.4)',
-          border: '1px solid rgba(230, 185, 61, 0.15)'
-        }}
+        className={`card-nav w-full max-w-4xl backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden will-change-[height] h-14 sm:h-16 theme-card theme-border`}
       >
         {/* Barra Superior */}
         <div className="absolute inset-x-0 top-0 h-14 sm:h-16 flex items-center justify-between px-2 sm:px-4 z-10">
@@ -286,7 +283,7 @@ export function Navigation({ locale }: NavigationProps) {
             <div
               key={idx}
               ref={setCardRef(idx)}
-              className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm bg-[#E0D9CC]/95 dark:bg-[#1a1a28]/85 border border-[#7A6E5C]/20 dark:border-transparent text-[#2C2416] dark:text-[#FFD700] shadow-lg dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+              className="nav-card flex flex-col gap-2 sm:gap-3 p-3.5 sm:p-4 rounded-lg sm:rounded-xl md:flex-1 md:h-full cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm border border-[#7A6E5C]/20 shadow-lg"
               style={{ minHeight: isMobile ? `${CARD_HEIGHT_MOBILE}px` : '80px' }}
             >
               <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm">

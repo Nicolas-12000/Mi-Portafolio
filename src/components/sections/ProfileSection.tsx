@@ -322,7 +322,7 @@ export function ProfileSection() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 className="relative p-3 bg-gradient-to-br from-[var(--gold-mid)] to-[var(--accent-primary)] rounded-2xl shadow-lg shadow-[var(--accent-primary)]/20"
               >
-                <Code className="w-7 h-7 text-white dark:text-[var(--background)]" />
+                <Code className="w-7 h-7 text-white dark:text-[var(--text-primary)]" />
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold-mid)] to-[var(--accent-primary)] rounded-2xl blur-xl opacity-20"></div>
               </motion.div>
               <div>

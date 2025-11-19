@@ -22,7 +22,7 @@
       "tech": "Stack técnico"
     },
     "quickLinks": {
-      "about": "Sobre Mí",
+      "about": "Sobre mí",
       "contact": "Contacto"
     }
   },
@@ -58,8 +58,8 @@
       "cta": "Ver arquitectura"
     },
     "footer": {
-      "question": "¿Te interesa algún caso específico?",
-      "cta": "Solicitar detalles técnicos"
+      "question": "¿Quieres conocer los detalles técnicos de estos proyectos?",
+      "cta": "Solicitar Información Detallada"
     },
     "github": {
       "title": "Explora Más Proyectos",
@@ -203,7 +203,13 @@
     "cv": {
       "title": "Currículum Vitae",
       "description": "CV detallado con casos técnicos, arquitecturas implementadas y métricas de impacto.",
-      "download": "Descargar CV"
+      "download": "Descargar CV",
+      "fullDownload": "Descarga mi CV completo con proyectos implementados, arquitecturas y métricas de impacto.",
+      "tags": {
+        "projects": "Proyectos",
+        "architectures": "Arquitecturas",
+        "metrics": "Métricas"
+      }
     },
     "social": {
       "title": "Conecta conmigo",
@@ -218,12 +224,14 @@
         "aria": "Abrir LinkedIn en nueva pestaña"
       },
       "instagram": {
+        "title": "Instagram",
         "text": "Ver lado personal",
         "aria": "Abrir Instagram en nueva pestaña"
       }
     },
     "form": {
       "title": "Pongámonos en contacto",
+      "lead": "Completa el formulario y cuéntame sobre tu proyecto. Estaré encantado de ayudarte a llevarlo al siguiente nivel.",
       "name": {
         "label": "Nombre",
         "placeholder": "Tu nombre"
@@ -238,10 +246,37 @@
       },
       "message": {
         "label": "Mensaje",
-        "placeholder": "Cuéntame sobre tu proyecto y cómo podemos automatizar procesos para generar impacto..."
+        "placeholder": "Cuéntame sobre tu proyecto, presupuesto, timeline y cualquier detalle importante..."
       },
+      "step1Title": "Cuéntame de ti",
+      "step1Subtitle": "Necesito saber cómo contactarte y quién eres",
+      "step2Title": "¿Qué necesitas?",
+      "step2Subtitle": "Selecciona el tipo de proyecto que tienes en mente",
+      "step3Title": "Cuéntame más",
+      "step3Subtitle": "Describe tu proyecto, objetivos y lo que esperas lograr",
+      "steps": {
+        "info": "Info",
+        "project": "Proyecto",
+        "message": "Mensaje"
+      },
+      "back": "Atrás",
+      "next": "Siguiente",
+      "guaranteeTitle": "Garantía de respuesta",
       "submit": "Enviar Propuesta",
       "guarantee": "Respuesta garantizada en 24 horas."
+    },
+    "projectTypes": {
+      "backend": "Backend",
+      "fullstack": "Full-Stack",
+      "devops": "DevOps y Cloud",
+      "automation": "Automatización de procesos",
+      "consulting": "Consultoría técnica",
+      "other": "Otro"
+    },
+    "submitted": {
+      "title": "¡Mensaje enviado con éxito!",
+      "message": "Gracias por contactarme, {name}. Revisaré tu mensaje y te responderé en breve.",
+      "action": "Enviar otro mensaje"
     },
     "footer_made_with": "Hecho con",
     "footer_by": "por",

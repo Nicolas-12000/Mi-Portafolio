@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { LoadingScreen } from '@/components/ui';
+import { useTheme } from '@/hooks/useTheme';
 import { 
   HeroSection,
   CaseStudiesSection,
@@ -12,6 +13,7 @@ import {
 
 const Portfolio = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { isThemeChanging } = useTheme();
 
   useEffect(() => {
     // Simulate loading time for assets and translations
@@ -39,7 +41,7 @@ const Portfolio = () => {
   return (
     <>
       <AnimatePresence mode="wait">
-        {isLoading && <LoadingScreen />}
+        {(isLoading || isThemeChanging) && <LoadingScreen key={isThemeChanging ? 'theme-change' : 'initial-load'} />}
       </AnimatePresence>
 
       <div className="min-h-screen text-text-primary relative bg-gradient-to-b from-background via-surface to-background">
