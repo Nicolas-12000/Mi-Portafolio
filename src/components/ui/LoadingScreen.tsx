@@ -4,11 +4,16 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Cpu, Terminal } from 'lucide-react';
 
-export function LoadingScreen() {
+interface LoadingScreenProps {
+  onComplete?: () => void;
+}
+
+export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState('INITIALIZING SYSTEM');
 
   useEffect(() => {
+    // Progreso continuo hasta el 100% en ~1.3 segundos
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -17,7 +22,7 @@ export function LoadingScreen() {
         }
         return prev + 2;
       });
-    }, 20);
+    }, 25);
 
     return () => clearInterval(timer);
   }, []);

@@ -108,9 +108,9 @@ export function ContactSection() {
   ];
 
   const socialLinks = [
-    { key: 'github', name: 'GitHub', icon: Github, url: 'https://github.com/Nicolas-12000', color: 'text-[#F2F2F7] hover:text-[#E6B93D]' },
-    { key: 'linkedin', name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/nicolás-alejandro-garcía-pasmiño-82765333b/', color: 'text-[#0A66C2]' },
-    { key: 'instagram', name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[#E4405F]' }
+    { key: 'github', name: 'GitHub', icon: Github, url: 'https://github.com/Nicolas-12000', color: 'text-[var(--text-primary)] hover:text-[var(--accent-primary)]' },
+    { key: 'linkedin', name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/nicolás-alejandro-garcía-pasmiño-82765333b/', color: 'text-[var(--text-primary)] hover:text-[#0A66C2]' },
+    { key: 'instagram', name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[var(--text-primary)] hover:text-[#E4405F]' }
   ];
 
   const handleNext = () => {

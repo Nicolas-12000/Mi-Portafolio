@@ -1,8 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { LoadingScreen } from '@/components/ui';
-import { useTheme } from '@/hooks/useTheme';
+import React from 'react';
 import { 
   HeroSection,
   CaseStudiesSection,
@@ -12,18 +9,6 @@ import {
 } from '@/components/sections';
 
 const Portfolio = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { isThemeChanging } = useTheme();
-
-  useEffect(() => {
-    // Simulate loading time for assets and translations
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -40,10 +25,6 @@ const Portfolio = () => {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {(isLoading || isThemeChanging) && <LoadingScreen key={isThemeChanging ? 'theme-change' : 'initial-load'} />}
-      </AnimatePresence>
-
       <div className="min-h-screen text-text-primary relative bg-gradient-to-b from-background via-surface to-background">
         {/* Background Elements */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30">
