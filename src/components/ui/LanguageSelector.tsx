@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 import { LOCALES, LOCALE_NAMES, type Locale } from '@/lib/constants';
@@ -17,6 +17,7 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
   const pathname = usePathname() || '/';
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [pendingLocale, setPendingLocale] = useState<string | null>(null);
 
   // Usar estado externo si está disponible, sino usar interno
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
@@ -30,10 +31,17 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
       return;
     }
     setIsOpen(false);
+    setPendingLocale(newLocale);
     setIsNavigating(true);
-    const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/';
-    router.replace(`/${newLocale}${pathWithoutLocale}`);
   };
+
+  // Navigate after loading screen completes
+  const handleLoadingComplete = useCallback(() => {
+    if (pendingLocale) {
+      const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/';
+      router.replace(`/${pendingLocale}${pathWithoutLocale}`);
+    }
+  }, [pendingLocale, pathname, router]);
 
   return (
     <div className="relative">
@@ -90,7 +98,7 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
           </div>
         </>
       )}
-      {isNavigating && <LoadingScreen speed={3} />}
+      {isNavigating && <LoadingScreen speed={1.5} onComplete={handleLoadingComplete} />}
     </div>
   );
 }

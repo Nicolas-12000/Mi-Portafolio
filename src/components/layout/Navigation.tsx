@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { Code2, ArrowUpRight } from 'lucide-react';
 import { gsap } from 'gsap';
@@ -99,7 +99,7 @@ export function Navigation({ locale }: NavigationProps) {
   };
 
   // Crear timeline de animación
-  const createTimeline = (): gsap.core.Timeline | null => {
+  const createTimeline = useCallback((): gsap.core.Timeline | null => {
     const navEl = navRef.current;
     if (!navEl) return null;
 
@@ -128,10 +128,9 @@ export function Navigation({ locale }: NavigationProps) {
     }, '-=0.1');
 
     return tl;
-  };
+  }, []);
 
   // Inicializar timeline
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
     const tl = createTimeline();
     tlRef.current = tl;
@@ -140,10 +139,9 @@ export function Navigation({ locale }: NavigationProps) {
       tl?.kill();
       tlRef.current = null;
     };
-  }, []);
+  }, [createTimeline]);
 
   // Manejar resize
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
     const handleResize = () => {
       if (!tlRef.current) return;
@@ -162,7 +160,7 @@ export function Navigation({ locale }: NavigationProps) {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, createTimeline]);
 
   // Función para cerrar el menú
   const closeMenu = () => {

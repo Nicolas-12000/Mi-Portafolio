@@ -1,17 +1,25 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Cpu, Terminal } from 'lucide-react';
 
 interface LoadingScreenProps {
   onComplete?: () => void;
   speed?: number; // Multiplier for animation speed (default: 1)
+  visible?: boolean; // Control visibility from parent
 }
 
-export function LoadingScreen({ onComplete, speed = 1 }: LoadingScreenProps) {
+export function LoadingScreen({ onComplete, speed = 1, visible = true }: LoadingScreenProps) {
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState('INITIALIZING SYSTEM');
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure we only render portal on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     // Progreso continuo (velocidad ajustada por speed prop)
@@ -27,7 +35,6 @@ export function LoadingScreen({ onComplete, speed = 1 }: LoadingScreenProps) {
     }, 25);
 
     return () => clearInterval(timer);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [speed]);
 
   // Llamar onComplete cuando llegue al 100%
@@ -57,12 +64,17 @@ export function LoadingScreen({ onComplete, speed = 1 }: LoadingScreenProps) {
     return () => clearInterval(textInterval);
   }, [progress]);
 
-  return (
+  if (!mounted) return null;
+
+  const content = (
+    <AnimatePresence>
+      {visible && (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 / speed }}
-      className="fixed inset-0 z-9999 bg-[#0A0A0F] flex items-center justify-center overflow-hidden"
+      transition={{ duration: 0.4 }}
+      className="fixed inset-0 z-[9999] bg-[#0A0A0F] flex items-center justify-center overflow-hidden"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}
       role="status"
       aria-live="polite"
       aria-label="Pantalla de carga"
@@ -237,5 +249,9 @@ export function LoadingScreen({ onComplete, speed = 1 }: LoadingScreenProps) {
         </motion.div>
       </div>
     </motion.div>
+      )}
+    </AnimatePresence>
   );
+
+  return createPortal(content, document.body);
 }

@@ -131,7 +131,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-10 pointer-events-auto max-w-2xl mx-auto px-4">
           <button 
             onClick={() => onNavigate('cases')}
-            className="w-full sm:w-auto group relative overflow-hidden bg-gradient-to-r from-[var(--burgundy)] to-[var(--accent-secondary)] hover:from-[var(--accent-secondary)] hover:to-[var(--burgundy)] px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] text-white"
+            className="w-full sm:w-auto group relative overflow-hidden bg-gradient-to-r from-[var(--burgundy)] to-[var(--accent-secondary)] px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:shadow-[var(--burgundy)]/20 hover:scale-[1.03] active:scale-[0.98] text-white"
           >
             <FileText className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
             <span className="relative z-10">{t('cta.cases')}</span>
