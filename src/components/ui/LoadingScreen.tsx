@@ -27,7 +27,8 @@ export function LoadingScreen({ onComplete, speed = 1 }: LoadingScreenProps) {
     }, 25);
 
     return () => clearInterval(timer);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [speed]);
 
   // Llamar onComplete cuando llegue al 100%
   useEffect(() => {
@@ -37,7 +38,7 @@ export function LoadingScreen({ onComplete, speed = 1 }: LoadingScreenProps) {
       return () => clearTimeout(t);
     }
     return;
-  }, [progress, onComplete]);
+  }, [progress, onComplete, speed]);
 
   useEffect(() => {
     const texts = [

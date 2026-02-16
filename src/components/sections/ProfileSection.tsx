@@ -38,7 +38,7 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
   const dragStartXRef = React.useRef(0);
   const dragStartPosRef = React.useRef(0);
 
-  const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25 } as const;
+  const smoothTau = 0.25;
 
   const measure = React.useCallback(() => {
     const inner = innerRef.current;
@@ -68,7 +68,7 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
         if (halfWidth > 0) {
           const targetPxPerSec = halfWidth / (speed || 15); // speed = seconds to traverse halfWidth
           // exponential smoothing toward target velocity
-          const easingFactor = 1 - Math.exp(-dt / ANIMATION_CONFIG.SMOOTH_TAU);
+          const easingFactor = 1 - Math.exp(-dt / smoothTau);
           const newVelocity = velocityRefMem.current + (targetPxPerSec - velocityRefMem.current) * easingFactor;
           velocityRefMem.current = newVelocity;
 

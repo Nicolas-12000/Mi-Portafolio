@@ -133,7 +133,7 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
         { icon: TrendingUp, label: coverageLabel, color: 'text-[#E63946]' }
       ];
     }
-  } catch (e) {
+  } catch {
     // ignore if translation key missing
   }
 

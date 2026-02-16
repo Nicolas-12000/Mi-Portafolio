@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Database, Settings, Cloud, Code2, Cpu, Zap, CheckCircle, Target, Sparkles, TrendingUp, Server, Layers, GitBranch, Boxes, Brain, Rocket } from 'lucide-react';
+import { Database, Cloud, Code2, Zap, CheckCircle, Target, TrendingUp, Server, Layers, Boxes, Brain, Rocket } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function TechStackSection() {

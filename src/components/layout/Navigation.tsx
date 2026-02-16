@@ -7,8 +7,6 @@ import { gsap } from 'gsap';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import type { Locale } from '@/lib/i18n';
-import { useTheme } from '@/hooks/useTheme';
-
 interface NavigationProps {
   locale: Locale;
 }
@@ -24,7 +22,6 @@ const NUMBER_OF_CARDS = 3;
 
 export function Navigation({ locale }: NavigationProps) {
   const t = useTranslations('nav');
-  const { theme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -134,6 +131,7 @@ export function Navigation({ locale }: NavigationProps) {
   };
 
   // Inicializar timeline
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
     const tl = createTimeline();
     tlRef.current = tl;
@@ -145,6 +143,7 @@ export function Navigation({ locale }: NavigationProps) {
   }, []);
 
   // Manejar resize
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
     const handleResize = () => {
       if (!tlRef.current) return;
