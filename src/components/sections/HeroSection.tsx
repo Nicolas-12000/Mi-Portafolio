@@ -84,7 +84,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       {/* IMPORTANTE: pointer-events-none permite que el mouse pase al Galaxy de abajo */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10 pointer-events-none">
         {/* Status Badge - Optimizado para móviles */}
-        <div className="inline-flex items-center justify-center gap-2 sm:gap-3 theme-card backdrop-blur-lg border border-[var(--accent-primary)]/30 dark:border-[var(--accent-primary)]/50 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-6 sm:mb-8 pointer-events-auto ring-1 ring-transparent dark:ring-[var(--accent-primary)]/8" style={{ boxShadow: '0 0 12px var(--shadow-gold)' }}>
+        <div className="inline-flex items-center justify-center gap-2 sm:gap-3 theme-card backdrop-blur-lg border border-[var(--accent-primary)]/30 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-6 sm:mb-8 pointer-events-auto">
           <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${!prefersReducedMotion ? 'animate-pulse' : ''}`} style={{ backgroundColor: 'var(--accent-primary)' }} />
           <span className="text-[10px] sm:text-xs md:text-sm font-medium theme-text tracking-wider uppercase">
             {t('statusBadge')}
@@ -93,40 +93,8 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         
         {/* Title con efecto dorado metalizado - Optimizado mobile-first */}
         <h1 className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight">
-          {/* Resplandor dorado cálido detrás */}
-          <span 
-            className="absolute inset-0 bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] bg-clip-text text-transparent blur-3xl opacity-50"
-            aria-hidden="true"
-          >
-            {t('title')}
-          </span>
-          
           {/* Texto principal con gradiente dorado metalizado vertical */}
           <span className="relative bg-gradient-to-b from-[#FEFCE8] via-[#FACC15] to-[#78350F] bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-            {t('title')}
-          </span>
-          
-          {/* Brillo metálico superior */}
-          <span 
-            className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-transparent bg-clip-text text-transparent opacity-60"
-            style={{ 
-              WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 40%)',
-              maskImage: 'linear-gradient(to bottom, black 0%, transparent 40%)'
-            }}
-            aria-hidden="true"
-          >
-            {t('title')}
-          </span>
-          
-          {/* Sombra profunda inferior */}
-          <span 
-            className="absolute inset-0 translate-y-1 bg-gradient-to-b from-transparent via-[#78350F] to-black bg-clip-text text-transparent opacity-40"
-            style={{ 
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 60%, black 100%)',
-              maskImage: 'linear-gradient(to bottom, transparent 60%, black 100%)'
-            }}
-            aria-hidden="true"
-          >
             {t('title')}
           </span>
         </h1>
@@ -163,52 +131,36 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-10 pointer-events-auto max-w-2xl mx-auto px-4">
           <button 
             onClick={() => onNavigate('cases')}
-            className="w-full sm:w-auto group relative overflow-hidden bg-gradient-to-r from-[var(--burgundy)] to-[var(--accent-secondary)] hover:from-[var(--accent-secondary)] hover:to-[var(--burgundy)] px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] text-white" style={{ boxShadow: '0 0 25px var(--shadow-gold)' }}
+            className="w-full sm:w-auto group relative overflow-hidden bg-gradient-to-r from-[var(--burgundy)] to-[var(--accent-secondary)] hover:from-[var(--accent-secondary)] hover:to-[var(--burgundy)] px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] text-white"
           >
-            {/* Efecto de brillo dorado que se desliza */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent skew-x-12 rounded-lg" />
-            
-            {/* Resplandor dorado en los bordes */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" style={{ boxShadow: 'inset 0 0 20px var(--shadow-gold)' }} />
-            
-            <FileText className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]" />
-            <span className="relative z-10 group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]">{t('cta.cases')}</span>
-            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform relative z-10 group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]" />
+            <FileText className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
+            <span className="relative z-10">{t('cta.cases')}</span>
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform relative z-10" />
           </button>
           
           <button 
             onClick={() => onNavigate('tech')}
             className="w-full sm:w-auto group relative overflow-hidden border-2 border-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98] shadow-sm"
           >
-            {/* Efecto de brillo dorado que se desliza */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/25 to-transparent skew-x-12 rounded-lg" />
-            
-            {/* Resplandor dorado interno */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg bg-gradient-to-r from-[var(--accent-primary)]/5 via-[var(--accent-primary)]/10 to-[var(--accent-primary)]/5" />
-            
-            <Cpu className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:theme-accent group-hover:drop-shadow-[0_0_8px_rgba(230,185,61,0.8)] transition-colors" />
-            <span className="relative z-10 group-hover:theme-accent group-hover:drop-shadow-[0_0_8px_rgba(230,185,61,0.6)] transition-colors">{t('cta.tech')}</span>
-            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform relative z-10 group-hover:theme-accent group-hover:drop-shadow-[0_0_8px_rgba(230,185,61,0.8)]" />
+            <Cpu className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:text-[var(--accent-primary)] transition-colors" />
+            <span className="relative z-10 group-hover:text-[var(--accent-primary)] transition-colors">{t('cta.tech')}</span>
+            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform relative z-10 group-hover:text-[var(--accent-primary)]" />
           </button>
         </div>
 
-        {/* Quick Links con efectos dorados - Centrados */}
+        {/* Quick Links - Centrados */}
         <div className="flex justify-center gap-8 pointer-events-auto">
           <button
             onClick={() => onNavigate('profile')}
-            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden theme-card shadow-subtle text-text-primary"
+            className="group transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg theme-card shadow-sm text-text-primary hover:text-[var(--accent-primary)]"
           >
-            {/* Efecto de brillo dorado */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent" />
-            <span className="relative z-10 group-hover:theme-accent group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] font-semibold">{t('quickLinks.about')}</span>
+            {t('quickLinks.about')}
           </button>
           <button
             onClick={() => onNavigate('contact')}
-            className="group relative transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg overflow-hidden border border-[var(--accent-primary)] theme-card shadow-subtle text-text-primary"
+            className="group transition-all duration-300 text-sm sm:text-base active:scale-95 font-semibold px-4 py-2 rounded-lg border border-[var(--accent-primary)] theme-card shadow-sm text-text-primary hover:text-[var(--accent-primary)]"
           >
-            {/* Efecto de brillo dorado */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/30 to-transparent" />
-            <span className="relative z-10 group-hover:theme-accent group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] font-semibold">{t('quickLinks.contact')}</span>
+            {t('quickLinks.contact')}
           </button>
         </div>
       </div>

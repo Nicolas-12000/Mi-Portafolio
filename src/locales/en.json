@@ -311,7 +311,13 @@
         "next": "Next",
         "guaranteeTitle": "Response guarantee",
       "submit": "Send Proposal",
-      "guarantee": "Response guaranteed within 24 hours."
+      "guarantee": "Response guaranteed within 24 hours.",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Enter a valid email",
+        "messageRequired": "Message is required"
+      }
     },
       "projectTypes": {
         "backend": "Backend Development",
@@ -351,6 +357,8 @@
     "copyright": "© 2025 Nicolás Alejandro García Pasmiño",
     "quote": "Every line of code is one more hour to live",
     "status": "Available",
+    "work_mode": "Remote & Hybrid",
+    "lets_start": "Let's start",
     "made_with": "Made with",
     "by": "by",
     "available": "Available",

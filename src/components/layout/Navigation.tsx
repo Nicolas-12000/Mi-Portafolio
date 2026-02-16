@@ -201,7 +201,7 @@ export function Navigation({ locale }: NavigationProps) {
 
     const offset = 80;
     const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    const offsetPosition = elementPosition + window.scrollY - offset;
 
     window.scrollTo({
       top: offsetPosition,
@@ -239,14 +239,14 @@ export function Navigation({ locale }: NavigationProps) {
               className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? 'translate-y-1 rotate-45' : ''
               }`}
-              style={{ backgroundColor: '#E6B93D', boxShadow: '0 0 8px rgba(230,185,61,0.45)' }}
+              style={{ backgroundColor: 'var(--accent-primary)', boxShadow: '0 0 6px rgba(230,185,61,0.3)' }}
               aria-hidden="true"
             />
             <div
               className={`w-6 sm:w-7 h-0.5 transition-all duration-300 ${
                 isMenuOpen ? '-translate-y-1 -rotate-45' : ''
               }`}
-              style={{ backgroundColor: '#E6B93D', boxShadow: '0 0 8px rgba(230,185,61,0.45)' }}
+              style={{ backgroundColor: 'var(--accent-primary)', boxShadow: '0 0 6px rgba(230,185,61,0.3)' }}
               aria-hidden="true"
             />
           </button>
@@ -298,7 +298,7 @@ export function Navigation({ locale }: NavigationProps) {
                 style={{ minHeight: isMobile ? `${CARD_HEIGHT_MOBILE}px` : '80px' }}
                 role="listitem"
               >
-                <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm text-[#E6B93D]">
+                <div className="font-semibold text-base sm:text-lg md:text-xl tracking-tight drop-shadow-sm" style={{ color: 'var(--accent-primary)' }}>
                   {card.label}
                 </div>
                 <div className="flex flex-col gap-0.5 sm:gap-1 mt-auto">
@@ -307,7 +307,8 @@ export function Navigation({ locale }: NavigationProps) {
                       key={i}
                       href={`#${link.id}`}
                       onClick={(e) => { e.preventDefault(); scrollToSection(link.id); }}
-                      className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1 text-[#E6B93D]"
+                      className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base opacity-90 hover:opacity-100 transition-all hover:translate-x-1"
+                      style={{ color: 'var(--accent-primary)' }}
                     >
                       {link.icon && <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />}
                       {link.label}

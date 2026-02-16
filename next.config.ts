@@ -4,7 +4,13 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./src/lib/i18n.ts');
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Optimize production builds
+  reactStrictMode: true,
+  poweredByHeader: false,
+  
+  // Compress responses
+  compress: true,
+
   async headers() {
     return [
       {
@@ -18,6 +24,34 @@ const nextConfig: NextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache static assets aggressively
+        source: '/:all*(svg|jpg|jpeg|png|gif|ico|webp|woff|woff2)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Security headers for all pages
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
           },
         ],
       },

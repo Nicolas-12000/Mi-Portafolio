@@ -14,7 +14,7 @@ const Portfolio = () => {
     if (element) {
       const offset = 64;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition = elementPosition + window.scrollY - offset;
       
       window.scrollTo({
         top: offsetPosition,
@@ -27,9 +27,9 @@ const Portfolio = () => {
     <>
       <div className="min-h-screen text-text-primary relative bg-gradient-to-b from-background via-surface to-background">
         {/* Background Elements */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-primary/20 rounded-full blur-[128px]" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-secondary/20 rounded-full blur-[128px]" />
+        <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-20">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-primary/15 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-secondary/15 rounded-full blur-[100px]" />
         </div>
 
         {/* Main Content */}

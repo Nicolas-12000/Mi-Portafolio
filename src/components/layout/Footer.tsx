@@ -3,19 +3,27 @@
 import { useTranslations } from 'next-intl';
 import { Github, Linkedin, ArrowUp, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export function Footer() {
   const t = useTranslations('footer');
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const ticking = useRef(false);
+
+  const handleScroll = useCallback(() => {
+    if (!ticking.current) {
+      ticking.current = true;
+      requestAnimationFrame(() => {
+        setShowScrollTop(window.scrollY > 400);
+        ticking.current = false;
+      });
+    }
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -36,13 +44,10 @@ export function Footer() {
           exit={{ opacity: 0, scale: 0.8 }}
           type="button"
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full flex items-center justify-center theme-shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full flex items-center justify-center theme-shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 hover:brightness-110"
           style={{ 
             background: 'linear-gradient(to bottom right, var(--accent-primary), var(--gold-alt))',
-            boxShadow: '0 20px 25px -5px rgba(var(--accent-primary-rgb), 0.2)'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.background = 'linear-gradient(to bottom right, var(--gold-alt), var(--accent-primary))'}
-          onMouseLeave={(e) => e.currentTarget.style.background = 'linear-gradient(to bottom right, var(--accent-primary), var(--gold-alt))'}
           aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5" style={{ color: 'var(--background)' }} strokeWidth={2.5} />
@@ -55,7 +60,7 @@ export function Footer() {
         <div className="text-center mb-16">
           <p className="text-base sm:text-lg theme-text-muted italic mb-6">{t('cta_question')}</p>
           <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold theme-text mb-12">
-            Let&apos;s start
+            {t('lets_start')}
           </h2>
 
           {/* Contact Info Row */}
@@ -81,8 +86,8 @@ export function Footer() {
                 aria-hidden="true"
               />
               <div className="text-left">
-                <p className="text-base font-bold theme-accent">Disponible</p>
-                <p className="text-sm theme-text-muted">Remoto & Híbrido</p>
+                <p className="text-base font-bold theme-accent">{t('status')}</p>
+                <p className="text-sm theme-text-muted">{t('work_mode')}</p>
               </div>
             </div>
           </div>
@@ -155,7 +160,7 @@ export function Footer() {
           {/* Right: Location + Tech */}
           <div className="text-center md:text-right space-y-2">
             <p className="text-sm theme-text-muted">
-              {t('status') === 'Available' ? 'Pasto, Nariño, Colombia' : 'Pasto, Nariño, Colombia'}
+              Pasto, Nariño, Colombia
             </p>
             <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
               Built with Next.js • React • TypeScript

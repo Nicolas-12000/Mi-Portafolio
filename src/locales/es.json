@@ -310,7 +310,13 @@
       "next": "Siguiente",
       "guaranteeTitle": "Garantía de respuesta",
       "submit": "Enviar Propuesta",
-      "guarantee": "Respuesta garantizada en 24 horas."
+      "guarantee": "Respuesta garantizada en 24 horas.",
+      "errors": {
+        "nameRequired": "El nombre es obligatorio",
+        "emailRequired": "El email es obligatorio",
+        "emailInvalid": "Ingresa un email válido",
+        "messageRequired": "El mensaje es obligatorio"
+      }
     },
     "projectTypes": {
       "backend": "Backend",
@@ -350,6 +356,8 @@
     "copyright": "© 2025 Nicolás Alejandro García Pasmiño",
     "quote": "Cada línea de código es una hora más para vivir",
     "status": "Disponible",
+    "work_mode": "Remoto & Híbrido",
+    "lets_start": "Comencemos",
     "made_with": "Hecho con",
     "by": "por",
     "available": "Disponible",

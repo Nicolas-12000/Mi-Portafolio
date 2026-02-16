@@ -160,24 +160,14 @@ body {
   }
 }
 
-/* Ocultar scrollbar completamente */
-::-webkit-scrollbar {
-  display: none;
-}
-
-/* Para Firefox */
-* {
+/* Ocultar scrollbar */
+html {
   scrollbar-width: none;
-}
-
-/* Para IE y Edge legacy */
-body {
   -ms-overflow-style: none;
 }
 
-/* ===== Estilos base sin conflictos ===== */
-* {
-  scrollbar-width: none;
+html::-webkit-scrollbar {
+  display: none;
 }
 
 *:focus-visible {
@@ -206,11 +196,6 @@ body {
 
 /* Animaciones de hover más sutiles */
 @media (prefers-reduced-motion: no-preference) {
-  /* Transiciones suaves por defecto */
-  * {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
   /* Hover effect sutil para botones */
   button:not(:disabled):hover,
   a:hover {
@@ -318,11 +303,7 @@ body {
   animation: led-blink 2s ease-in-out infinite;
 }
 
-/* Shimmer effect for gold */
-@keyframes shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
+/* Shimmer effect for gold - uses @keyframes shimmer defined above */
 
 .animate-shimmer {
   background-size: 200% auto;

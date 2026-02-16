@@ -323,7 +323,13 @@
         "needToKnow": "Ho bisogno di sapere come contattarti e chi sei"
       },
       "submit": "Invia Proposta",
-      "guarantee": "Risposta garantita entro 24 ore."
+      "guarantee": "Risposta garantita entro 24 ore.",
+      "errors": {
+        "nameRequired": "Il nome è obbligatorio",
+        "emailRequired": "L'email è obbligatoria",
+        "emailInvalid": "Inserisci un'email valida",
+        "messageRequired": "Il messaggio è obbligatorio"
+      }
     },
     "projectTypes": {
       "backend": "Backend",
@@ -363,6 +369,8 @@
     "copyright": "© 2025 Nicolás Alejandro García Pasmiño",
     "quote": "Ogni riga di codice è un'ora in più da vivere",
     "status": "Disponibile",
+    "work_mode": "Remoto & Ibrido",
+    "lets_start": "Iniziamo",
     "made_with": "Fatto con",
     "by": "da",
     "available": "Disponibile",

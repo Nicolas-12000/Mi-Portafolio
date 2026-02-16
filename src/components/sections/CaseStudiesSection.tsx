@@ -284,14 +284,11 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                         href="https://github.com/Nicolas-12000"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-[1.05] active:scale-[0.98] shadow-2xl"
+                        className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-[1.05] hover:brightness-110 active:scale-[0.98] shadow-2xl"
                         style={{ 
                           background: 'linear-gradient(to right, var(--accent-primary), var(--gold-alt))',
                           color: 'var(--background)',
-                          boxShadow: '0 25px 50px -12px rgba(var(--accent-primary-rgb), 0.3)'
                         }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = 'linear-gradient(to right, var(--gold-alt), var(--accent-primary))'}
-                        onMouseLeave={(e) => e.currentTarget.style.background = 'linear-gradient(to right, var(--accent-primary), var(--gold-alt))'}
                       >
                         <Github className="w-5 h-5" />
                         <span>{t('github.cta')}</span>
@@ -450,7 +447,7 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
             <div className="flex items-center justify-center mt-2">
               <button
                 onClick={() => onNavigate('contact')}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-transform duration-200 active:scale-95"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-200 active:scale-95 hover:-translate-y-0.5"
                 style={{
                   background: 'linear-gradient(90deg, var(--accent-primary), var(--gold-alt))',
                   color: 'var(--background)',
@@ -458,8 +455,6 @@ export function CaseStudiesSection({ onNavigate }: CaseStudiesSectionProps) {
                   boxShadow: '0 12px 30px -10px rgba(180,139,47,0.35), inset 0 -2px 0 rgba(0,0,0,0.06)',
                   border: '1px solid rgba(0,0,0,0.06)'
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)'; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = ''; }}
               >
                 <Mail className="w-4 h-4" />
                 <span>{t('footer.cta')}</span>

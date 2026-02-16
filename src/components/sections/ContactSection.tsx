@@ -99,6 +99,7 @@ export function ContactSection() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const projectTypes = [
     'backend',
@@ -115,16 +116,43 @@ export function ContactSection() {
     { key: 'instagram', name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nico.gp12/', color: 'text-[var(--text-primary)] transition-colors duration-200 group-hover:text-[#E4405F]' }
   ];
 
+  const validateStep = (step: number): boolean => {
+    const newErrors: Record<string, string> = {};
+    
+    if (step === 1) {
+      if (!formData.name.trim()) newErrors.name = t('form.errors.nameRequired');
+      if (!formData.email.trim()) {
+        newErrors.email = t('form.errors.emailRequired');
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        newErrors.email = t('form.errors.emailInvalid');
+      }
+    }
+    if (step === 3) {
+      if (!formData.message.trim()) newErrors.message = t('form.errors.messageRequired');
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleNext = () => {
-    if (currentStep < 3) setCurrentStep(currentStep + 1);
+    if (validateStep(currentStep) && currentStep < 3) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   const handleBack = () => {
+    setErrors({});
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData);
+    if (!validateStep(3)) return;
+    
+    // Build mailto link as a real submission mechanism
+    const subject = encodeURIComponent(`Portfolio Contact: ${formData.projectType}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\n\nMessage:\n${formData.message}`);
+    window.open(`mailto:nikolasg1200@gmail.com?subject=${subject}&body=${body}`, '_blank');
     setSubmitted(true);
   };
 
@@ -314,11 +342,13 @@ export function ContactSection() {
                           id="contact-name"
                           name="name"
                           type="text" 
+                          required
                           value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20"
+                          onChange={(e) => { setFormData({...formData, name: e.target.value}); setErrors(prev => ({...prev, name: ''})); }}
+                          className={`w-full theme-surface rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20 border ${errors.name ? 'border-[var(--status-error)]' : 'theme-border'}`}
                           placeholder={t('form.name.placeholder')}
                         />
+                        {errors.name && <p className="text-xs mt-1" style={{ color: 'var(--status-error)' }}>{errors.name}</p>}
                       </div>
 
                       <div>
@@ -329,11 +359,13 @@ export function ContactSection() {
                           id="contact-email"
                           name="email"
                           type="email" 
+                          required
                           value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20"
+                          onChange={(e) => { setFormData({...formData, email: e.target.value}); setErrors(prev => ({...prev, email: ''})); }}
+                          className={`w-full theme-surface rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20 border ${errors.email ? 'border-[var(--status-error)]' : 'theme-border'}`}
                           placeholder={t('form.email.placeholder')}
                         />
+                        {errors.email && <p className="text-xs mt-1" style={{ color: 'var(--status-error)' }}>{errors.email}</p>}
                       </div>
                     </motion.div>
                   )}
@@ -414,11 +446,13 @@ export function ContactSection() {
                           id="contact-message"
                           name="message"
                           rows={6}
+                          required
                           value={formData.message}
-                          onChange={(e) => setFormData({...formData, message: e.target.value})}
-                          className="w-full theme-surface theme-border rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20 resize-none"
+                          onChange={(e) => { setFormData({...formData, message: e.target.value}); setErrors(prev => ({...prev, message: ''})); }}
+                          className={`w-full theme-surface rounded-lg px-4 py-3 theme-text placeholder-text-tertiary focus:border-[var(--accent-primary)] focus:outline-none transition-colors focus:ring-1 focus:ring-[var(--accent-primary)]/20 resize-none border ${errors.message ? 'border-[var(--status-error)]' : 'theme-border'}`}
                           placeholder={t('form.message.placeholder')}
                         />
+                        {errors.message && <p className="text-xs mt-1" style={{ color: 'var(--status-error)' }}>{errors.message}</p>}
                       </div>
 
                       <div className="rounded-lg p-4 bg-[var(--accent-primary)]/12 border border-[var(--accent-primary)]/20">
@@ -489,7 +523,7 @@ export function ContactSection() {
                 onClick={() => {
                   setSubmitted(false);
                   setCurrentStep(1);
-                  setFormData({ name: '', email: '', projectType: 'Backend Development', message: '' });
+                  setFormData({ name: '', email: '', projectType: 'backend', message: '' });
                 }}
                 className="theme-accent hover:text-[var(--gold-alt)] transition-colors text-sm font-medium inline-flex items-center gap-2 group"
               >

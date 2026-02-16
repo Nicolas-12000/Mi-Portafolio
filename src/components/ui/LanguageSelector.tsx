@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 import { LOCALES, LOCALE_NAMES, type Locale } from '@/lib/constants';
-import { useTheme } from '@/hooks/useTheme';
 
 interface LanguageSelectorProps {
   currentLocale: Locale;
@@ -15,7 +14,6 @@ interface LanguageSelectorProps {
 export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpenChange }: LanguageSelectorProps) {
   const router = useRouter();
   const pathname = usePathname() || '/';
-  const { setIsLoading } = useTheme();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
 
   // Usar estado externo si está disponible, sino usar interno
@@ -25,20 +23,9 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
   const locales = LOCALES;
 
   const changeLocale = (newLocale: Locale) => {
-    // Cerrar dropdown inmediatamente
     setIsOpen(false);
-
-    // Activar loading inmediatamente
-    if (setIsLoading) setIsLoading(true);
-
-    // Usar requestAnimationFrame para asegurar que el loading se muestre antes del cambio
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/';
-        router.replace(`/${newLocale}${pathWithoutLocale}`);
-        // NO desactivamos el loading aquí; se maneja en el proveedor de theme/layout
-      });
-    });
+    const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/';
+    router.replace(`/${newLocale}${pathWithoutLocale}`);
   };
 
   return (

@@ -38,8 +38,6 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
   const dragStartXRef = React.useRef(0);
   const dragStartPosRef = React.useRef(0);
 
-  const [renderTick, setRenderTick] = useState(0);
-
   const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25 } as const;
 
   const measure = React.useCallback(() => {
@@ -97,7 +95,6 @@ function TestimonialLoop({ testimonials, speed = 15, }: { testimonials: Testimon
   // pause when a card is opened
   React.useEffect(() => {
     isPausedRef.current = !!selected;
-    setRenderTick((s) => s + 1);
   }, [selected]);
 
   // pointer drag handlers
