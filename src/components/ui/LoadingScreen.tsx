@@ -6,21 +6,23 @@ import { Code2, Cpu, Terminal } from 'lucide-react';
 
 interface LoadingScreenProps {
   onComplete?: () => void;
+  speed?: number; // Multiplier for animation speed (default: 1)
 }
 
-export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
+export function LoadingScreen({ onComplete, speed = 1 }: LoadingScreenProps) {
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState('INITIALIZING SYSTEM');
 
   useEffect(() => {
-    // Progreso continuo hasta el 100% en ~1.3 segundos
+    // Progreso continuo (velocidad ajustada por speed prop)
+    const increment = Math.max(1, Math.round(2 * speed));
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
           return 100;
         }
-        return prev + 2;
+        return Math.min(prev + increment, 100);
       });
     }, 25);
 
@@ -30,7 +32,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
   // Llamar onComplete cuando llegue al 100%
   useEffect(() => {
     if (progress >= 100 && onComplete) {
-      const t = setTimeout(() => onComplete(), 250);
+      const exitDelay = Math.round(250 / speed);
+      const t = setTimeout(() => onComplete(), exitDelay);
       return () => clearTimeout(t);
     }
     return;
@@ -57,8 +60,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[9999] bg-[#0A0A0F] flex items-center justify-center overflow-hidden"
+      transition={{ duration: 0.5 / speed }}
+      className="fixed inset-0 z-9999 bg-[#0A0A0F] flex items-center justify-center overflow-hidden"
       role="status"
       aria-live="polite"
       aria-label="Pantalla de carga"
@@ -71,23 +74,23 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
         <motion.div
           animate={{ x: [-1000, 1000] }}
           transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-1/4 w-full h-px bg-gradient-to-r from-transparent via-red-500/20 to-transparent"
+          className="absolute top-1/4 w-full h-px bg-linear-to-r from-transparent via-red-500/20 to-transparent"
         />
         <motion.div
           animate={{ x: [1000, -1000] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'linear', delay: 1 }}
-          className="absolute top-1/2 w-full h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent"
+          className="absolute top-1/2 w-full h-px bg-linear-to-r from-transparent via-orange-500/20 to-transparent"
         />
         <motion.div
           animate={{ x: [-1000, 1000] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: 'linear', delay: 0.5 }}
-          className="absolute top-3/4 w-full h-px bg-gradient-to-r from-transparent via-red-500/20 to-transparent"
+          className="absolute top-3/4 w-full h-px bg-linear-to-r from-transparent via-red-500/20 to-transparent"
         />
       </div>
 
       {/* Subtle corner accents */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-red-500/5 to-transparent blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-orange-500/5 to-transparent blur-3xl" />
+      <div className="absolute top-0 left-0 w-64 h-64 bg-linear-to-br from-red-500/5 to-transparent blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-linear-to-tl from-orange-500/5 to-transparent blur-3xl" />
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center gap-8 px-4 max-w-lg w-full">
@@ -95,7 +98,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          transition={{ duration: 0.6 / speed, ease: 'easeOut' }}
           className="relative"
         >
           {/* Outer ring */}
@@ -117,7 +120,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
           </motion.div>
 
           {/* Core logo */}
-          <div className="relative w-16 h-16 bg-gradient-to-br from-[#0F0F1A] to-[#1C1C28] rounded-lg flex items-center justify-center border border-red-500/30 shadow-lg shadow-red-500/10">
+          <div className="relative w-16 h-16 bg-linear-to-br from-[#0F0F1A] to-[#1C1C28] rounded-lg flex items-center justify-center border border-red-500/30 shadow-lg shadow-red-500/10">
             <Code2 className="w-8 h-8 text-red-400/80" strokeWidth={1.5} />
             
             {/* Corner accents */}
@@ -139,7 +142,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.3 / speed, duration: 0.6 / speed }}
           className="text-center space-y-2"
         >
           <div className="flex items-center justify-center gap-2 text-red-400/60 text-xs font-mono mb-3">
@@ -160,7 +163,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.5 / speed, duration: 0.5 / speed }}
           className="w-full space-y-3"
         >
           {/* Progress bar */}
@@ -168,13 +171,13 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
-              className="h-full bg-gradient-to-r from-red-500/80 to-orange-500/80 relative"
+              className="h-full bg-linear-to-r from-red-500/80 to-orange-500/80 relative"
             >
               {/* Scanning line effect */}
               <motion.div
                 animate={{ x: [-20, 120] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 w-8 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+                className="absolute inset-0 w-8 bg-linear-to-r from-transparent via-white/40 to-transparent skew-x-12"
               />
             </motion.div>
           </div>
@@ -213,7 +216,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.7 / speed }}
           className="flex gap-3 items-center"
         >
           {[0, 1, 2].map((i) => (

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 import { LOCALES, LOCALE_NAMES, type Locale } from '@/lib/constants';
+import { LoadingScreen } from '@/components/ui/LoadingScreen';
 
 interface LanguageSelectorProps {
   currentLocale: Locale;
@@ -15,6 +16,7 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
   const router = useRouter();
   const pathname = usePathname() || '/';
   const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Usar estado externo si está disponible, sino usar interno
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
@@ -23,7 +25,12 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
   const locales = LOCALES;
 
   const changeLocale = (newLocale: Locale) => {
+    if (newLocale === currentLocale) {
+      setIsOpen(false);
+      return;
+    }
     setIsOpen(false);
+    setIsNavigating(true);
     const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/';
     router.replace(`/${newLocale}${pathWithoutLocale}`);
   };
@@ -40,7 +47,7 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
         className="relative flex items-center gap-1.5 h-10 sm:h-12 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-surface-elevated/80 hover:bg-surface-elevated border border-border hover:border-accent-primary/40 transition-all duration-300 group hover:scale-105 active:scale-95 overflow-hidden"
         aria-label="Seleccionar idioma"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/5 to-accent-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-br from-accent-primary/5 to-accent-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-accent-primary relative z-10 transition-transform group-hover:rotate-12" />
         <span className="text-xs sm:text-sm font-bold text-text-primary relative z-10 uppercase tracking-wider">{currentLocale.toUpperCase()}</span>
@@ -83,6 +90,7 @@ export function LanguageSelector({ currentLocale, isOpen: externalIsOpen, onOpen
           </div>
         </>
       )}
+      {isNavigating && <LoadingScreen speed={3} />}
     </div>
   );
 }
